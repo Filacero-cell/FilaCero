@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FilaCero | Entradas Oficiales</title>
+  <title>FilaCero | Entradas Oficiales y Cine</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
 
@@ -30,50 +30,56 @@
     .btn-secondary { background: rgba(255, 255, 255, 0.1); color: #ffffff; font-weight: 700; padding: 15px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.2); font-size: 15px; text-decoration: none; text-align: center; }
 
     /* Section Slider Header */
-    .slider-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+    .slider-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; margin-top: 15px; }
     .status-indicator { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 800; color: #ffffff; text-transform: uppercase; letter-spacing: 0.5px; }
     .dot-green { width: 8px; height: 8px; background-color: #25d366; border-radius: 50%; display: inline-block; box-shadow: 0 0 8px #25d366; }
+    .dot-red { width: 8px; height: 8px; background-color: #ff4757; border-radius: 50%; display: inline-block; box-shadow: 0 0 8px #ff4757; }
     .see-all { color: #64dfdf; font-size: 13px; font-weight: 700; text-decoration: none; }
 
-    /* Carousel Container (4 elementos) */
+    /* Carousel General */
     .carousel-wrapper { position: relative; overflow: hidden; border-radius: 20px; width: 100%; margin-bottom: 10px; }
-    .carousel-track { display: flex; transition: transform 0.5s ease-in-out; width: 400%; }
+    
+    /* Carousel Conciertos (4 items) */
+    .carousel-track-conciertos { display: flex; transition: transform 0.5s ease-in-out; width: 400%; }
+    
+    /* Carousel Cine (3 items) */
+    .carousel-track-cine { display: flex; transition: transform 0.5s ease-in-out; width: 300%; }
 
-    /* Event Card Slide (cada tarjeta ocupa 25% del track de 400%) */
-    .event-card-slide { width: 25%; background: #ffffff; color: #112a46; border-radius: 20px; overflow: hidden; position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+    .slide-conciertos { width: 25%; background: #ffffff; color: #112a46; border-radius: 20px; overflow: hidden; position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+    .slide-cine { width: 33.333%; background: #ffffff; color: #112a46; border-radius: 20px; overflow: hidden; position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+
     .card-image-box { position: relative; width: 100%; height: 210px; overflow: hidden; background: #000; }
     .card-image-box img { width: 100%; height: 100%; object-fit: cover; }
     
     .badge-top-left { position: absolute; top: 12px; left: 12px; display: flex; gap: 6px; }
     .tag-purple { background: #702b84; color: #fff; font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 12px; }
     .tag-blue { background: #00a8ff; color: #fff; font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 12px; }
+    .tag-red { background: #ff4757; color: #fff; font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 12px; }
     .badge-top-right { position: absolute; top: 12px; right: 12px; background: #ff4757; color: #fff; font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 12px; }
 
     .card-body { padding: 18px; }
-    .card-title { font-size: 20px; font-weight: 900; color: #0d2c4a; margin-bottom: 12px; line-height: 1.2; text-transform: uppercase; }
+    .card-title { font-size: 19px; font-weight: 900; color: #0d2c4a; margin-bottom: 10px; line-height: 1.2; text-transform: uppercase; }
     .card-info { font-size: 13px; color: #5a7184; font-weight: 600; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
     
-    .card-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 18px; padding-top: 12px; border-top: 1px solid #e1e5eb; }
+    .card-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; padding-top: 12px; border-top: 1px solid #e1e5eb; }
     .price-sub { font-size: 10px; color: #702b84; font-weight: 800; text-transform: uppercase; display: block; }
     .price-amount { font-size: 20px; font-weight: 900; color: #0d2c4a; }
-    .btn-separar { background: linear-gradient(135deg, #00a8ff, #0056b3); color: #ffffff; padding: 12px 20px; border-radius: 12px; text-decoration: none; font-weight: 800; font-size: 14px; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(0, 168, 255, 0.3); }
+    .btn-separar { background: linear-gradient(135deg, #00a8ff, #0056b3); color: #ffffff; padding: 12px 20px; border-radius: 12px; text-decoration: none; font-weight: 800; font-size: 14px; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(0, 168, 255, 0.3); border: none; cursor: pointer; }
 
-    .dots-container { display: flex; justify-content: center; gap: 8px; margin-top: 15px; margin-bottom: 45px; }
+    .dots-container { display: flex; justify-content: center; gap: 8px; margin-top: 15px; margin-bottom: 40px; }
     .dot { width: 8px; height: 8px; background: rgba(255, 255, 255, 0.3); border-radius: 50%; transition: 0.3s; }
     .dot.active { width: 24px; background: #64dfdf; border-radius: 10px; }
 
-    /* SECCIÓN GARANTÍAS */
+    /* SECCIÓN GARANTÍAS Y MÉRITOS */
     .section-title { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; color: #cce3f5; margin-bottom: 15px; }
     .garantias-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 25px; }
     .garantia-item { background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; padding: 12px 14px; display: flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 700; color: #ffffff; }
     .garantia-icon { font-size: 16px; }
 
-    /* COMPATIBLE CON */
     .compatible-box { background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 12px; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; font-size: 12px; font-weight: 700; color: #ffffff; margin-bottom: 25px; }
     .compatible-tags { display: flex; align-items: center; gap: 8px; color: #cce3f5; }
     .tag-nuevo { background: #25d366; color: #0d2c4a; font-size: 9px; font-weight: 900; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; }
 
-    /* MÉRITOS / NÚMEROS */
     .metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 50px; }
     .metric-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 16px; padding: 16px; }
     .metric-val { font-size: 28px; font-weight: 900; color: #64dfdf; margin-bottom: 4px; }
@@ -86,7 +92,6 @@
     .how-title { font-size: 30px; font-weight: 900; color: #ffffff; margin-bottom: 8px; }
     .how-subtitle { font-size: 14px; color: #cce3f5; margin-bottom: 25px; line-height: 1.4; }
 
-    /* PASOS DE CÓMO FUNCIONA */
     .step-card { background: #ffffff; color: #0d2c4a; border-radius: 20px; padding: 22px; margin-bottom: 16px; position: relative; box-shadow: 0 6px 16px rgba(0,0,0,0.2); }
     .step-number { position: absolute; top: 18px; right: 20px; font-size: 38px; font-weight: 900; color: #f0f3f7; }
     .step-icon-box { width: 44px; height: 44px; background: #00a8ff; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; color: #fff; margin-bottom: 16px; }
@@ -99,6 +104,24 @@
     .ws-tooltip { background: #ffffff; color: #112a46; padding: 8px 12px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); font-size: 12px; font-weight: bold; position: relative; }
     .ws-tooltip::before { content: ""; position: absolute; left: -6px; top: 50%; transform: translateY(-50%); border-width: 6px 6px 6px 0; border-style: solid; border-color: transparent #ffffff transparent transparent; }
     .ws-subtext { color: #25d366; font-size: 11px; font-weight: bold; display: block; }
+
+    /* Modales */
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 18, 31, 0.85); justify-content: center; align-items: center; z-index: 1000; padding: 15px; backdrop-filter: blur(4px); }
+    .modal-content { background: #13385c; padding: 22px; border-radius: 18px; max-width: 380px; width: 100%; border: 1px solid rgba(255, 255, 255, 0.15); max-height: 90vh; overflow-y: auto; }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+    .modal-title { font-size: 18px; font-weight:bold; color: #ffffff; }
+    .close-icon { color: #cce3f5; font-size: 24px; cursor: pointer; border: none; background: none; font-weight: bold; }
+
+    .counter-container { display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.06); padding: 10px 15px; border-radius: 12px; margin: 15px 0; border: 1px solid rgba(255, 255, 255, 0.15); color: #cce3f5; }
+    .counter-btn { background: rgba(255, 255, 255, 0.15); color: #ffffff; border: none; width: 32px; height: 32px; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; }
+    .counter-value { font-size: 18px; font-weight: bold; color: #64dfdf; }
+
+    .total-box { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-top: 2px dashed rgba(255, 255, 255, 0.2); margin-top: 10px; font-size: 16px; font-weight: bold; color: #ffffff; }
+    .total-amount { color: #64dfdf; font-size: 22px; font-weight: 900; }
+
+    .btn-pay-qr { width: 100%; background-color: #702b84; color: #fff; padding: 14px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; font-size: 15px; margin-top: 15px; text-transform: uppercase; }
+    .btn-pay-ws { background-color: #25d366; color: #0d2c4a; padding: 12px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; font-size: 14px; text-decoration: none; text-align: center; }
+    .qr-img { width: 100%; max-width: 220px; border-radius: 12px; margin: 15px auto; display: block; border: 1px solid rgba(255, 255, 255, 0.2); }
   </style>
 </head>
 <body>
@@ -120,34 +143,30 @@
   </h1>
 
   <p class="hero-desc">
-    Compra tus pases para los mejores conciertos, funciones de cine y partidos sin filas. Garantía y entrega rápida en Lima.
+    Compra tus pases para los mejores conciertos y combos de Cineplanet sin hacer filas. Garantía y entrega digital inmediata.
   </p>
 
   <!-- Botones de Acción -->
   <div class="actions-container">
-    <a href="conciertos.html" class="btn-primary">Explorar entradas →</a>
-    <a href="https://wa.me/51912147432" target="_blank" class="btn-secondary">Consultar por WhatsApp</a>
+    <a href="conciertos.html" class="btn-primary">Explorar Conciertos →</a>
+    <a href="cine.html" class="btn-secondary">Promociones de Cine 🍿</a>
   </div>
 
-  <!-- Cabecera de Carrusel -->
+  <!-- SECCIÓN 1: CARRUSEL CONCIERTOS -->
   <div class="slider-header">
     <div class="status-indicator">
-      <span class="dot-green"></span> 4 Entradas Activas Ahora
+      <span class="dot-green"></span> 4 Conciertos Activos
     </div>
-    <a href="conciertos.html" class="see-all">Ver todas →</a>
+    <a href="conciertos.html" class="see-all">Ver todos →</a>
   </div>
 
-  <!-- Carrusel Automático de Conciertos -->
   <div class="carousel-wrapper">
-    <div class="carousel-track" id="track">
+    <div class="carousel-track-conciertos" id="trackConciertos">
       
       <!-- Slide 1: BTS -->
-      <div class="event-card-slide">
+      <div class="slide-conciertos">
         <div class="card-image-box">
-          <div class="badge-top-left">
-            <span class="tag-purple">FilaCero</span>
-            <span class="tag-blue">EN CUOTAS</span>
-          </div>
+          <div class="badge-top-left"><span class="tag-purple">FilaCero</span><span class="tag-blue">EN CUOTAS</span></div>
           <span class="badge-top-right">¡ÚLTIMAS!</span>
           <img src="bts.png" alt="BTS World Tour">
         </div>
@@ -156,24 +175,17 @@
           <div class="card-info">📅 10 oct. 2026</div>
           <div class="card-info">📍 Estadio San Marcos · Lima</div>
           <div class="card-info">🎟️ CAMPO A / ORIENTE / NORTE</div>
-          
           <div class="card-footer">
-            <div>
-              <span class="price-sub">ENTRADAS DESDE</span>
-              <span class="price-amount">S/ 749.90</span>
-            </div>
+            <div><span class="price-sub">ENTRADAS DESDE</span><span class="price-amount">S/ 749.90</span></div>
             <a href="conciertos.html" class="btn-separar">Sepárala →</a>
           </div>
         </div>
       </div>
 
       <!-- Slide 2: Omar Courtz -->
-      <div class="event-card-slide">
+      <div class="slide-conciertos">
         <div class="card-image-box">
-          <div class="badge-top-left">
-            <span class="tag-purple">FilaCero</span>
-            <span class="tag-blue">OFICIAL</span>
-          </div>
+          <div class="badge-top-left"><span class="tag-purple">FilaCero</span><span class="tag-blue">OFICIAL</span></div>
           <span class="badge-top-right">¡DISPONIBLE!</span>
           <img src="omarcourtz.jpg" alt="Omar Courtz">
         </div>
@@ -182,24 +194,17 @@
           <div class="card-info">📅 Próxima fecha 2026</div>
           <div class="card-info">📍 Lima, Perú</div>
           <div class="card-info">🎟️ CAMPO A / CAMPO B</div>
-          
           <div class="card-footer">
-            <div>
-              <span class="price-sub">ENTRADAS DESDE</span>
-              <span class="price-amount">S/ 260.00</span>
-            </div>
+            <div><span class="price-sub">ENTRADAS DESDE</span><span class="price-amount">S/ 260.00</span></div>
             <a href="conciertos.html" class="btn-separar">Sepárala →</a>
           </div>
         </div>
       </div>
 
       <!-- Slide 3: Gorillaz -->
-      <div class="event-card-slide">
+      <div class="slide-conciertos">
         <div class="card-image-box">
-          <div class="badge-top-left">
-            <span class="tag-purple">FilaCero</span>
-            <span class="tag-blue">OFICIAL</span>
-          </div>
+          <div class="badge-top-left"><span class="tag-purple">FilaCero</span><span class="tag-blue">OFICIAL</span></div>
           <span class="badge-top-right">¡ÚLTIMAS!</span>
           <img src="gorillaz.jpg" alt="Gorillaz">
         </div>
@@ -208,24 +213,17 @@
           <div class="card-info">📅 23 nov. 2026</div>
           <div class="card-info">📍 Arena 1 Park · Lima</div>
           <div class="card-info">🎟️ PLATINUM / VIP / GENERAL</div>
-          
           <div class="card-footer">
-            <div>
-              <span class="price-sub">ENTRADAS DESDE</span>
-              <span class="price-amount">S/ 260.00</span>
-            </div>
+            <div><span class="price-sub">ENTRADAS DESDE</span><span class="price-amount">S/ 260.00</span></div>
             <a href="conciertos.html" class="btn-separar">Sepárala →</a>
           </div>
         </div>
       </div>
 
       <!-- Slide 4: Hombres G -->
-      <div class="event-card-slide">
+      <div class="slide-conciertos">
         <div class="card-image-box">
-          <div class="badge-top-left">
-            <span class="tag-purple">FilaCero</span>
-            <span class="tag-blue">OFICIAL</span>
-          </div>
+          <div class="badge-top-left"><span class="tag-purple">FilaCero</span><span class="tag-blue">OFICIAL</span></div>
           <span class="badge-top-right">¡ÚLTIMA FECHA!</span>
           <img src="hombresg.jpg" alt="Hombres G">
         </div>
@@ -234,12 +232,8 @@
           <div class="card-info">📅 30 oct. 2026</div>
           <div class="card-info">📍 Estadio Nacional · Lima</div>
           <div class="card-info">🎟️ PLATINUM / VIP / TRIBUNAS</div>
-          
           <div class="card-footer">
-            <div>
-              <span class="price-sub">ENTRADAS DESDE</span>
-              <span class="price-amount">S/ 120.00</span>
-            </div>
+            <div><span class="price-sub">ENTRADAS DESDE</span><span class="price-amount">S/ 120.00</span></div>
             <a href="conciertos.html" class="btn-separar">Sepárala →</a>
           </div>
         </div>
@@ -248,37 +242,109 @@
     </div>
   </div>
 
-  <!-- Indicadores del carrusel (4 puntos) -->
+  <!-- Indicadores Conciertos -->
   <div class="dots-container">
-    <div class="dot active" id="dot0"></div>
-    <div class="dot" id="dot1"></div>
-    <div class="dot" id="dot2"></div>
-    <div class="dot" id="dot3"></div>
+    <div class="dot active" id="dotC0"></div>
+    <div class="dot" id="dotC1"></div>
+    <div class="dot" id="dotC2"></div>
+    <div class="dot" id="dotC3"></div>
   </div>
+
+
+  <!-- SECCIÓN 2: CARRUSEL CINEPLANET -->
+  <div class="slider-header">
+    <div class="status-indicator">
+      <span class="dot-red"></span> Promociones Cineplanet 🍿
+    </div>
+    <a href="cine.html" class="see-all">Ver todas →</a>
+  </div>
+
+  <div class="carousel-wrapper">
+    <div class="carousel-track-cine" id="trackCine">
+      
+      <!-- Cine 1: Combo 2 Mix OL CC -->
+      <div class="slide-cine">
+        <div class="card-image-box">
+          <div class="badge-top-left"><span class="tag-red">CINEPLANET</span><span class="tag-blue">MIX</span></div>
+          <span class="badge-top-right">PROMO</span>
+          <img src="combo2mix.jpg" alt="Combo 2 Mix OL CC">
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">COMBO 2 MIX OL CC</h2>
+          <div class="card-info">🍿 1 Canchita Gigante (Mix)</div>
+          <div class="card-info">🥤 2 Bebidas (32oz)</div>
+          <div class="card-info">⚠️ Canchita sin refill</div>
+          <div class="card-footer">
+            <div><span class="price-sub">PRECIO PROMO</span><span class="price-amount">S/ 38.00</span></div>
+            <button onclick="abrirModalCine('Combo 2 Mix OL CC', 38.00)" class="btn-separar">Sepárala →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cine 2: Combo Black Gigante Mix OL (Con Hot Dog) -->
+      <div class="slide-cine">
+        <div class="card-image-box">
+          <div class="badge-top-left"><span class="tag-red">CINEPLANET</span><span class="tag-purple">EXCLUSIVO ONLINE</span></div>
+          <span class="badge-top-right">POPULAR</span>
+          <img src="comboblack.jpg" alt="Combo Black Gigante Mix OL">
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">COMBO BLACK GIG. MIX (CON HOT DOG)</h2>
+          <div class="card-info">🍿 1 Canchita Gigante (Mix)</div>
+          <div class="card-info">🥤 2 Bebidas Medianas</div>
+          <div class="card-info">🌭 2 Hot Dogs Clásicos</div>
+          <div class="card-footer">
+            <div><span class="price-sub">PRECIO PROMO</span><span class="price-amount">S/ 48.00</span></div>
+            <button onclick="abrirModalCine('Combo Black Gigante (Con Hot Dog)', 48.00)" class="btn-separar">Sepárala →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cine 3: Combo 2 Mix Dob. Gig. OL -->
+      <div class="slide-cine">
+        <div class="card-image-box">
+          <div class="badge-top-left"><span class="tag-red">CINEPLANET</span><span class="tag-blue">DOBLE GIGANTE</span></div>
+          <span class="badge-top-right">EXCLUSIVO</span>
+          <img src="combo2mixdoble.jpg" alt="Combo 2 Mix Dob. Gig. OL">
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">COMBO 2 MIX DOB. GIG. OL</h2>
+          <div class="card-info">🍿🍿 2 Canchitas Gigantes</div>
+          <div class="card-info">🥤🥤 2 Bebidas Grandes (32oz)</div>
+          <div class="card-info">⚠️ Canchita sin refill</div>
+          <div class="card-footer">
+            <div><span class="price-sub">PRECIO PROMO</span><span class="price-amount">S/ 54.00</span></div>
+            <button onclick="abrirModalCine('Combo 2 Mix Doble Gigante', 54.00)" class="btn-separar">Sepárala →</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Indicadores Cine -->
+  <div class="dots-container">
+    <div class="dot active" id="dotK0"></div>
+    <div class="dot" id="dotK1"></div>
+    <div class="dot" id="dotK2"></div>
+  </div>
+
 
   <!-- SECCIÓN GARANTÍAS -->
   <div class="section-title">GARANTÍAS QUE RECIBES CON CADA COMPRA</div>
   
   <div class="garantias-grid">
-    <div class="garantia-item">
-      <span class="garantia-icon">🛡️</span> QR anti-fraude
-    </div>
-    <div class="garantia-item">
-      <span class="garantia-icon">🎟️</span> Compatible con Quentro
-    </div>
-    <div class="garantia-item">
-      <span class="garantia-icon">🔄</span> Reembolso garantizado
-    </div>
-    <div class="garantia-item">
-      <span class="garantia-icon">🎧</span> Soporte 24/7
-    </div>
+    <div class="garantia-item"><span class="garantia-icon">🛡️</span> QR anti-fraude</div>
+    <div class="garantia-item"><span class="garantia-icon">🎟️</span> Compatible con Quentro</div>
+    <div class="garantia-item"><span class="garantia-icon">🔄</span> Reembolso garantizado</div>
+    <div class="garantia-item"><span class="garantia-icon">🎧</span> Soporte 24/7</div>
   </div>
 
   <!-- COMPATIBLE CON -->
   <div class="compatible-box">
     <span>COMPATIBLE CON</span>
     <div class="compatible-tags">
-      Teleticket • Joinnus • Quentro <span class="tag-nuevo">NUEVO</span>
+      Teleticket • Cineplanet • Quentro <span class="tag-nuevo">NUEVO</span>
     </div>
   </div>
 
@@ -294,11 +360,6 @@
       <div class="metric-title">Resolución soporte</div>
       <div class="metric-sub">Atención rápida y eficaz</div>
     </div>
-    <div class="metric-card">
-      <div class="metric-val">30d</div>
-      <div class="metric-title">Ventana Quentro</div>
-      <div class="metric-sub">Transferencia oficial</div>
-    </div>
   </div>
 
   <!-- CÓMO FUNCIONA -->
@@ -307,44 +368,39 @@
     <h2 class="how-title">Cómo funciona</h2>
     <p class="how-subtitle">Un proceso claro, justo y seguro para todos.</p>
 
-    <!-- Paso 01 -->
     <div class="step-card">
       <span class="step-number">01</span>
       <div class="step-icon-box">🔍</div>
       <h3 class="step-card-title">Explora sin registrarte</h3>
-      <p class="step-card-desc">Navega por todos los eventos y entradas disponibles sin crear una cuenta. Compara precios y decide con calma.</p>
+      <p class="step-card-desc">Navega por todos los eventos y promociones sin necesidad de cuenta.</p>
     </div>
 
-    <!-- Paso 02 -->
     <div class="step-card">
       <span class="step-number">02</span>
       <div class="step-icon-box">🎟️</div>
-      <h3 class="step-card-title">Elige tu entrada</h3>
-      <p class="step-card-desc">PDF descargable (Teleticket, Joinnus) o transferencia oficial Quentro / Ticketmaster.</p>
+      <h3 class="step-card-title">Elige tu entrada o combo</h3>
+      <p class="step-card-desc">Selecciona tu concierto preferido o tu combo Cineplanet con descuento.</p>
     </div>
 
-    <!-- Paso 03 -->
     <div class="step-card">
       <span class="step-number">03</span>
       <div class="step-icon-box">🔒</div>
       <h3 class="step-card-title">Paga Seguro</h3>
-      <p class="step-card-desc">Tu pago queda protegido en custodia. Nadie lo toca hasta que recibas la entrada y confirmes.</p>
+      <p class="step-card-desc">Transfiere el monto exacto por Yape o Plin con total custodia.</p>
     </div>
 
-    <!-- Paso 04 -->
     <div class="step-card">
       <span class="step-number">04</span>
       <div class="step-icon-box">⏰</div>
-      <h3 class="step-card-title">Recibe tu entrada</h3>
-      <p class="step-card-desc">PDF: instantáneo tras el pago. Quentro: transferencia 30 días antes del evento — te notificamos en tiempo real.</p>
+      <h3 class="step-card-title">Recibe tu voucher</h3>
+      <p class="step-card-desc">Recibe el código QR directo en tu WhatsApp para canjear de inmediato.</p>
     </div>
 
-    <!-- Paso 05 -->
     <div class="step-card">
       <span class="step-number">05</span>
       <div class="step-icon-box">✅</div>
-      <h3 class="step-card-title">Entra y disfruta</h3>
-      <p class="step-card-desc">Escanean tu QR en el torniquete y listo. Disfruta del evento con total tranquilidad.</p>
+      <h3 class="step-card-title">Disfruta la función</h3>
+      <p class="step-card-desc">Escanean tu código en el cine o torniquete y listo.</p>
     </div>
   </div>
 
@@ -357,35 +413,120 @@
     </div>
   </div>
 
-  <!-- Script para cambio automático de imagen cada 4 segundos (4 tarjetas) -->
-  <script>
-    let currentIndex = 0;
-    const totalSlides = 4;
-    const track = document.getElementById('track');
-    const dots = [
-      document.getElementById('dot0'),
-      document.getElementById('dot1'),
-      document.getElementById('dot2'),
-      document.getElementById('dot3')
-    ];
 
-    function switchSlide() {
-      currentIndex = (currentIndex + 1) % totalSlides;
+  <!-- MODAL DE COMPRA RÁPIDA DE CINE -->
+  <div id="modalCine" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title" id="cineModalTitle">Combo Cineplanet</div>
+        <button onclick="cerrarModal('modalCine')" class="close-icon">&times;</button>
+      </div>
+
+      <div class="counter-container">
+        <span>Cantidad:</span>
+        <div style="display:flex; align-items:center; gap: 12px;">
+          <button class="counter-btn" onclick="cambiarCantidadCine(-1)">-</button>
+          <span class="counter-value" id="cantTextCine">1</span>
+          <button class="counter-btn" onclick="cambiarCantidadCine(1)">+</button>
+        </div>
+      </div>
+
+      <div class="total-box">
+        <span>TOTAL:</span>
+        <span class="total-amount" id="totalTextCine">S/ 38.00</span>
+      </div>
+
+      <button onclick="mostrarQRModalCine()" class="btn-pay-qr">📲 PAGAR CON YAPE / PLIN</button>
+    </div>
+  </div>
+
+  <!-- MODAL DEL QR PARA CINE -->
+  <div id="qrModalCine" class="modal">
+    <div class="modal-content" style="text-align: center;">
+      <div class="modal-header">
+        <div class="modal-title">Escanear para Pagar</div>
+        <button onclick="cerrarModal('qrModalCine')" class="close-icon">&times;</button>
+      </div>
+
+      <p style="font-size: 14px; color: #cce3f5;">Escanea con Yape o Plin el monto exacto:</p>
+      <h2 style="color: #64dfdf; margin: 8px 0; font-size: 28px;" id="qrTotalDisplayCine">S/ 0.00</h2>
+      <p style="font-size: 14px; color: #ffffff; font-weight: bold;" id="qrComboDisplayCine">-</p>
+
+      <img src="qr-pago.jpg" alt="Código QR de Pago" class="qr-img">
+
+      <p style="font-size: 13px; color: #64dfdf; margin-bottom: 15px; font-weight: bold;">Realiza el pago y envía tu comprobante al WhatsApp.</p>
       
-      // Mueve el carrusel de 0% a -75% (un 25% por cada tarjeta)
-      track.style.transform = `translateX(-${currentIndex * 25}%)`;
-      
-      // Actualiza puntos indicadores
-      dots.forEach((dot, idx) => {
-        if (idx === currentIndex) {
-          dot.classList.add('active');
-        } else {
-          dot.classList.remove('active');
-        }
-      });
+      <a id="btnWsQRCine" href="#" target="_blank" class="btn-pay-ws" style="display:block;">Enviar comprobante por WhatsApp</a>
+    </div>
+  </div>
+
+
+  <script>
+    /* AUTOMATIZACIÓN DE CARRUSEL DE CONCIERTOS */
+    let idxConciertos = 0;
+    const trackConciertos = document.getElementById('trackConciertos');
+    const dotsC = [document.getElementById('dotC0'), document.getElementById('dotC1'), document.getElementById('dotC2'), document.getElementById('dotC3')];
+
+    function rotateConciertos() {
+      idxConciertos = (idxConciertos + 1) % 4;
+      trackConciertos.style.transform = `translateX(-${idxConciertos * 25}%)`;
+      dotsC.forEach((d, i) => d.classList.toggle('active', i === idxConciertos));
+    }
+    setInterval(rotateConciertos, 4000);
+
+    /* AUTOMATIZACIÓN DE CARRUSEL DE CINE */
+    let idxCine = 0;
+    const trackCine = document.getElementById('trackCine');
+    const dotsK = [document.getElementById('dotK0'), document.getElementById('dotK1'), document.getElementById('dotK2')];
+
+    function rotateCine() {
+      idxCine = (idxCine + 1) % 3;
+      trackCine.style.transform = `translateX(-${idxCine * (100 / 3)}%)`;
+      dotsK.forEach((d, i) => d.classList.toggle('active', i === idxCine));
+    }
+    setInterval(rotateCine, 4000);
+
+    /* LÓGICA DE COMPRA CINE EN INDEX */
+    let comboNombre = "";
+    let comboPrecioUnitario = 0;
+    let cantCine = 1;
+    const numeroWhatsApp = "51912147432";
+
+    function abrirModalCine(nombre, precio) {
+      comboNombre = nombre;
+      comboPrecioUnitario = precio;
+      cantCine = 1;
+      document.getElementById('cineModalTitle').innerText = nombre;
+      actualizarTotalesCine();
+      document.getElementById('modalCine').style.display = 'flex';
     }
 
-    setInterval(switchSlide, 4000);
+    function cerrarModal(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+
+    function cambiarCantidadCine(delta) {
+      if (cantCine + delta >= 1 && cantCine + delta <= 10) {
+        cantCine += delta;
+        actualizarTotalesCine();
+      }
+    }
+
+    function actualizarTotalesCine() {
+      const total = (comboPrecioUnitario * cantCine).toFixed(2);
+      document.getElementById('cantTextCine').innerText = cantCine;
+      document.getElementById('totalTextCine').innerText = `S/ ${total}`;
+
+      const mensaje = `Hola, acabo de pagar por ${cantCine} unidad(es) de ${comboNombre} (Cineplanet). Total: S/ ${total}. Adjunto mi comprobante.`;
+      document.getElementById('btnWsQRCine').href = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+      document.getElementById('qrTotalDisplayCine').innerText = `S/ ${total}`;
+      document.getElementById('qrComboDisplayCine').innerText = `${cantCine}x ${comboNombre}`;
+    }
+
+    function mostrarQRModalCine() {
+      cerrarModal('modalCine');
+      document.getElementById('qrModalCine').style.display = 'flex';
+    }
   </script>
 
 </body>
