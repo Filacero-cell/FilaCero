@@ -6,106 +6,90 @@
   <title>Conciertos | FilaCero</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-    body { background-color: #0d0e12; color: #ffffff; padding: 20px 15px; display: flex; justify-content: center; }
-    .container { width: 100%; max-width: 480px; }
+    body { background-color: #0d0e12; color: #fff; padding: 20px; }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+    .back-btn { color: #ccff00; text-decoration: none; font-weight: bold; font-size: 14px; }
+    .logo { color: #a855f7; font-size: 20px; font-weight: 900; }
+    .title { font-size: 28px; font-weight: 800; margin-bottom: 5px; }
+    .subtitle { color: #9ca3af; font-size: 14px; margin-bottom: 25px; }
+    .event-card { background-color: #16181d; border-radius: 16px; overflow: hidden; margin-bottom: 25px; border: 1px solid #262930; }
+    .event-banner { width: 100%; display: block; }
+    .event-content { padding: 20px; }
+    .event-tag { color: #ccff00; font-size: 12px; font-weight: bold; margin-bottom: 8px; }
+    .event-title { font-size: 22px; margin-bottom: 12px; }
+    .event-info { color: #d1d5db; font-size: 14px; margin-bottom: 6px; }
     
-    /* Header */
-    header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 25px; }
-    .back-btn { color: #ccff00; text-decoration: none; font-weight: 700; font-size: 14px; }
-    .brand { font-size: 20px; font-weight: 800; }
-    .brand span { color: #a855f7; }
+    /* Botones */
+    .btn-container { display: flex; gap: 10px; margin-top: 15px; }
+    .btn { flex: 1; text-align: center; padding: 12px; border-radius: 8px; font-weight: bold; text-decoration: none; cursor: pointer; border: none; font-size: 14px; }
+    .btn-qr { background-color: #702b84; color: #fff; } /* Color Yape/Plin */
+    .btn-ws { background-color: #25d366; color: #fff; } /* Color WhatsApp */
 
-    .title { font-size: 28px; font-weight: 900; text-transform: uppercase; margin-bottom: 5px; }
-    .subtitle { color: #a1a1aa; font-size: 14px; margin-bottom: 25px; }
-
-    /* Tarjetas de Conciertos */
-    .event-card {
-      background-color: #181920;
-      border: 1px solid #27272a;
-      border-radius: 16px;
-      overflow: hidden;
-      margin-bottom: 20px;
-    }
-    
-    .event-banner {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .event-body {
-      padding: 16px;
-    }
-
-    .event-tag { 
-      color: #ccff00; 
-      font-size: 11px; 
-      font-weight: 700; 
-      text-transform: uppercase; 
-      margin-bottom: 6px; 
-      letter-spacing: 0.5px;
-    }
-
-    .event-title { font-size: 20px; font-weight: 800; margin-bottom: 8px; line-height: 1.2; }
-    .event-details { color: #a1a1aa; font-size: 13px; line-height: 1.6; margin-bottom: 16px; }
-    
-    .buy-btn {
-      display: block;
-      background-color: #ccff00;
-      color: #000000;
-      text-align: center;
-      font-weight: 800;
-      padding: 12px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-size: 14px;
-      text-transform: uppercase;
-    }
+    /* Modal emergente del QR */
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); justify-content: center; align-items: center; z-index: 1000; }
+    .modal-content { background: #1e2026; padding: 25px; border-radius: 16px; text-align: center; max-width: 320px; width: 90%; border: 1px solid #333; }
+    .modal-content img { width: 100%; max-width: 230px; border-radius: 12px; margin: 15px 0; }
+    .close-btn { background: #ccff00; color: #000; padding: 10px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; border: none; margin-top: 10px; width: 100%; }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <header>
-      <a href="index.html" class="back-btn">← Volver</a>
-      <div class="brand">FILA<span>CERO</span></div>
-    </header>
-
-    <h1 class="title">Conciertos 🎵</h1>
-    <p class="subtitle">Entradas disponibles para los próximos shows en Lima</p>
-
-    <!-- Concierto 1: BTS -->
-    <div class="event-card">
-      <img src="bts.png" alt="BTS World Tour Arirang" class="event-banner">
-      <div class="event-body">
-        <div class="event-tag">⚡ Ultimas Entradas Disponibles</div>
-        <div class="event-title">BTS World Tour Arirang</div>
-        <div class="event-details">
-          📅 <b>Fechas:</b> 07, 09 y 10 de Octubre 2026<br>
-          📍 <b>Lugar:</b> Estadio San Marcos, Lima<br>
-          🎟️ <b>Sectores:</b> General / VIP / Campo
-        </div>
-        <a href="https://wa.me/51912147432?text=Hola%20FilaCero,%20quiero%20informaci%C3%B3n%20para%20las%20entradas%20de%20BTS" target="_blank" class="buy-btn">Comprar Entradas</a>
-      </div>
-    </div>
-
-    <!-- Concierto 2: Omar Courtz -->
-    <div class="event-card">
-      <img src="omarcourtz.jpg" alt="Omar Courtz World Tour" class="event-banner">
-      <div class="event-body">
-        <div class="event-tag">⚡Ultimas Entradas Disponibles </div>
-        <div class="event-title">Omar Courtz - Por Si Mañana No Estoy World Tour</div>
-        <div class="event-details">
-          📅 <b>Fecha:</b> Sábado 28 de Noviembre 2026<br>
-          📍 <b>Lugar:</b> Arena 1 Park, Lima<br>
-          🎟️ <b>Sectores:</b> Zonas Disponibles
-        </div>
-        <a href="https://wa.me/51900000000?text=Hola%20FilaCero,%20quiero%20informaci%C3%B3n%20para%20las%20entradas%20de%20Omar%20Courtz" target="_blank" class="buy-btn">Comprar Entradas</a>
-      </div>
-    </div>
-
+  <div class="header">
+    <a href="index.html" class="back-btn">← Volver</a>
+    <div class="logo">FILACERO</div>
   </div>
+
+  <h1 class="title">CONCIERTOS 🎵</h1>
+  <p class="subtitle">Entradas disponibles para los próximos shows en Lima</p>
+
+  <!-- Tarjeta BTS -->
+  <div class="event-card">
+    <img src="bts.png" alt="BTS" class="event-banner">
+    <div class="event-content">
+      <div class="event-tag">⚡ ÚLTIMAS ENTRADAS DISPONIBLES</div>
+      <h2 class="event-title">BTS World Tour Arirang</h2>
+      <p class="event-info">📅 <strong>Fechas:</strong> 07, 09 y 10 de Octubre 2026</p>
+      <p class="event-info">📍 <strong>Lugar:</strong> Estadio San Marcos, Lima</p>
+      <p class="event-info">🎟️ <strong>Sectores:</strong> General / VIP / Campo</p>
+      
+      <div class="btn-container">
+        <button onclick="abrirQR()" class="btn btn-qr">📲 YAPE / PLIN</button>
+        <a href="https://wa.me/51912147432?text=Hola,%20quiero%20comprar%20entradas%20para%20BTS" target="_blank" class="btn btn-ws">💬 WHATSAPP</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tarjeta Omar Courtz -->
+  <div class="event-card">
+    <img src="omarcourtz.jpg" alt="Omar Courtz" class="event-banner">
+    <div class="event-content">
+      <div class="event-tag">⚡ ÚLTIMAS ENTRADAS DISPONIBLES</div>
+      <h2 class="event-title">Omar Courtz</h2>
+      <p class="event-info">📍 <strong>Lugar:</strong> Lima</p>
+      <p class="event-info">🎟️ <strong>Sectores:</strong> General / VIP</p>
+      
+      <div class="btn-container">
+        <button onclick="abrirQR()" class="btn btn-qr">📲 YAPE / PLIN</button>
+        <a href="https://wa.me/51912147432?text=Hola,%20quiero%20comprar%20entradas%20para%20Omar%20Courtz" target="_blank" class="btn btn-ws">💬 WHATSAPP</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ventana Emergente QR -->
+  <div id="qrModal" class="modal">
+    <div class="modal-content">
+      <h3>Escanear para Pagar</h3>
+      <p style="font-size: 13px; color: #aaa; margin-top: 5px;">Aceptamos Yape y Plin</p>
+      <img src="qr-pago.png" alt="Código QR de Pago">
+      <p style="font-size: 12px; color: #ccff00;">Envía el comprobante al WhatsApp tras realizar el pago.</p>
+      <button onclick="cerrarQR()" class="close-btn">CERRAR</button>
+    </div>
+  </div>
+
+  <script>
+    function abrirQR() { document.getElementById('qrModal').style.display = 'flex'; }
+    function cerrarQR() { document.getElementById('qrModal').style.display = 'none'; }
+  </script>
 
 </body>
 </html>
