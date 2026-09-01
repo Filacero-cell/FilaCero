@@ -12,6 +12,8 @@
     .logo { color: #a855f7; font-size: 20px; font-weight: 900; }
     .title { font-size: 28px; font-weight: 800; margin-bottom: 5px; }
     .subtitle { color: #9ca3af; font-size: 14px; margin-bottom: 25px; }
+    
+    /* Tarjeta de Evento */
     .event-card { background-color: #16181d; border-radius: 16px; overflow: hidden; margin-bottom: 25px; border: 1px solid #262930; }
     .event-banner { width: 100%; display: block; }
     .event-content { padding: 20px; }
@@ -19,17 +21,38 @@
     .event-title { font-size: 22px; margin-bottom: 12px; }
     .event-info { color: #d1d5db; font-size: 14px; margin-bottom: 6px; }
     
-    /* Botones */
-    .btn-container { display: flex; gap: 10px; margin-top: 15px; }
-    .btn { flex: 1; text-align: center; padding: 12px; border-radius: 8px; font-weight: bold; text-decoration: none; cursor: pointer; border: none; font-size: 14px; }
-    .btn-qr { background-color: #702b84; color: #fff; } /* Color Yape/Plin */
-    .btn-ws { background-color: #25d366; color: #fff; } /* Color WhatsApp */
+    /* Botón principal de compra */
+    .btn-buy { width: 100%; background-color: #ccff00; color: #000; padding: 14px; border-radius: 10px; font-weight: 800; border: none; font-size: 16px; cursor: pointer; margin-top: 15px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-buy:active { transform: scale(0.98); }
 
-    /* Modal emergente del QR */
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); justify-content: center; align-items: center; z-index: 1000; }
-    .modal-content { background: #1e2026; padding: 25px; border-radius: 16px; text-align: center; max-width: 320px; width: 90%; border: 1px solid #333; }
-    .modal-content img { width: 100%; max-width: 230px; border-radius: 12px; margin: 15px 0; }
-    .close-btn { background: #ccff00; color: #000; padding: 10px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; border: none; margin-top: 10px; width: 100%; }
+    /* Modales */
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); justify-content: center; align-items: center; z-index: 1000; padding: 15px; }
+    .modal-content { background: #181a20; padding: 22px; border-radius: 18px; max-width: 380px; width: 100%; border: 1px solid #333; max-height: 90vh; overflow-y: auto; }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+    .modal-title { font-size: 18px; font-weight:bold; color: #fff; }
+    .close-icon { color: #9ca3af; font-size: 22px; cursor: pointer; border: none; background: none; }
+
+    /* Opciones de Zonas */
+    .zone-option { background: #232730; border: 2px solid #333; border-radius: 12px; padding: 12px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: 0.2s; }
+    .zone-option.selected { border-color: #ccff00; background: #2a3120; }
+    .zone-name { font-size: 14px; font-weight: 600; }
+    .zone-price { color: #ccff00; font-weight:bold; font-size: 15px; }
+
+    /* Contador de Entradas */
+    .counter-container { display: flex; justify-content: space-between; align-items: center; background: #232730; padding: 10px 15px; border-radius: 12px; margin: 15px 0; }
+    .counter-btn { background: #333; color: #fff; border: none; width: 32px; height: 32px; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; }
+    .counter-value { font-size: 18px; font-weight: bold; color: #ccff00; }
+
+    /* Resumen de Total */
+    .total-box { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-top: 1px dashed #444; margin-top: 10px; font-size: 16px; font-weight: bold; }
+    .total-amount { color: #ccff00; font-size: 20px; }
+
+    /* Botones de Pago */
+    .pay-btn-group { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
+    .btn-pay-qr { background-color: #702b84; color: #fff; padding: 12px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; font-size: 14px; }
+    .btn-pay-ws { background-color: #25d366; color: #fff; padding: 12px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; font-size: 14px; text-decoration: none; text-align: center; }
+
+    .qr-img { width: 100%; max-width: 220px; border-radius: 12px; margin: 15px auto; display: block; }
   </style>
 </head>
 <body>
@@ -50,12 +73,8 @@
       <h2 class="event-title">BTS World Tour Arirang</h2>
       <p class="event-info">📅 <strong>Fechas:</strong> 07, 09 y 10 de Octubre 2026</p>
       <p class="event-info">📍 <strong>Lugar:</strong> Estadio San Marcos, Lima</p>
-      <p class="event-info">🎟️ <strong>Sectores:</strong> General / VIP / Campo</p>
       
-      <div class="btn-container">
-        <button onclick="abrirQR()" class="btn btn-qr">📲 YAPE / PLIN</button>
-        <a href="https://wa.me/51912147432?text=Hola,%20quiero%20comprar%20entradas%20para%20BTS" target="_blank" class="btn btn-ws">💬 WHATSAPP</a>
-      </div>
+      <button onclick="abrirModal('bts')" class="btn-buy">🎟️ COMPRAR ENTRADAS</button>
     </div>
   </div>
 
@@ -66,30 +85,206 @@
       <div class="event-tag">⚡ ÚLTIMAS ENTRADAS DISPONIBLES</div>
       <h2 class="event-title">Omar Courtz</h2>
       <p class="event-info">📍 <strong>Lugar:</strong> Lima</p>
-      <p class="event-info">🎟️ <strong>Sectores:</strong> General / VIP</p>
       
-      <div class="btn-container">
-        <button onclick="abrirQR()" class="btn btn-qr">📲 YAPE / PLIN</button>
-        <a href="https://wa.me/51912147432?text=Hola,%20quiero%20comprar%20entradas%20para%20Omar%20Courtz" target="_blank" class="btn btn-ws">💬 WHATSAPP</a>
+      <button onclick="abrirModal('omar')" class="btn-buy">🎟️ COMPRAR ENTRADAS</button>
+    </div>
+  </div>
+
+  <!-- Modal Selección de Precios BTS -->
+  <div id="modalBTS" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">Entradas - BTS</div>
+        <button onclick="cerrarModal('modalBTS')" class="close-icon">&times;</button>
+      </div>
+
+      <div class="zone-option selected" id="bts-z1" onclick="seleccionarZona('BTS', 'Campo A', 1099.90, 'bts-z1')">
+        <div>
+          <div class="zone-name">Campo A</div>
+          <small style="color:#aaa;">De pie - Frente al escenario</small>
+        </div>
+        <div class="zone-price">S/ 1,099.90</div>
+      </div>
+
+      <div class="zone-option" id="bts-z2" onclick="seleccionarZona('BTS', 'Tribuna Oriente / Occidente', 899.90, 'bts-z2')">
+        <div>
+          <div class="zone-name">Oriente / Occidente</div>
+          <small style="color:#aaa;">Asiento numerado</small>
+        </div>
+        <div class="zone-price">S/ 899.90</div>
+      </div>
+
+      <div class="zone-option" id="bts-z3" onclick="seleccionarZona('BTS', 'Tribuna Norte / Sur', 749.90, 'bts-z3')">
+        <div>
+          <div class="zone-name">Norte / Sur</div>
+          <small style="color:#aaa;">Tribuna general</small>
+        </div>
+        <div class="zone-price">S/ 749.90</div>
+      </div>
+
+      <div class="counter-container">
+        <span>Cantidad:</span>
+        <div style="display:flex; align-items:center; gap: 12px;">
+          <button class="counter-btn" onclick="cambiarCantidad(-1)">-</button>
+          <span class="counter-value" id="cantTextBTS">1</span>
+          <button class="counter-btn" onclick="cambiarCantidad(1)">+</button>
+        </div>
+      </div>
+
+      <div class="total-box">
+        <span>TOTAL:</span>
+        <span class="total-amount" id="totalTextBTS">S/ 1,099.90</span>
+      </div>
+
+      <div class="pay-btn-group">
+        <button onclick="mostrarQRModal()" class="btn-pay-qr">📲 PAGAR CON YAPE / PLIN</button>
+        <a id="btnWsBTS" href="#" target="_blank" class="btn-pay-ws">💬 COMPRAR POR WHATSAPP</a>
       </div>
     </div>
   </div>
 
-  <!-- Ventana Emergente QR -->
-  <div id="qrModal" class="modal">
+  <!-- Modal Selección de Precios Omar Courtz -->
+  <div id="modalOmar" class="modal">
     <div class="modal-content">
-      <h3>Escanear para Pagar</h3>
-      <p style="font-size: 13px; color: #aaa; margin-top: 5px;">Aceptamos Yape y Plin</p>
-      <img src="qr-pago.jpg" alt="Código QR de Pago">
-      <p style="font-size: 12px; color: #ccff00;">Envía el comprobante al WhatsApp tras realizar el pago.</p>
-      <button onclick="cerrarQR()" class="close-btn">CERRAR</button>
+      <div class="modal-header">
+        <div class="modal-title">Entradas - Omar Courtz</div>
+        <button onclick="cerrarModal('modalOmar')" class="close-icon">&times;</button>
+      </div>
+
+      <div class="zone-option selected" id="omar-z1" onclick="seleccionarZona('Omar Courtz', 'Campo A', 400.00, 'omar-z1')">
+        <div>
+          <div class="zone-name">Campo A</div>
+          <small style="color:#aaa;">Zona Preferencial</small>
+        </div>
+        <div class="zone-price">S/ 400.00</div>
+      </div>
+
+      <div class="zone-option" id="omar-z2" onclick="seleccionarZona('Omar Courtz', 'Campo B', 260.00, 'omar-z2')">
+        <div>
+          <div class="zone-name">Campo B</div>
+          <small style="color:#aaa;">Zona General</small>
+        </div>
+        <div class="zone-price">S/ 260.00</div>
+      </div>
+
+      <div class="counter-container">
+        <span>Cantidad:</span>
+        <div style="display:flex; align-items:center; gap: 12px;">
+          <button class="counter-btn" onclick="cambiarCantidad(-1)">-</button>
+          <span class="counter-value" id="cantTextOmar">1</span>
+          <button class="counter-btn" onclick="cambiarCantidad(1)">+</button>
+        </div>
+      </div>
+
+      <div class="total-box">
+        <span>TOTAL:</span>
+        <span class="total-amount" id="totalTextOmar">S/ 400.00</span>
+      </div>
+
+      <div class="pay-btn-group">
+        <button onclick="mostrarQRModal()" class="btn-pay-qr">📲 PAGAR CON YAPE / PLIN</button>
+        <a id="btnWsOmar" href="#" target="_blank" class="btn-pay-ws">💬 COMPRAR POR WHATSAPP</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal del QR -->
+  <div id="qrModal" class="modal">
+    <div class="modal-content" style="text-align: center;">
+      <div class="modal-header">
+        <div class="modal-title">Escanear para Pagar</div>
+        <button onclick="cerrarModal('qrModal')" class="close-icon">&times;</button>
+      </div>
+
+      <p style="font-size: 13px; color: #aaa;">Escanea con Yape o Plin el monto exacto:</p>
+      <h2 style="color: #ccff00; margin: 8px 0;" id="qrTotalDisplay">S/ 0.00</h2>
+      <p style="font-size: 12px; color: #d1d5db;" id="qrZoneDisplay">-</p>
+
+      <img src="qr-pago.jpg" alt="Código QR de Pago" class="qr-img">
+
+      <p style="font-size: 12px; color: #ccff00; margin-bottom: 15px;">Realiza el yape/plin y envía tu comprobante al WhatsApp.</p>
+      
+      <a id="btnWsQR" href="#" target="_blank" class="btn-pay-ws" style="display:block;">Enviar comprobante por WhatsApp</a>
     </div>
   </div>
 
   <script>
-    function abrirQR() { document.getElementById('qrModal').style.display = 'flex'; }
-    function cerrarQR() { document.getElementById('qrModal').style.display = 'none'; }
+    let showActual = "BTS";
+    let precioZona = 1099.90;
+    let nombreZona = "Campo A";
+    let cantidad = 1;
+    const numeroWhatsApp = "51912147432";
+
+    function abrirModal(show) {
+      showActual = show;
+      cantidad = 1;
+      
+      if (show === 'bts') {
+        nombreZona = "Campo A";
+        precioZona = 1099.90;
+        document.querySelectorAll('#modalBTS .zone-option').forEach(el => el.classList.remove('selected'));
+        document.getElementById('bts-z1').classList.add('selected');
+        document.getElementById('modalBTS').style.display = 'flex';
+      } else {
+        nombreZona = "Campo A";
+        precioZona = 400.00;
+        document.querySelectorAll('#modalOmar .zone-option').forEach(el => el.classList.remove('selected'));
+        document.getElementById('omar-z1').classList.add('selected');
+        document.getElementById('modalOmar').style.display = 'flex';
+      }
+      actualizarTotales();
+    }
+
+    function cerrarModal(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+
+    function seleccionarZona(showName, nombre, precio, elementId) {
+      nombreZona = nombre;
+      precioZona = precio;
+      
+      const modalId = showName === 'BTS' ? '#modalBTS' : '#modalOmar';
+      document.querySelectorAll(`${modalId} .zone-option`).forEach(el => el.classList.remove('selected'));
+      document.getElementById(elementId).classList.add('selected');
+      actualizarTotales();
+    }
+
+    function cambiarCantidad(delta) {
+      if (cantidad + delta >= 1 && cantidad + delta <= 10) {
+        cantidad += delta;
+        actualizarTotales();
+      }
+    }
+
+    function actualizarTotales() {
+      const total = (precioZona * cantidad).toFixed(2);
+      const nombreShow = showActual === 'bts' ? 'BTS World Tour' : 'Omar Courtz';
+      
+      if (showActual === 'bts') {
+        document.getElementById('cantTextBTS').innerText = cantidad;
+        document.getElementById('totalTextBTS').innerText = `S/ ${total}`;
+      } else {
+        document.getElementById('cantTextOmar').innerText = cantidad;
+        document.getElementById('totalTextOmar').innerText = `S/ ${total}`;
+      }
+
+      const mensaje = `Hola, quiero comprar ${cantidad} entrada(s) para ${nombreShow} en la zona: ${nombreZona}. Total a pagar: S/ ${total}`;
+      const urlWs = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+      
+      document.getElementById('btnWsBTS').href = urlWs;
+      document.getElementById('btnWsOmar').href = urlWs;
+      document.getElementById('btnWsQR').href = urlWs;
+      document.getElementById('qrTotalDisplay').innerText = `S/ ${total}`;
+      document.getElementById('qrZoneDisplay').innerText = `${cantidad}x ${nombreZona} (${nombreShow})`;
+    }
+
+    function mostrarQRModal() {
+      cerrarModal('modalBTS');
+      cerrarModal('modalOmar');
+      document.getElementById('qrModal').style.display = 'flex';
+    }
   </script>
 
 </body>
 </html>
+
