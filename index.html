@@ -6,90 +6,77 @@
   <title>FilaCero | Entradas Oficiales</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-    body { background-color: #f4f7f9; color: #112a46; padding: 20px; }
 
-    /* Encabezado */
-    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
-    .logo { color: #164e7a; font-size: 24px; font-weight: 900; letter-spacing: -0.5px; }
-    .btn-top-buy { background-color: #164e7a; color: #ffffff; padding: 8px 16px; border-radius: 20px; text-decoration: none; font-weight: 800; font-size: 13px; text-transform: uppercase; }
+    /* Fondo azul completo como el ejemplo */
+    body { background-color: #0d2c4a; color: #ffffff; min-height: 100vh; padding: 20px; position: relative; }
 
-    /* Banner / Tag Hero */
-    .hero-tag { display: inline-block; background-color: #e6f2f7; color: #007bb5; border: 1px solid #b3d7e8; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; margin-bottom: 15px; }
-    
-    /* Títulos Principales */
-    .main-title { font-size: 32px; font-weight: 900; color: #112a46; line-height: 1.1; margin-bottom: 10px; }
-    .highlight { color: #007bb5; }
-    .description { color: #5a7184; font-size: 15px; line-height: 1.5; margin-bottom: 30px; }
+    /* Header */
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+    .logo-container { display: flex; align-items: center; gap: 8px; }
+    .logo-icon { width: 32px; height: 32px; background: #00a8ff; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px; color: #fff; }
+    .logo-text { color: #ffffff; font-size: 22px; font-weight: 900; letter-spacing: -0.5px; }
+    .menu-icon { font-size: 24px; color: #ffffff; cursor: pointer; }
 
-    /* Sección Cartelera */
-    .section-title { font-size: 20px; font-weight: 800; color: #112a46; margin-bottom: 15px; }
+    /* Tag flotante superior */
+    .badge-tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(255, 255, 255, 0.12); color: #64dfdf; border: 1px solid rgba(100, 223, 223, 0.3); padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-bottom: 25px; }
 
-    /* Tarjetas de Categorías */
-    .category-card { background-color: #ffffff; border: 1px solid #e1e5eb; border-radius: 16px; padding: 16px; margin-bottom: 15px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
-    .category-left { display: flex; align-items: center; gap: 15px; }
-    .icon-box { background-color: #e6f2f7; width: 48px; height: 48px; border-radius: 12px; display: flex; justify-content: center; align-items: center; font-size: 22px; }
-    .cat-tag { color: #007bb5; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
-    .cat-title { font-size: 17px; font-weight: 800; color: #112a46; margin: 2px 0; }
-    .cat-desc { color: #5a7184; font-size: 13px; }
+    /* Títulos grandes del Hero */
+    .hero-title { font-size: 34px; font-weight: 900; line-height: 1.15; margin-bottom: 20px; letter-spacing: -0.5px; }
+    .highlight { color: #64dfdf; text-decoration: underline; text-decoration-color: #64dfdf; text-underline-offset: 4px; }
 
-    .btn-ver { background-color: #164e7a; color: #ffffff; text-decoration: none; padding: 8px 16px; border-radius: 8px; font-weight: 700; font-size: 13px; }
+    .hero-desc { color: #cce3f5; font-size: 15px; line-height: 1.5; margin-bottom: 35px; }
+
+    /* Botones de Acción Estilo Ejemplo */
+    .actions-container { display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; }
+    .btn-primary { background-color: #25d366; color: #0d2c4a; font-weight: 800; padding: 16px; border-radius: 12px; border: none; font-size: 16px; text-decoration: none; text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .btn-secondary { background: rgba(255, 255, 255, 0.1); color: #ffffff; font-weight: 700; padding: 16px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.2); font-size: 16px; text-decoration: none; text-align: center; }
+
+    /* Widget Flotante de WhatsApp */
+    .ws-widget { position: fixed; bottom: 20px; left: 20px; display: flex; align-items: center; gap: 10px; z-index: 100; }
+    .ws-circle { width: 48px; height: 48px; background-color: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); text-decoration: none; font-size: 24px; color: #fff; }
+    .ws-tooltip { background: #ffffff; color: #112a46; padding: 8px 12px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); font-size: 12px; font-weight: bold; position: relative; }
+    .ws-tooltip::before { content: ""; position: absolute; left: -6px; top: 50%; transform: translateY(-50%); border-width: 6px 6px 6px 0; border-style: solid; border-color: transparent #ffffff transparent transparent; }
+    .ws-subtext { color: #25d366; font-size: 11px; font-weight: bold; display: block; }
   </style>
 </head>
 <body>
 
   <!-- Header -->
   <div class="header">
-    <div class="logo">FilaCero</div>
-    <a href="conciertos.html" class="btn-top-buy">COMPRAR</a>
+    <div class="logo-container">
+      <div class="logo-icon">0</div>
+      <div class="logo-text">FilaCero</div>
+    </div>
+    <div class="menu-icon">☰</div>
   </div>
 
-  <!-- Hero Section -->
-  <div class="hero-tag">⚡ DESCUENTOS Y ENTRADAS OFICIALES</div>
-  <h1 class="main-title">ENTRADAS AL<br><span class="highlight">MEJOR PRECIO</span></h1>
-  <p class="description">Consigue tus pases para los mejores conciertos, funciones de cine y partidos de fútbol sin filas y pagando menos.</p>
+  <!-- Hero Content -->
+  <div class="badge-tag">⚡ Entradas Oficiales y Descuentos en Perú</div>
 
-  <!-- Cartelera -->
-  <h2 class="section-title">Cartelera y Promociones</h2>
+  <h1 class="hero-title">
+    Tu dinero, <span class="highlight">protegido</span> hasta tu entrada en mano.
+  </h1>
 
-  <!-- Conciertos -->
-  <div class="category-card">
-    <div class="category-left">
-      <div class="icon-box">🎵</div>
-      <div>
-        <div class="cat-tag">CONCIERTOS</div>
-        <div class="cat-title">Eventos & Shows</div>
-        <div class="cat-desc">Zonas General y VIP disponibles</div>
-      </div>
-    </div>
-    <a href="conciertos.html" class="btn-ver">Ver</a>
+  <p class="hero-desc">
+    Compra tus pases para los mejores conciertos, funciones de cine y partidos sin filas. Garantía y entrega rápida en Lima.
+  </p>
+
+  <!-- Botones principales -->
+  <div class="actions-container">
+    <a href="conciertos.html" class="btn-primary">Explorar entradas →</a>
+    <a href="https://wa.me/51912147432" target="_blank" class="btn-secondary">Consultar por WhatsApp</a>
   </div>
 
-  <!-- Cine -->
-  <div class="category-card">
-    <div class="category-left">
-      <div class="icon-box">🍿</div>
-      <div>
-        <div class="cat-tag">CINE</div>
-        <div class="cat-title">Combos & Pases</div>
-        <div class="cat-desc">Entradas 2D y combos con descuento</div>
-      </div>
+  <!-- Widget Flotante de WhatsApp -->
+  <div class="ws-widget">
+    <a href="https://wa.me/51912147432?text=Hola,%20tengo%20una%20consulta" target="_blank" class="ws-circle">💬</a>
+    <div class="ws-tooltip">
+      ¿Compra 100% segura?
+      <span class="ws-subtext">Asesor en línea por WhatsApp</span>
     </div>
-    <a href="#" class="btn-ver">Ver</a>
-  </div>
-
-  <!-- Deportes -->
-  <div class="category-card">
-    <div class="category-left">
-      <div class="icon-box">⚽</div>
-      <div>
-        <div class="cat-tag">DEPORTES</div>
-        <div class="cat-title">Partidos de Fútbol</div>
-        <div class="cat-desc">Tribunas local y visitante</div>
-      </div>
-    </div>
-    <a href="#" class="btn-ver">Ver</a>
   </div>
 
 </body>
 </html>
+
 
