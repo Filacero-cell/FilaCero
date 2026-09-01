@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cineplanet Promociones | FilaCero</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    
+    body { background-color: #0d2c4a; color: #ffffff; padding: 20px; }
+    
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+    .back-btn { color: #64dfdf; text-decoration: none; font-weight: bold; font-size: 14px; }
+    .logo-container { display: flex; align-items: center; gap: 8px; }
+    .logo-icon { width: 28px; height: 28px; background: #00a8ff; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 15px; color: #fff; }
+    .logo-text { color: #ffffff; font-size: 20px; font-weight: 900; }
+    
+    .title { font-size: 28px; font-weight: 900; margin-bottom: 5px; color: #ffffff; }
+    .subtitle { color: #cce3f5; font-size: 14px; margin-bottom: 25px; }
+    
+    .event-card { background-color: rgba(255, 255, 255, 0.05); border-radius: 16px; overflow: hidden; margin-bottom: 25px; border: 1px solid rgba(255, 255, 255, 0.15); }
+    .event-banner { width: 100%; display: block; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+    .event-content { padding: 20px; }
+    .event-tag { color: #ff4757; background-color: rgba(255, 71, 87, 0.15); border: 1px solid rgba(255, 71, 87, 0.3); font-size: 12px; font-weight: bold; margin-bottom: 10px; display: inline-block; padding: 4px 10px; border-radius: 6px; }
+    .event-title { font-size: 22px; margin-bottom: 12px; color: #ffffff; font-weight: 800; }
+    .event-info { color: #cce3f5; font-size: 14px; margin-bottom: 6px; }
+    
+    .card-actions { display: flex; gap: 10px; margin-top: 15px; }
+    .btn-buy-card { flex: 2; background-color: #25d366; color: #0d2c4a; padding: 14px; border-radius: 10px; font-weight: 800; border: none; font-size: 15px; cursor: pointer; text-transform: uppercase; }
+    .btn-ws-card { flex: 1; background: rgba(255, 255, 255, 0.1); color: #fff; padding: 14px; border-radius: 10px; font-weight: 800; text-decoration: none; text-align: center; font-size: 14px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255, 255, 255, 0.2); }
+
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 18, 31, 0.85); justify-content: center; align-items: center; z-index: 1000; padding: 15px; backdrop-filter: blur(4px); }
+    .modal-content { background: #13385c; padding: 22px; border-radius: 18px; max-width: 380px; width: 100%; border: 1px solid rgba(255, 255, 255, 0.15); }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+    .modal-title { font-size: 18px; font-weight:bold; color: #ffffff; }
+    .close-icon { color: #cce3f5; font-size: 24px; cursor: pointer; border: none; background: none; font-weight: bold; }
+
+    .counter-container { display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.06); padding: 10px 15px; border-radius: 12px; margin: 15px 0; border: 1px solid rgba(255, 255, 255, 0.15); color: #cce3f5; }
+    .counter-btn { background: rgba(255, 255, 255, 0.15); color: #ffffff; border: none; width: 32px; height: 32px; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; }
+    .counter-value { font-size: 18px; font-weight: bold; color: #64dfdf; }
+
+    .total-box { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-top: 2px dashed rgba(255, 255, 255, 0.2); margin-top: 10px; font-size: 16px; font-weight: bold; color: #ffffff; }
+    .total-amount { color: #64dfdf; font-size: 22px; font-weight: 900; }
+
+    .btn-pay-qr { width: 100%; background-color: #702b84; color: #fff; padding: 14px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; font-size: 15px; margin-top: 15px; text-transform: uppercase; }
+    .btn-pay-ws { background-color: #25d366; color: #0d2c4a; padding: 12px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; font-size: 14px; text-decoration: none; text-align: center; }
+    .qr-img { width: 100%; max-width: 220px; border-radius: 12px; margin: 15px auto; display: block; border: 1px solid rgba(255, 255, 255, 0.2); }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <a href="index.html" class="back-btn">← Volver</a>
+    <div class="logo-container">
+      <div class="logo-icon">0</div>
+      <div class="logo-text">FilaCero</div>
+    </div>
+  </div>
+
+  <h1 class="title">Combos Cineplanet 🍿</h1>
+  <p class="subtitle">Descuentos exclusivos y canje directo con código QR</p>
+
+  <!-- Combo 1 -->
+  <div class="event-card">
+    <img src="combo2mix.jpg" alt="Combo 2 Mix" class="event-banner">
+    <div class="event-content">
+      <div class="event-tag">🍿 COMBO MIX</div>
+      <h2 class="event-title">Combo 2 Mix OL CC</h2>
+      <p class="event-info">🍿 1 Canchita Gigante (Mix)</p>
+      <p class="event-info">🥤 2 Bebidas (32oz)</p>
+      <p class="event-info">⚠️ Sabor sujeto a stock / Canchita sin refill</p>
+      
+      <div class="card-actions">
+        <button onclick="abrirModal('Combo 2 Mix OL CC', 38.00)" class="btn-buy-card">🎟️ COMPRAR</button>
+        <a href="https://wa.me/51912147432?text=Hola,%20tengo%20consultas%20sobre%20Combo%202%20Mix" target="_blank" class="btn-ws-card">💬 WHATSAPP</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Combo 2 -->
+  <div class="event-card">
+    <img src="comboblack.jpg" alt="Combo Black" class="event-banner">
+    <div class="event-content">
+      <div class="event-tag">🌭 EXCLUSIVO ONLINE</div>
+      <h2 class="event-title">Com. Black Gig. Mix OL - (Con hot dog)</h2>
+      <p class="event-info">🍿 1 Canchita Gigante (Mix)</p>
+      <p class="event-info">🥤 2 Bebidas Medianas</p>
+      <p class="event-info">🌭 2 Hot Dog Clásicos</p>
+      <p class="event-info">⚠️ Canchita sin refill</p>
+      
+      <div class="card-actions">
+        <button onclick="abrirModal('Combo Black Gigante (Con hot dog)', 48.00)" class="btn-buy-card">🎟️ COMPRAR</button>
+        <a href="https://wa.me/51912147432?text=Hola,%20tengo%20consultas%20sobre%20Combo%20Black" target="_blank" class="btn-ws-card">💬 WHATSAPP</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Combo 3 -->
+  <div class="event-card">
+    <img src="combo2mixdoble.jpg" alt="Combo Doble Gigante" class="event-banner">
+    <div class="event-content">
+      <div class="event-tag">🔥 EXCLUSIVO PARA TI</div>
+      <h2 class="event-title">Combo 2 Mix Dob. Gig. OL</h2>
+      <p class="event-info">🍿🍿 2 Canchitas Gigantes</p>
+      <p class="event-info">🥤🥤 2 Bebidas Grandes (32oz)</p>
+      <p class="event-info">⚠️ A un precio especial / Canchita sin refill</p>
+      
+      <div class="card-actions">
+        <button onclick="abrirModal('Combo 2 Mix Doble Gigante', 54.00)" class="btn-buy-card">🎟️ COMPRAR</button>
+        <a href="https://wa.me/51912147432?text=Hola,%20tengo%20consultas%20sobre%20Combo%202%20Mix%20Doble" target="_blank" class="btn-ws-card">💬 WHATSAPP</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Seleccionar Cantidad -->
+  <div id="modalCine" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title" id="modalTitle">Combo</div>
+        <button onclick="cerrarModal('modalCine')" class="close-icon">&times;</button>
+      </div>
+
+      <div class="counter-container">
+        <span>Cantidad:</span>
+        <div style="display:flex; align-items:center; gap: 12px;">
+          <button class="counter-btn" onclick="cambiarCantidad(-1)">-</button>
+          <span class="counter-value" id="cantText">1</span>
+          <button class="counter-btn" onclick="cambiarCantidad(1)">+</button>
+        </div>
+      </div>
+
+      <div class="total-box">
+        <span>TOTAL:</span>
+        <span class="total-amount" id="totalText">S/ 0.00</span>
+      </div>
+
+      <button onclick="mostrarQRModal()" class="btn-pay-qr">📲 PAGAR CON YAPE / PLIN</button>
+    </div>
+  </div>
+
+  <!-- Modal QR Pago -->
+  <div id="qrModal" class="modal">
+    <div class="modal-content" style="text-align: center;">
+      <div class="modal-header">
+        <div class="modal-title">Escanear para Pagar</div>
+        <button onclick="cerrarModal('qrModal')" class="close-icon">&times;</button>
+      </div>
+
+      <p style="font-size: 14px; color: #cce3f5;">Escanea con Yape o Plin el monto exacto:</p>
+      <h2 style="color: #64dfdf; margin: 8px 0; font-size: 28px;" id="qrTotalDisplay">S/ 0.00</h2>
+      <p style="font-size: 14px; color: #ffffff; font-weight: bold;" id="qrComboDisplay">-</p>
+
+      <img src="qr-pago.jpg" alt="Código QR de Pago" class="qr-img">
+
+      <p style="font-size: 13px; color: #64dfdf; margin-bottom: 15px; font-weight: bold;">Realiza el pago y envía tu comprobante al WhatsApp.</p>
+      
+      <a id="btnWsQR" href="#" target="_blank" class="btn-pay-ws" style="display:block;">Enviar comprobante por WhatsApp</a>
+    </div>
+  </div>
+
+  <script>
+    let comboNombre = "";
+    let comboPrecio = 0;
+    let cantidad = 1;
+    const numeroWhatsApp = "51912147432";
+
+    function abrirModal(nombre, precio) {
+      comboNombre = nombre;
+      comboPrecio = precio;
+      cantidad = 1;
+      document.getElementById('modalTitle').innerText = nombre;
+      actualizarTotales();
+      document.getElementById('modalCine').style.display = 'flex';
+    }
+
+    function cerrarModal(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+
+    function cambiarCantidad(delta) {
+      if (cantidad + delta >= 1 && cantidad + delta <= 10) {
+        cantidad += delta;
+        actualizarTotales();
+      }
+    }
+
+    function actualizarTotales() {
+      const total = (comboPrecio * cantidad).toFixed(2);
+      document.getElementById('cantText').innerText = cantidad;
+      document.getElementById('totalText').innerText = `S/ ${total}`;
+
+      const mensaje = `Hola, acabo de pagar por ${cantidad} unidad(es) de ${comboNombre} (Cineplanet). Total: S/ ${total}. Adjunto mi comprobante.`;
+      document.getElementById('btnWsQR').href = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+      document.getElementById('qrTotalDisplay').innerText = `S/ ${total}`;
+      document.getElementById('qrComboDisplay').innerText = `${cantidad}x ${comboNombre}`;
+    }
+
+    function mostrarQRModal() {
+      cerrarModal('modalCine');
+      document.getElementById('qrModal').style.display = 'flex';
+    }
+  </script>
+
+</body>
+</html>
