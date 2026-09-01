@@ -21,9 +21,11 @@
     .event-title { font-size: 22px; margin-bottom: 12px; }
     .event-info { color: #d1d5db; font-size: 14px; margin-bottom: 6px; }
     
-    /* Botón principal de compra */
-    .btn-buy { width: 100%; background-color: #ccff00; color: #000; padding: 14px; border-radius: 10px; font-weight: 800; border: none; font-size: 16px; cursor: pointer; margin-top: 15px; text-transform: uppercase; letter-spacing: 0.5px; }
-    .btn-buy:active { transform: scale(0.98); }
+    /* Botones de las tarjetas */
+    .card-actions { display: flex; gap: 10px; margin-top: 15px; }
+    .btn-buy-card { flex: 2; background-color: #ccff00; color: #000; padding: 14px; border-radius: 10px; font-weight: 800; border: none; font-size: 15px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-ws-card { flex: 1; background-color: #25d366; color: #fff; padding: 14px; border-radius: 10px; font-weight: 800; text-decoration: none; text-align: center; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+    .btn-buy-card:active, .btn-ws-card:active { transform: scale(0.98); }
 
     /* Modales */
     .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); justify-content: center; align-items: center; z-index: 1000; padding: 15px; }
@@ -47,9 +49,8 @@
     .total-box { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-top: 1px dashed #444; margin-top: 10px; font-size: 16px; font-weight: bold; }
     .total-amount { color: #ccff00; font-size: 20px; }
 
-    /* Botones de Pago */
-    .pay-btn-group { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
-    .btn-pay-qr { background-color: #702b84; color: #fff; padding: 12px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; font-size: 14px; }
+    /* Botón de Pago único en el Modal */
+    .btn-pay-qr { width: 100%; background-color: #702b84; color: #fff; padding: 14px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; font-size: 15px; margin-top: 15px; text-transform: uppercase; }
     .btn-pay-ws { background-color: #25d366; color: #fff; padding: 12px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; font-size: 14px; text-decoration: none; text-align: center; }
 
     .qr-img { width: 100%; max-width: 220px; border-radius: 12px; margin: 15px auto; display: block; }
@@ -74,7 +75,10 @@
       <p class="event-info">📅 <strong>Fechas:</strong> 07, 09 y 10 de Octubre 2026</p>
       <p class="event-info">📍 <strong>Lugar:</strong> Estadio San Marcos, Lima</p>
       
-      <button onclick="abrirModal('bts')" class="btn-buy">🎟️ COMPRAR ENTRADAS</button>
+      <div class="card-actions">
+        <button onclick="abrirModal('bts')" class="btn-buy-card">🎟️ COMPRAR</button>
+        <a href="https://wa.me/51912147432?text=Hola,%20tengo%20consultas%20sobre%20las%20entradas%20de%20BTS" target="_blank" class="btn-ws-card">💬 WHATSAPP</a>
+      </div>
     </div>
   </div>
 
@@ -86,7 +90,10 @@
       <h2 class="event-title">Omar Courtz</h2>
       <p class="event-info">📍 <strong>Lugar:</strong> Lima</p>
       
-      <button onclick="abrirModal('omar')" class="btn-buy">🎟️ COMPRAR ENTRADAS</button>
+      <div class="card-actions">
+        <button onclick="abrirModal('omar')" class="btn-buy-card">🎟️ COMPRAR</button>
+        <a href="https://wa.me/51912147432?text=Hola,%20tengo%20consultas%20sobre%20las%20entradas%20de%20Omar%20Courtz" target="_blank" class="btn-ws-card">💬 WHATSAPP</a>
+      </div>
     </div>
   </div>
 
@@ -136,10 +143,7 @@
         <span class="total-amount" id="totalTextBTS">S/ 1,099.90</span>
       </div>
 
-      <div class="pay-btn-group">
-        <button onclick="mostrarQRModal()" class="btn-pay-qr">📲 PAGAR CON YAPE / PLIN</button>
-        <a id="btnWsBTS" href="#" target="_blank" class="btn-pay-ws">💬 COMPRAR POR WHATSAPP</a>
-      </div>
+      <button onclick="mostrarQRModal()" class="btn-pay-qr">📲 PAGAR CON YAPE / PLIN</button>
     </div>
   </div>
 
@@ -181,10 +185,7 @@
         <span class="total-amount" id="totalTextOmar">S/ 400.00</span>
       </div>
 
-      <div class="pay-btn-group">
-        <button onclick="mostrarQRModal()" class="btn-pay-qr">📲 PAGAR CON YAPE / PLIN</button>
-        <a id="btnWsOmar" href="#" target="_blank" class="btn-pay-ws">💬 COMPRAR POR WHATSAPP</a>
-      </div>
+      <button onclick="mostrarQRModal()" class="btn-pay-qr">📲 PAGAR CON YAPE / PLIN</button>
     </div>
   </div>
 
@@ -209,7 +210,7 @@
   </div>
 
   <script>
-    let showActual = "BTS";
+    let showActual = "bts";
     let precioZona = 1099.90;
     let nombreZona = "Campo A";
     let cantidad = 1;
@@ -268,11 +269,9 @@
         document.getElementById('totalTextOmar').innerText = `S/ ${total}`;
       }
 
-      const mensaje = `Hola, quiero comprar ${cantidad} entrada(s) para ${nombreShow} en la zona: ${nombreZona}. Total a pagar: S/ ${total}`;
+      const mensaje = `Hola, acabo de pagar ${cantidad} entrada(s) para ${nombreShow} en la zona ${nombreZona}. Total: S/ ${total}. Adjunto mi comprobante.`;
       const urlWs = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
       
-      document.getElementById('btnWsBTS').href = urlWs;
-      document.getElementById('btnWsOmar').href = urlWs;
       document.getElementById('btnWsQR').href = urlWs;
       document.getElementById('qrTotalDisplay').innerText = `S/ ${total}`;
       document.getElementById('qrZoneDisplay').innerText = `${cantidad}x ${nombreZona} (${nombreShow})`;
@@ -287,4 +286,3 @@
 
 </body>
 </html>
-
