@@ -106,7 +106,42 @@
     </div>
   </div>
 
-  <!-- Modal Selección de Precios BTS -->
+  <!-- Tarjeta Gorillaz -->
+  <div class="event-card">
+    <img src="gorillaz.jpg" alt="Gorillaz" class="event-banner">
+    <div class="event-content">
+      <div class="event-tag">⚡ ÚLTIMAS ENTRADAS</div>
+      <h2 class="event-title">Gorillaz - The Mountain Tour 2026</h2>
+      <p class="event-info">📅 <strong>Fecha:</strong> Lunes 23 de Noviembre 2026</p>
+      <p class="event-info">📍 <strong>Lugar:</strong> Arena 1 Park, Lima, Perú</p>
+      
+      <div class="card-actions">
+        <button onclick="abrirModal('gorillaz')" class="btn-buy-card">🎟️ COMPRAR</button>
+        <a href="https://wa.me/51912147432?text=Hola,%20tengo%20consultas%20sobre%20las%20entradas%20de%20Gorillaz" target="_blank" class="btn-ws-card">💬 WHATSAPP</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tarjeta Hombres G -->
+  <div class="event-card">
+    <img src="hombresg.jpg" alt="Hombres G" class="event-banner">
+    <div class="event-content">
+      <div class="event-tag">⚡ ÚLTIMAS ENTRADAS</div>
+      <h2 class="event-title">Hombres G - Gira 2026</h2>
+      <p class="event-info">📅 <strong>Última Fecha:</strong> 30 de Octubre 2026</p>
+      <p class="event-info">📍 <strong>Lugar:</strong> Estadio Nacional - Lima, PE</p>
+      
+      <div class="card-actions">
+        <button onclick="abrirModal('hombresg')" class="btn-buy-card">🎟️ COMPRAR</button>
+        <a href="https://wa.me/51912147432?text=Hola,%20tengo%20consultas%20sobre%20las%20entradas%20de%20Hombres%20G" target="_blank" class="btn-ws-card">💬 WHATSAPP</a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- MODALES DE SELECCIÓN DE PRECIOS -->
+
+  <!-- Modal BTS -->
   <div id="modalBTS" class="modal">
     <div class="modal-content">
       <div class="modal-header">
@@ -156,7 +191,7 @@
     </div>
   </div>
 
-  <!-- Modal Selección de Precios Omar Courtz -->
+  <!-- Modal Omar Courtz -->
   <div id="modalOmar" class="modal">
     <div class="modal-content">
       <div class="modal-header">
@@ -198,6 +233,146 @@
     </div>
   </div>
 
+  <!-- Modal Gorillaz -->
+  <div id="modalGorillaz" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">Entradas - Gorillaz</div>
+        <button onclick="cerrarModal('modalGorillaz')" class="close-icon">&times;</button>
+      </div>
+
+      <div class="zone-option selected" id="gor-z1" onclick="seleccionarZona('Gorillaz', 'Platinum', 480.00, 'gor-z1')">
+        <div>
+          <div class="zone-name">Platinum</div>
+          <small style="color:#cce3f5;">Frente al escenario</small>
+        </div>
+        <div class="zone-price">S/ 480.00</div>
+      </div>
+
+      <div class="zone-option" id="gor-z2" onclick="seleccionarZona('Gorillaz', 'VIP', 380.00, 'gor-z2')">
+        <div>
+          <div class="zone-name">VIP</div>
+          <small style="color:#cce3f5;">Zona intermedia</small>
+        </div>
+        <div class="zone-price">S/ 380.00</div>
+      </div>
+
+      <div class="zone-option" id="gor-z3" onclick="seleccionarZona('Gorillaz', 'General', 260.00, 'gor-z3')">
+        <div>
+          <div class="zone-name">General</div>
+          <small style="color:#cce3f5;">Zona posterior</small>
+        </div>
+        <div class="zone-price">S/ 260.00</div>
+      </div>
+
+      <div class="counter-container">
+        <span>Cantidad:</span>
+        <div style="display:flex; align-items:center; gap: 12px;">
+          <button class="counter-btn" onclick="cambiarCantidad(-1)">-</button>
+          <span class="counter-value" id="cantTextGorillaz">1</span>
+          <button class="counter-btn" onclick="cambiarCantidad(1)">+</button>
+        </div>
+      </div>
+
+      <div class="total-box">
+        <span>TOTAL:</span>
+        <span class="total-amount" id="totalTextGorillaz">S/ 480.00</span>
+      </div>
+
+      <button onclick="mostrarQRModal()" class="btn-pay-qr">📲 PAGAR CON YAPE / PLIN</button>
+    </div>
+  </div>
+
+  <!-- Modal Hombres G -->
+  <div id="modalHombresG" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">Entradas - Hombres G</div>
+        <button onclick="cerrarModal('modalHombresG')" class="close-icon">&times;</button>
+      </div>
+
+      <div class="zone-option selected" id="hg-z1" onclick="seleccionarZona('Hombres G', 'Platinum Central', 380.00, 'hg-z1')">
+        <div>
+          <div class="zone-name">Platinum Central</div>
+        </div>
+        <div class="zone-price">S/ 380.00</div>
+      </div>
+
+      <div class="zone-option" id="hg-z2" onclick="seleccionarZona('Hombres G', 'Platinum Lateral', 290.00, 'hg-z2')">
+        <div>
+          <div class="zone-name">Platinum Lateral</div>
+        </div>
+        <div class="zone-price">S/ 290.00</div>
+      </div>
+
+      <div class="zone-option" id="hg-z3" onclick="seleccionarZona('Hombres G', 'Tribuna Oriente 1', 290.00, 'hg-z3')">
+        <div>
+          <div class="zone-name">Tribuna Oriente 1</div>
+        </div>
+        <div class="zone-price">S/ 290.00</div>
+      </div>
+
+      <div class="zone-option" id="hg-z4" onclick="seleccionarZona('Hombres G', 'Tribuna Occidente 1', 290.00, 'hg-z4')">
+        <div>
+          <div class="zone-name">Tribuna Occidente 1</div>
+        </div>
+        <div class="zone-price">S/ 290.00</div>
+      </div>
+
+      <div class="zone-option" id="hg-z5" onclick="seleccionarZona('Hombres G', 'VIP', 250.00, 'hg-z5')">
+        <div>
+          <div class="zone-name">VIP</div>
+        </div>
+        <div class="zone-price">S/ 250.00</div>
+      </div>
+
+      <div class="zone-option" id="hg-z6" onclick="seleccionarZona('Hombres G', 'Tribuna Oriente 2', 250.00, 'hg-z6')">
+        <div>
+          <div class="zone-name">Tribuna Oriente 2</div>
+        </div>
+        <div class="zone-price">S/ 250.00</div>
+      </div>
+
+      <div class="zone-option" id="hg-z7" onclick="seleccionarZona('Hombres G', 'Tribuna Occidente 2', 250.00, 'hg-z7')">
+        <div>
+          <div class="zone-name">Tribuna Occidente 2</div>
+        </div>
+        <div class="zone-price">S/ 250.00</div>
+      </div>
+
+      <div class="zone-option" id="hg-z8" onclick="seleccionarZona('Hombres G', 'Preferencial', 170.00, 'hg-z8')">
+        <div>
+          <div class="zone-name">Preferencial</div>
+        </div>
+        <div class="zone-price">S/ 170.00</div>
+      </div>
+
+      <div class="zone-option" id="hg-z9" onclick="seleccionarZona('Hombres G', 'Tribuna Norte', 120.00, 'hg-z9')">
+        <div>
+          <div class="zone-name">Tribuna Norte</div>
+        </div>
+        <div class="zone-price">S/ 120.00</div>
+      </div>
+
+      <div class="counter-container">
+        <span>Cantidad:</span>
+        <div style="display:flex; align-items:center; gap: 12px;">
+          <button class="counter-btn" onclick="cambiarCantidad(-1)">-</button>
+          <span class="counter-value" id="cantTextHombresG">1</span>
+          <button class="counter-btn" onclick="cambiarCantidad(1)">+</button>
+        </div>
+      </div>
+
+      <div class="total-box">
+        <span>TOTAL:</span>
+        <span class="total-amount" id="totalTextHombresG">S/ 380.00</span>
+      </div>
+
+      <button onclick="mostrarQRModal()" class="btn-pay-qr">📲 PAGAR CON YAPE / PLIN</button>
+    </div>
+  </div>
+
+
   <!-- Modal del QR -->
   <div id="qrModal" class="modal">
     <div class="modal-content" style="text-align: center;">
@@ -235,12 +410,24 @@
         document.querySelectorAll('#modalBTS .zone-option').forEach(el => el.classList.remove('selected'));
         document.getElementById('bts-z1').classList.add('selected');
         document.getElementById('modalBTS').style.display = 'flex';
-      } else {
+      } else if (show === 'omar') {
         nombreZona = "Campo A";
         precioZona = 400.00;
         document.querySelectorAll('#modalOmar .zone-option').forEach(el => el.classList.remove('selected'));
         document.getElementById('omar-z1').classList.add('selected');
         document.getElementById('modalOmar').style.display = 'flex';
+      } else if (show === 'gorillaz') {
+        nombreZona = "Platinum";
+        precioZona = 480.00;
+        document.querySelectorAll('#modalGorillaz .zone-option').forEach(el => el.classList.remove('selected'));
+        document.getElementById('gor-z1').classList.add('selected');
+        document.getElementById('modalGorillaz').style.display = 'flex';
+      } else if (show === 'hombresg') {
+        nombreZona = "Platinum Central";
+        precioZona = 380.00;
+        document.querySelectorAll('#modalHombresG .zone-option').forEach(el => el.classList.remove('selected'));
+        document.getElementById('hg-z1').classList.add('selected');
+        document.getElementById('modalHombresG').style.display = 'flex';
       }
       actualizarTotales();
     }
@@ -253,7 +440,12 @@
       nombreZona = nombre;
       precioZona = precio;
       
-      const modalId = showName === 'BTS' ? '#modalBTS' : '#modalOmar';
+      let modalId = '';
+      if (showName === 'BTS') modalId = '#modalBTS';
+      else if (showName === 'Omar Courtz') modalId = '#modalOmar';
+      else if (showName === 'Gorillaz') modalId = '#modalGorillaz';
+      else if (showName === 'Hombres G') modalId = '#modalHombresG';
+
       document.querySelectorAll(`${modalId} .zone-option`).forEach(el => el.classList.remove('selected'));
       document.getElementById(elementId).classList.add('selected');
       actualizarTotales();
@@ -268,14 +460,24 @@
 
     function actualizarTotales() {
       const total = (precioZona * cantidad).toFixed(2);
-      const nombreShow = showActual === 'bts' ? 'BTS World Tour' : 'Omar Courtz';
       
+      let nombreShow = '';
       if (showActual === 'bts') {
+        nombreShow = 'BTS World Tour';
         document.getElementById('cantTextBTS').innerText = cantidad;
         document.getElementById('totalTextBTS').innerText = `S/ ${total}`;
-      } else {
+      } else if (showActual === 'omar') {
+        nombreShow = 'Omar Courtz';
         document.getElementById('cantTextOmar').innerText = cantidad;
         document.getElementById('totalTextOmar').innerText = `S/ ${total}`;
+      } else if (showActual === 'gorillaz') {
+        nombreShow = 'Gorillaz';
+        document.getElementById('cantTextGorillaz').innerText = cantidad;
+        document.getElementById('totalTextGorillaz').innerText = `S/ ${total}`;
+      } else if (showActual === 'hombresg') {
+        nombreShow = 'Hombres G';
+        document.getElementById('cantTextHombresG').innerText = cantidad;
+        document.getElementById('totalTextHombresG').innerText = `S/ ${total}`;
       }
 
       const mensaje = `Hola, acabo de pagar ${cantidad} entrada(s) para ${nombreShow} en la zona ${nombreZona}. Total: S/ ${total}. Adjunto mi comprobante.`;
@@ -289,6 +491,8 @@
     function mostrarQRModal() {
       cerrarModal('modalBTS');
       cerrarModal('modalOmar');
+      cerrarModal('modalGorillaz');
+      cerrarModal('modalHombresG');
       document.getElementById('qrModal').style.display = 'flex';
     }
   </script>
