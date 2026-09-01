@@ -7,31 +7,65 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
 
-    /* Fondo azul completo como el ejemplo */
-    body { background-color: #0d2c4a; color: #ffffff; min-height: 100vh; padding: 20px; position: relative; }
+    body { background-color: #0d2c4a; color: #ffffff; min-height: 100vh; padding: 20px 20px 80px 20px; position: relative; }
 
     /* Header */
-    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
     .logo-container { display: flex; align-items: center; gap: 8px; }
     .logo-icon { width: 32px; height: 32px; background: #00a8ff; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px; color: #fff; }
     .logo-text { color: #ffffff; font-size: 22px; font-weight: 900; letter-spacing: -0.5px; }
     .menu-icon { font-size: 24px; color: #ffffff; cursor: pointer; }
 
-    /* Tag flotante superior */
-    .badge-tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(255, 255, 255, 0.12); color: #64dfdf; border: 1px solid rgba(100, 223, 223, 0.3); padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-bottom: 25px; }
+    /* Badge */
+    .badge-tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(255, 255, 255, 0.12); color: #64dfdf; border: 1px solid rgba(100, 223, 223, 0.3); padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; margin-bottom: 20px; }
 
-    /* Títulos grandes del Hero */
-    .hero-title { font-size: 34px; font-weight: 900; line-height: 1.15; margin-bottom: 20px; letter-spacing: -0.5px; }
+    /* Titles */
+    .hero-title { font-size: 32px; font-weight: 900; line-height: 1.15; margin-bottom: 15px; }
     .highlight { color: #64dfdf; text-decoration: underline; text-decoration-color: #64dfdf; text-underline-offset: 4px; }
+    .hero-desc { color: #cce3f5; font-size: 14px; line-height: 1.5; margin-bottom: 25px; }
 
-    .hero-desc { color: #cce3f5; font-size: 15px; line-height: 1.5; margin-bottom: 35px; }
+    /* Buttons */
+    .actions-container { display: flex; flex-direction: column; gap: 12px; margin-bottom: 35px; }
+    .btn-primary { background-color: #25d366; color: #0d2c4a; font-weight: 800; padding: 15px; border-radius: 12px; border: none; font-size: 15px; text-decoration: none; text-align: center; }
+    .btn-secondary { background: rgba(255, 255, 255, 0.1); color: #ffffff; font-weight: 700; padding: 15px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.2); font-size: 15px; text-decoration: none; text-align: center; }
 
-    /* Botones de Acción Estilo Ejemplo */
-    .actions-container { display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; }
-    .btn-primary { background-color: #25d366; color: #0d2c4a; font-weight: 800; padding: 16px; border-radius: 12px; border: none; font-size: 16px; text-decoration: none; text-align: center; display: flex; align-items: center; justify-content: center; gap: 8px; }
-    .btn-secondary { background: rgba(255, 255, 255, 0.1); color: #ffffff; font-weight: 700; padding: 16px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.2); font-size: 16px; text-decoration: none; text-align: center; }
+    /* Section Slider Header */
+    .slider-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+    .status-indicator { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 800; color: #ffffff; text-transform: uppercase; letter-spacing: 0.5px; }
+    .dot-green { width: 8px; height: 8px; background-color: #25d366; border-radius: 50%; display: inline-block; box-shadow: 0 0 8px #25d366; }
+    .see-all { color: #64dfdf; font-size: 13px; font-weight: 700; text-decoration: none; }
 
-    /* Widget Flotante de WhatsApp */
+    /* Carousel Container */
+    .carousel-wrapper { position: relative; overflow: hidden; border-radius: 20px; width: 100%; }
+    .carousel-track { display: flex; transition: transform 0.5s ease-in-out; width: 200%; }
+
+    /* Event Card (estilo similar a EntradaSegura) */
+    .event-card-slide { width: 50%; background: #ffffff; color: #112a46; border-radius: 20px; overflow: hidden; position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+    .card-image-box { position: relative; width: 100%; height: 210px; overflow: hidden; background: #000; }
+    .card-image-box img { width: 100%; height: 100%; object-fit: cover; }
+    
+    /* Overlay badges sobre imagen */
+    .badge-top-left { position: absolute; top: 12px; left: 12px; display: flex; gap: 6px; }
+    .tag-purple { background: #702b84; color: #fff; font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 12px; }
+    .tag-blue { background: #00a8ff; color: #fff; font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 12px; }
+    .badge-top-right { position: absolute; top: 12px; right: 12px; background: #ff4757; color: #fff; font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 12px; }
+
+    /* Card Details */
+    .card-body { padding: 18px; }
+    .card-title { font-size: 20px; font-weight: 900; color: #0d2c4a; margin-bottom: 12px; line-height: 1.2; text-transform: uppercase; }
+    .card-info { font-size: 13px; color: #5a7184; font-weight: 600; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+    
+    .card-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 18px; padding-top: 12px; border-top: 1px solid #e1e5eb; }
+    .price-sub { font-size: 10px; color: #702b84; font-weight: 800; text-transform: uppercase; display: block; }
+    .price-amount { font-size: 20px; font-weight: 900; color: #0d2c4a; }
+    .btn-separar { background: linear-gradient(135deg, #00a8ff, #0056b3); color: #ffffff; padding: 12px 20px; border-radius: 12px; text-decoration: none; font-weight: 800; font-size: 14px; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(0, 168, 255, 0.3); }
+
+    /* Carousel Pagination Dots */
+    .dots-container { display: flex; justify-content: center; gap: 8px; margin-top: 15px; }
+    .dot { width: 8px; height: 8px; background: rgba(255, 255, 255, 0.3); border-radius: 50%; transition: 0.3s; }
+    .dot.active { width: 24px; background: #64dfdf; border-radius: 10px; }
+
+    /* WhatsApp Widget */
     .ws-widget { position: fixed; bottom: 20px; left: 20px; display: flex; align-items: center; gap: 10px; z-index: 100; }
     .ws-circle { width: 48px; height: 48px; background-color: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); text-decoration: none; font-size: 24px; color: #fff; }
     .ws-tooltip { background: #ffffff; color: #112a46; padding: 8px 12px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); font-size: 12px; font-weight: bold; position: relative; }
@@ -50,7 +84,7 @@
     <div class="menu-icon">☰</div>
   </div>
 
-  <!-- Hero Content -->
+  <!-- Hero Section -->
   <div class="badge-tag">⚡ Entradas Oficiales y Descuentos en Perú</div>
 
   <h1 class="hero-title">
@@ -61,13 +95,86 @@
     Compra tus pases para los mejores conciertos, funciones de cine y partidos sin filas. Garantía y entrega rápida en Lima.
   </p>
 
-  <!-- Botones principales -->
+  <!-- Botones de Acción -->
   <div class="actions-container">
     <a href="conciertos.html" class="btn-primary">Explorar entradas →</a>
     <a href="https://wa.me/51912147432" target="_blank" class="btn-secondary">Consultar por WhatsApp</a>
   </div>
 
-  <!-- Widget Flotante de WhatsApp -->
+  <!-- Cabecera de Carrusel -->
+  <div class="slider-header">
+    <div class="status-indicator">
+      <span class="dot-green"></span> 2 Entradas Activas Ahora
+    </div>
+    <a href="conciertos.html" class="see-all">Ver todas →</a>
+  </div>
+
+  <!-- Carrusel Automático de Conciertos -->
+  <div class="carousel-wrapper">
+    <div class="carousel-track" id="track">
+      
+      <!-- Slide 1: BTS -->
+      <div class="event-card-slide">
+        <div class="card-image-box">
+          <div class="badge-top-left">
+            <span class="tag-purple">FilaCero</span>
+            <span class="tag-blue">EN CUOTAS</span>
+          </div>
+          <span class="badge-top-right">¡ÚLTIMAS!</span>
+          <img src="bts.png" alt="BTS World Tour">
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">BTS WORLD TOUR ARIRANG</h2>
+          <div class="card-info">📅 10 oct. 2026</div>
+          <div class="card-info">📍 Estadio San Marcos · Lima</div>
+          <div class="card-info">🎟️ CAMPO A / ORIENTE / NORTE</div>
+          
+          <div class="card-footer">
+            <div>
+              <span class="price-sub">ENTRADAS DESDE</span>
+              <span class="price-amount">S/ 749.90</span>
+            </div>
+            <a href="conciertos.html" class="btn-separar">Sepárala →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2: Omar Courtz -->
+      <div class="event-card-slide">
+        <div class="card-image-box">
+          <div class="badge-top-left">
+            <span class="tag-purple">FilaCero</span>
+            <span class="tag-blue">OFICIAL</span>
+          </div>
+          <span class="badge-top-right">¡DISPONIBLE!</span>
+          <img src="omarcourtz.jpg" alt="Omar Courtz">
+        </div>
+        <div class="card-body">
+          <h2 class="card-title">OMAR COURTZ EN LIMA</h2>
+          <div class="card-info">📅 Próxima fecha 2026</div>
+          <div class="card-info">📍 Lima, Perú</div>
+          <div class="card-info">🎟️ CAMPO A / CAMPO B</div>
+          
+          <div class="card-footer">
+            <div>
+              <span class="price-sub">ENTRADAS DESDE</span>
+              <span class="price-amount">S/ 260.00</span>
+            </div>
+            <a href="conciertos.html" class="btn-separar">Sepárala →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Indicadores de punto -->
+  <div class="dots-container">
+    <div class="dot active" id="dot0"></div>
+    <div class="dot" id="dot1"></div>
+  </div>
+
+  <!-- Widget Flotante WhatsApp -->
   <div class="ws-widget">
     <a href="https://wa.me/51912147432?text=Hola,%20tengo%20una%20consulta" target="_blank" class="ws-circle">💬</a>
     <div class="ws-tooltip">
@@ -76,7 +183,28 @@
     </div>
   </div>
 
+  <!-- Script para cambio automático de imagen cada 4 segundos -->
+  <script>
+    let currentIndex = 0;
+    const track = document.getElementById('track');
+    const dot0 = document.getElementById('dot0');
+    const dot1 = document.getElementById('dot1');
+
+    function switchSlide() {
+      currentIndex = currentIndex === 0 ? 1 : 0;
+      if (currentIndex === 0) {
+        track.style.transform = 'translateX(0%)';
+        dot0.classList.add('active');
+        dot1.classList.remove('active');
+      } else {
+        track.style.transform = 'translateX(-50%)';
+        dot1.classList.add('active');
+        dot0.classList.remove('active');
+      }
+    }
+
+    setInterval(switchSlide, 4000);
+  </script>
+
 </body>
 </html>
-
-
