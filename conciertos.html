@@ -6,71 +6,80 @@
   <title>Conciertos | FilaCero</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-    body { background-color: #0d0e12; color: #fff; padding: 20px; }
-    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
-    .back-btn { color: #ccff00; text-decoration: none; font-weight: bold; font-size: 14px; }
-    .logo { color: #a855f7; font-size: 20px; font-weight: 900; }
-    .title { font-size: 28px; font-weight: 800; margin-bottom: 5px; }
-    .subtitle { color: #9ca3af; font-size: 14px; margin-bottom: 25px; }
     
-    /* Tarjeta de Evento */
-    .event-card { background-color: #16181d; border-radius: 16px; overflow: hidden; margin-bottom: 25px; border: 1px solid #262930; }
-    .event-banner { width: 100%; display: block; }
+    /* Fondo azul oscuro coherente con index.html */
+    body { background-color: #0d2c4a; color: #ffffff; padding: 20px; }
+    
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+    .back-btn { color: #64dfdf; text-decoration: none; font-weight: bold; font-size: 14px; }
+    .logo-container { display: flex; align-items: center; gap: 8px; }
+    .logo-icon { width: 28px; height: 28px; background: #00a8ff; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 15px; color: #fff; }
+    .logo-text { color: #ffffff; font-size: 20px; font-weight: 900; }
+    
+    .title { font-size: 28px; font-weight: 900; margin-bottom: 5px; color: #ffffff; }
+    .subtitle { color: #cce3f5; font-size: 14px; margin-bottom: 25px; }
+    
+    /* Tarjetas de Eventos */
+    .event-card { background-color: rgba(255, 255, 255, 0.05); border-radius: 16px; overflow: hidden; margin-bottom: 25px; border: 1px solid rgba(255, 255, 255, 0.15); }
+    .event-banner { width: 100%; display: block; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
     .event-content { padding: 20px; }
-    .event-tag { color: #ccff00; font-size: 12px; font-weight: bold; margin-bottom: 8px; }
-    .event-title { font-size: 22px; margin-bottom: 12px; }
-    .event-info { color: #d1d5db; font-size: 14px; margin-bottom: 6px; }
+    .event-tag { color: #64dfdf; background-color: rgba(100, 223, 223, 0.12); border: 1px solid rgba(100, 223, 223, 0.3); font-size: 12px; font-weight: bold; margin-bottom: 10px; display: inline-block; padding: 4px 10px; border-radius: 6px; }
+    .event-title { font-size: 22px; margin-bottom: 12px; color: #ffffff; font-weight: 800; }
+    .event-info { color: #cce3f5; font-size: 14px; margin-bottom: 6px; }
     
     /* Botones de las tarjetas */
     .card-actions { display: flex; gap: 10px; margin-top: 15px; }
-    .btn-buy-card { flex: 2; background-color: #ccff00; color: #000; padding: 14px; border-radius: 10px; font-weight: 800; border: none; font-size: 15px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; }
-    .btn-ws-card { flex: 1; background-color: #25d366; color: #fff; padding: 14px; border-radius: 10px; font-weight: 800; text-decoration: none; text-align: center; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+    .btn-buy-card { flex: 2; background-color: #25d366; color: #0d2c4a; padding: 14px; border-radius: 10px; font-weight: 800; border: none; font-size: 15px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; }
+    .btn-ws-card { flex: 1; background: rgba(255, 255, 255, 0.1); color: #fff; padding: 14px; border-radius: 10px; font-weight: 800; text-decoration: none; text-align: center; font-size: 14px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255, 255, 255, 0.2); }
     .btn-buy-card:active, .btn-ws-card:active { transform: scale(0.98); }
 
     /* Modales */
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); justify-content: center; align-items: center; z-index: 1000; padding: 15px; }
-    .modal-content { background: #181a20; padding: 22px; border-radius: 18px; max-width: 380px; width: 100%; border: 1px solid #333; max-height: 90vh; overflow-y: auto; }
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 18, 31, 0.85); justify-content: center; align-items: center; z-index: 1000; padding: 15px; backdrop-filter: blur(4px); }
+    .modal-content { background: #13385c; padding: 22px; border-radius: 18px; max-width: 380px; width: 100%; border: 1px solid rgba(255, 255, 255, 0.15); max-height: 90vh; overflow-y: auto; }
     .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-    .modal-title { font-size: 18px; font-weight:bold; color: #fff; }
-    .close-icon { color: #9ca3af; font-size: 22px; cursor: pointer; border: none; background: none; }
+    .modal-title { font-size: 18px; font-weight:bold; color: #ffffff; }
+    .close-icon { color: #cce3f5; font-size: 24px; cursor: pointer; border: none; background: none; font-weight: bold; }
 
     /* Opciones de Zonas */
-    .zone-option { background: #232730; border: 2px solid #333; border-radius: 12px; padding: 12px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: 0.2s; }
-    .zone-option.selected { border-color: #ccff00; background: #2a3120; }
-    .zone-name { font-size: 14px; font-weight: 600; }
-    .zone-price { color: #ccff00; font-weight:bold; font-size: 15px; }
+    .zone-option { background: rgba(255, 255, 255, 0.06); border: 2px solid rgba(255, 255, 255, 0.15); border-radius: 12px; padding: 12px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: 0.2s; }
+    .zone-option.selected { border-color: #64dfdf; background: rgba(100, 223, 223, 0.15); }
+    .zone-name { font-size: 14px; font-weight: 700; color: #ffffff; }
+    .zone-price { color: #64dfdf; font-weight: 800; font-size: 15px; }
 
     /* Contador de Entradas */
-    .counter-container { display: flex; justify-content: space-between; align-items: center; background: #232730; padding: 10px 15px; border-radius: 12px; margin: 15px 0; }
-    .counter-btn { background: #333; color: #fff; border: none; width: 32px; height: 32px; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; }
-    .counter-value { font-size: 18px; font-weight: bold; color: #ccff00; }
+    .counter-container { display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.06); padding: 10px 15px; border-radius: 12px; margin: 15px 0; border: 1px solid rgba(255, 255, 255, 0.15); color: #cce3f5; }
+    .counter-btn { background: rgba(255, 255, 255, 0.15); color: #ffffff; border: none; width: 32px; height: 32px; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; }
+    .counter-value { font-size: 18px; font-weight: bold; color: #64dfdf; }
 
     /* Resumen de Total */
-    .total-box { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-top: 1px dashed #444; margin-top: 10px; font-size: 16px; font-weight: bold; }
-    .total-amount { color: #ccff00; font-size: 20px; }
+    .total-box { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-top: 2px dashed rgba(255, 255, 255, 0.2); margin-top: 10px; font-size: 16px; font-weight: bold; color: #ffffff; }
+    .total-amount { color: #64dfdf; font-size: 22px; font-weight: 900; }
 
     /* Botón de Pago único en el Modal */
     .btn-pay-qr { width: 100%; background-color: #702b84; color: #fff; padding: 14px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; font-size: 15px; margin-top: 15px; text-transform: uppercase; }
-    .btn-pay-ws { background-color: #25d366; color: #fff; padding: 12px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; font-size: 14px; text-decoration: none; text-align: center; }
+    .btn-pay-ws { background-color: #25d366; color: #0d2c4a; padding: 12px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; font-size: 14px; text-decoration: none; text-align: center; }
 
-    .qr-img { width: 100%; max-width: 220px; border-radius: 12px; margin: 15px auto; display: block; }
+    .qr-img { width: 100%; max-width: 220px; border-radius: 12px; margin: 15px auto; display: block; border: 1px solid rgba(255, 255, 255, 0.2); }
   </style>
 </head>
 <body>
 
   <div class="header">
     <a href="index.html" class="back-btn">← Volver</a>
-    <div class="logo">FILACERO</div>
+    <div class="logo-container">
+      <div class="logo-icon">0</div>
+      <div class="logo-text">FilaCero</div>
+    </div>
   </div>
 
-  <h1 class="title">CONCIERTOS 🎵</h1>
+  <h1 class="title">Conciertos 🎵</h1>
   <p class="subtitle">Entradas disponibles para los próximos shows en Lima</p>
 
   <!-- Tarjeta BTS -->
   <div class="event-card">
     <img src="bts.png" alt="BTS" class="event-banner">
     <div class="event-content">
-      <div class="event-tag">⚡ ÚLTIMAS ENTRADAS DISPONIBLES</div>
+      <div class="event-tag">⚡ ÚLTIMAS ENTRADAS</div>
       <h2 class="event-title">BTS World Tour Arirang</h2>
       <p class="event-info">📅 <strong>Fechas:</strong> 07, 09 y 10 de Octubre 2026</p>
       <p class="event-info">📍 <strong>Lugar:</strong> Estadio San Marcos, Lima</p>
@@ -86,7 +95,7 @@
   <div class="event-card">
     <img src="omarcourtz.jpg" alt="Omar Courtz" class="event-banner">
     <div class="event-content">
-      <div class="event-tag">⚡ ÚLTIMAS ENTRADAS DISPONIBLES</div>
+      <div class="event-tag">⚡ ÚLTIMAS ENTRADAS</div>
       <h2 class="event-title">Omar Courtz</h2>
       <p class="event-info">📍 <strong>Lugar:</strong> Lima</p>
       
@@ -108,7 +117,7 @@
       <div class="zone-option selected" id="bts-z1" onclick="seleccionarZona('BTS', 'Campo A', 1099.90, 'bts-z1')">
         <div>
           <div class="zone-name">Campo A</div>
-          <small style="color:#aaa;">De pie - Frente al escenario</small>
+          <small style="color:#cce3f5;">De pie - Frente al escenario</small>
         </div>
         <div class="zone-price">S/ 1,099.90</div>
       </div>
@@ -116,7 +125,7 @@
       <div class="zone-option" id="bts-z2" onclick="seleccionarZona('BTS', 'Tribuna Oriente / Occidente', 899.90, 'bts-z2')">
         <div>
           <div class="zone-name">Oriente / Occidente</div>
-          <small style="color:#aaa;">Asiento numerado</small>
+          <small style="color:#cce3f5;">Asiento numerado</small>
         </div>
         <div class="zone-price">S/ 899.90</div>
       </div>
@@ -124,7 +133,7 @@
       <div class="zone-option" id="bts-z3" onclick="seleccionarZona('BTS', 'Tribuna Norte / Sur', 749.90, 'bts-z3')">
         <div>
           <div class="zone-name">Norte / Sur</div>
-          <small style="color:#aaa;">Tribuna general</small>
+          <small style="color:#cce3f5;">Tribuna general</small>
         </div>
         <div class="zone-price">S/ 749.90</div>
       </div>
@@ -158,7 +167,7 @@
       <div class="zone-option selected" id="omar-z1" onclick="seleccionarZona('Omar Courtz', 'Campo A', 400.00, 'omar-z1')">
         <div>
           <div class="zone-name">Campo A</div>
-          <small style="color:#aaa;">Zona Preferencial</small>
+          <small style="color:#cce3f5;">Zona Preferencial</small>
         </div>
         <div class="zone-price">S/ 400.00</div>
       </div>
@@ -166,7 +175,7 @@
       <div class="zone-option" id="omar-z2" onclick="seleccionarZona('Omar Courtz', 'Campo B', 260.00, 'omar-z2')">
         <div>
           <div class="zone-name">Campo B</div>
-          <small style="color:#aaa;">Zona General</small>
+          <small style="color:#cce3f5;">Zona General</small>
         </div>
         <div class="zone-price">S/ 260.00</div>
       </div>
@@ -197,13 +206,13 @@
         <button onclick="cerrarModal('qrModal')" class="close-icon">&times;</button>
       </div>
 
-      <p style="font-size: 13px; color: #aaa;">Escanea con Yape o Plin el monto exacto:</p>
-      <h2 style="color: #ccff00; margin: 8px 0;" id="qrTotalDisplay">S/ 0.00</h2>
-      <p style="font-size: 12px; color: #d1d5db;" id="qrZoneDisplay">-</p>
+      <p style="font-size: 14px; color: #cce3f5;">Escanea con Yape o Plin el monto exacto:</p>
+      <h2 style="color: #64dfdf; margin: 8px 0; font-size: 28px;" id="qrTotalDisplay">S/ 0.00</h2>
+      <p style="font-size: 14px; color: #ffffff; font-weight: bold;" id="qrZoneDisplay">-</p>
 
       <img src="qr-pago.jpg" alt="Código QR de Pago" class="qr-img">
 
-      <p style="font-size: 12px; color: #ccff00; margin-bottom: 15px;">Realiza el yape/plin y envía tu comprobante al WhatsApp.</p>
+      <p style="font-size: 13px; color: #64dfdf; margin-bottom: 15px; font-weight: bold;">Realiza el pago y envía tu comprobante al WhatsApp.</p>
       
       <a id="btnWsQR" href="#" target="_blank" class="btn-pay-ws" style="display:block;">Enviar comprobante por WhatsApp</a>
     </div>
