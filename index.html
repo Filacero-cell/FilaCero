@@ -98,6 +98,24 @@
     .step-card-title { font-size: 18px; font-weight: 900; margin-bottom: 8px; }
     .step-card-desc { font-size: 13px; color: #5a7184; line-height: 1.5; font-weight: 500; }
 
+    /* SECCIÓN CLIENTES SATISFECHOS */
+    .reviews-section { margin-top: 45px; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.15); text-align: center; }
+    .reviews-title { font-size: 26px; font-weight: 900; color: #ffffff; margin-bottom: 6px; }
+    .reviews-subtitle { color: #cce3f5; font-size: 13px; margin-bottom: 20px; }
+    
+    .carousel-ref-wrapper { position: relative; max-width: 380px; margin: 0 auto; overflow: hidden; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.2); background: rgba(0,0,0,0.2); box-shadow: 0 8px 25px rgba(0,0,0,0.4); }
+    .carousel-ref-track { display: flex; transition: transform 0.4s ease-in-out; }
+    .carousel-ref-slide { min-width: 100%; box-sizing: border-box; }
+    .carousel-ref-slide img { width: 100%; height: auto; display: block; border-radius: 20px; }
+
+    .carousel-ref-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(13, 44, 74, 0.85); color: #64dfdf; border: 1px solid rgba(100, 223, 223, 0.4); width: 38px; height: 38px; border-radius: 50%; font-size: 18px; font-weight: bold; cursor: pointer; z-index: 5; display: flex; align-items: center; justify-content: center; }
+    .carousel-ref-btn.prev { left: 10px; }
+    .carousel-ref-btn.next { right: 10px; }
+
+    .carousel-ref-dots { display: flex; justify-content: center; gap: 8px; margin-top: 15px; margin-bottom: 20px; }
+    .dot-ref { width: 8px; height: 8px; background: rgba(255, 255, 255, 0.3); border-radius: 50%; cursor: pointer; transition: 0.3s; }
+    .dot-ref.active { background: #64dfdf; width: 22px; border-radius: 10px; }
+
     /* WhatsApp Widget */
     .ws-widget { position: fixed; bottom: 20px; left: 20px; display: flex; align-items: center; gap: 10px; z-index: 100; }
     .ws-circle { width: 48px; height: 48px; background-color: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); text-decoration: none; font-size: 24px; color: #fff; }
@@ -126,7 +144,6 @@
 </head>
 <body>
 
-  <!-- Header -->
   <div class="header">
     <div class="logo-container">
       <div class="logo-icon">0</div>
@@ -135,7 +152,6 @@
     <div class="menu-icon">☰</div>
   </div>
 
-  <!-- Hero Section -->
   <div class="badge-tag">⚡ Entradas Oficiales y Descuentos en Perú</div>
 
   <h1 class="hero-title">
@@ -146,13 +162,11 @@
     Compra tus pases para los mejores conciertos y combos de Cineplanet sin hacer filas. Garantía y entrega digital inmediata.
   </p>
 
-  <!-- Botones de Acción -->
   <div class="actions-container">
     <a href="conciertos.html" class="btn-primary">Explorar Conciertos →</a>
     <a href="cine.html" class="btn-secondary">Promociones de Cine 🍿</a>
   </div>
 
-  <!-- SECCIÓN 1: CARRUSEL CONCIERTOS -->
   <div class="slider-header">
     <div class="status-indicator">
       <span class="dot-green"></span> 4 Conciertos Activos
@@ -163,7 +177,6 @@
   <div class="carousel-wrapper">
     <div class="carousel-track-conciertos" id="trackConciertos">
       
-      <!-- Slide 1: BTS -->
       <div class="slide-conciertos">
         <div class="card-image-box">
           <div class="badge-top-left"><span class="tag-purple">FilaCero</span><span class="tag-blue">EN CUOTAS</span></div>
@@ -182,7 +195,6 @@
         </div>
       </div>
 
-      <!-- Slide 2: Omar Courtz -->
       <div class="slide-conciertos">
         <div class="card-image-box">
           <div class="badge-top-left"><span class="tag-purple">FilaCero</span><span class="tag-blue">OFICIAL</span></div>
@@ -201,7 +213,6 @@
         </div>
       </div>
 
-      <!-- Slide 3: Gorillaz -->
       <div class="slide-conciertos">
         <div class="card-image-box">
           <div class="badge-top-left"><span class="tag-purple">FilaCero</span><span class="tag-blue">OFICIAL</span></div>
@@ -220,7 +231,6 @@
         </div>
       </div>
 
-      <!-- Slide 4: Hombres G -->
       <div class="slide-conciertos">
         <div class="card-image-box">
           <div class="badge-top-left"><span class="tag-purple">FilaCero</span><span class="tag-blue">OFICIAL</span></div>
@@ -242,7 +252,6 @@
     </div>
   </div>
 
-  <!-- Indicadores Conciertos -->
   <div class="dots-container">
     <div class="dot active" id="dotC0"></div>
     <div class="dot" id="dotC1"></div>
@@ -251,7 +260,6 @@
   </div>
 
 
-  <!-- SECCIÓN 2: CARRUSEL CINEPLANET -->
   <div class="slider-header">
     <div class="status-indicator">
       <span class="dot-red"></span> Promociones Cineplanet 🍿
@@ -262,61 +270,55 @@
   <div class="carousel-wrapper">
     <div class="carousel-track-cine" id="trackCine">
       
-      <!-- Cine 1: Combo 2 Mix OL CC -->
       <div class="slide-cine">
         <div class="card-image-box">
           <div class="badge-top-left"><span class="tag-red">CINEPLANET</span><span class="tag-blue">MIX</span></div>
           <span class="badge-top-right">PROMO</span>
-          <img src="combo2mix.png" alt="Combo 2 Mix OL CC">
+          <img src="combo2mix.jpg" alt="Combo 2 Mix OL CC">
         </div>
         <div class="card-body">
           <h2 class="card-title">COMBO 2 MIX OL CC</h2>
-          <div class="card-info">🎟 2 Entradas (Cualquier sede)</div>
           <div class="card-info">🍿 1 Canchita Gigante (Mix)</div>
           <div class="card-info">🥤 2 Bebidas (32oz)</div>
           <div class="card-info">⚠️ Canchita sin refill</div>
           <div class="card-footer">
-            <div><span class="price-sub">PRECIO PROMO</span><span class="price-amount">S/ 42.00</span></div>
+            <div><span class="price-sub">PRECIO PROMO</span><span class="price-amount">S/ 38.00</span></div>
             <button onclick="abrirModalCine('Combo 2 Mix OL CC', 38.00)" class="btn-separar">Sepárala →</button>
           </div>
         </div>
       </div>
 
-      <!-- Cine 2: Combo Black Gigante Mix OL (Con Hot Dog) -->
       <div class="slide-cine">
         <div class="card-image-box">
           <div class="badge-top-left"><span class="tag-red">CINEPLANET</span><span class="tag-purple">EXCLUSIVO ONLINE</span></div>
           <span class="badge-top-right">POPULAR</span>
-          <img src="comboblack.png" alt="Combo Black Gigante Mix OL">
+          <img src="comboblack.jpg" alt="Combo Black Gigante Mix OL">
         </div>
         <div class="card-body">
           <h2 class="card-title">COMBO BLACK GIG. MIX (CON HOT DOG)</h2>
-          <div class="card-info">🎟 2 Entradas (Cualquier sede)</div>
           <div class="card-info">🍿 1 Canchita Gigante (Mix)</div>
           <div class="card-info">🥤 2 Bebidas Medianas</div>
-          <div class="card-info">🌭 1 Hot Dogs Clásicos o Nachos</div>
+          <div class="card-info">🌭 2 Hot Dogs Clásicos</div>
           <div class="card-footer">
-            <div><span class="price-sub">PRECIO PROMO</span><span class="price-amount">S/ 50.00</span></div>
+            <div><span class="price-sub">PRECIO PROMO</span><span class="price-amount">S/ 48.00</span></div>
             <button onclick="abrirModalCine('Combo Black Gigante (Con Hot Dog)', 48.00)" class="btn-separar">Sepárala →</button>
           </div>
         </div>
       </div>
 
-      <!-- Cine 3: Combo 2 Mix Dob. Gig. OL -->
       <div class="slide-cine">
         <div class="card-image-box">
           <div class="badge-top-left"><span class="tag-red">CINEPLANET</span><span class="tag-blue">DOBLE GIGANTE</span></div>
           <span class="badge-top-right">EXCLUSIVO</span>
-          <img src="combo2mixdoble.png" alt="Combo 2 Mix Dob. Gig. OL">
+          <img src="combo2mixdoble.jpg" alt="Combo 2 Mix Dob. Gig. OL">
         </div>
         <div class="card-body">
           <h2 class="card-title">COMBO 2 MIX DOB. GIG. OL</h2>
-          <div class="card-info">🎟 2 Entradas (Cualquier Sede)</div>
           <div class="card-info">🍿🍿 2 Canchitas Gigantes</div>
           <div class="card-info">🥤🥤 2 Bebidas Grandes (32oz)</div>
           <div class="card-info">⚠️ Canchita sin refill</div>
           <div class="card-footer">
-            <div><span class="price-sub">PRECIO PROMO</span><span class="price-amount">S/ 48.00</span></div>
+            <div><span class="price-sub">PRECIO PROMO</span><span class="price-amount">S/ 54.00</span></div>
             <button onclick="abrirModalCine('Combo 2 Mix Doble Gigante', 54.00)" class="btn-separar">Sepárala →</button>
           </div>
         </div>
@@ -325,7 +327,6 @@
     </div>
   </div>
 
-  <!-- Indicadores Cine -->
   <div class="dots-container">
     <div class="dot active" id="dotK0"></div>
     <div class="dot" id="dotK1"></div>
@@ -333,7 +334,6 @@
   </div>
 
 
-  <!-- SECCIÓN GARANTÍAS -->
   <div class="section-title">GARANTÍAS QUE RECIBES CON CADA COMPRA</div>
   
   <div class="garantias-grid">
@@ -343,7 +343,6 @@
     <div class="garantia-item"><span class="garantia-icon">🎧</span> Soporte 24/7</div>
   </div>
 
-  <!-- COMPATIBLE CON -->
   <div class="compatible-box">
     <span>COMPATIBLE CON</span>
     <div class="compatible-tags">
@@ -351,7 +350,6 @@
     </div>
   </div>
 
-  <!-- ESTADÍSTICAS Y MÉRITOS -->
   <div class="metrics-grid">
     <div class="metric-card">
       <div class="metric-val">100%</div>
@@ -365,7 +363,6 @@
     </div>
   </div>
 
-  <!-- CÓMO FUNCIONA -->
   <div class="how-it-works-section">
     <div class="how-pill">✨ PROCESO TRANSPARENTE</div>
     <h2 class="how-title">Cómo funciona</h2>
@@ -407,7 +404,20 @@
     </div>
   </div>
 
-  <!-- Widget Flotante WhatsApp -->
+  <div class="reviews-section">
+    <h2 class="reviews-title">Clientes Satisfechos 🌟</h2>
+    <p class="reviews-subtitle">Nuestras referencias y entregas de entradas verificadas</p>
+
+    <div class="carousel-ref-wrapper">
+      <button class="carousel-ref-btn prev" onclick="moverCarruselRef(-1)">&#10094;</button>
+      <div class="carousel-ref-track" id="trackReferencias">
+        </div>
+      <button class="carousel-ref-btn next" onclick="moverCarruselRef(1)">&#10095;</button>
+    </div>
+
+    <div class="carousel-ref-dots" id="dotsReferencias"></div>
+  </div>
+
   <div class="ws-widget">
     <a href="https://wa.me/51912147432?text=Hola,%20tengo%20una%20consulta" target="_blank" class="ws-circle">💬</a>
     <div class="ws-tooltip">
@@ -417,7 +427,6 @@
   </div>
 
 
-  <!-- MODAL DE COMPRA RÁPIDA DE CINE -->
   <div id="modalCine" class="modal">
     <div class="modal-content">
       <div class="modal-header">
@@ -443,7 +452,6 @@
     </div>
   </div>
 
-  <!-- MODAL DEL QR PARA CINE -->
   <div id="qrModalCine" class="modal">
     <div class="modal-content" style="text-align: center;">
       <div class="modal-header">
@@ -489,6 +497,59 @@
     }
     setInterval(rotateCine, 4000);
 
+    /* LÓGICA DEL CARRUSEL DE REFERENCIAS / CLIENTES SATISFECHOS */
+    const imagenesReferencias = [
+      'ref1.jpg',
+      'ref2.jpg',
+      'ref3.jpg',
+      'ref4.jpg',
+      'ref5.jpg',
+      'ref6.jpg'
+    ];
+
+    let idxRef = 0;
+
+    function inicializarCarruselReferencias() {
+      const track = document.getElementById('trackReferencias');
+      const dotsContainer = document.getElementById('dotsReferencias');
+      track.innerHTML = '';
+      dotsContainer.innerHTML = '';
+
+      imagenesReferencias.forEach((src, index) => {
+        const slide = document.createElement('div');
+        slide.className = 'carousel-ref-slide';
+        slide.innerHTML = `<img src="${src}" alt="Referencia ${index + 1}">`;
+        track.appendChild(slide);
+
+        const dot = document.createElement('div');
+        dot.className = `dot-ref ${index === 0 ? 'active' : ''}`;
+        dot.onclick = () => irASlideRef(index);
+        dotsContainer.appendChild(dot);
+      });
+    }
+
+    function moverCarruselRef(direccion) {
+      idxRef += direccion;
+      if (idxRef < 0) idxRef = imagenesReferencias.length - 1;
+      if (idxRef >= imagenesReferencias.length) idxRef = 0;
+      actualizarVistaRef();
+    }
+
+    function irASlideRef(index) {
+      idxRef = index;
+      actualizarVistaRef();
+    }
+
+    function actualizarVistaRef() {
+      const track = document.getElementById('trackReferencias');
+      track.style.transform = `translateX(-${idxRef * 100}%)`;
+
+      const dots = document.querySelectorAll('.dot-ref');
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === idxRef);
+      });
+    }
+
     /* LÓGICA DE COMPRA CINE EN INDEX */
     let comboNombre = "";
     let comboPrecioUnitario = 0;
@@ -530,6 +591,9 @@
       cerrarModal('modalCine');
       document.getElementById('qrModalCine').style.display = 'flex';
     }
+
+    // Inicializar carrusel de referencias
+    document.addEventListener('DOMContentLoaded', inicializarCarruselReferencias);
   </script>
 
 </body>
