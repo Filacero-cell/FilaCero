@@ -31,8 +31,8 @@
     .btn-ws-card { flex: 1; background: rgba(255, 255, 255, 0.1); color: #fff; padding: 14px; border-radius: 10px; font-weight: 800; text-decoration: none; text-align: center; font-size: 14px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255, 255, 255, 0.2); }
 
     /* Modales */
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 18, 31, 0.85); justify-content: center; align-items: center; z-index: 1000; padding: 15px; backdrop-filter: blur(4px); }
-    .modal-content { background: #13385c; padding: 22px; border-radius: 18px; max-width: 380px; width: 100%; border: 1px solid rgba(255, 255, 255, 0.15); max-height: 90vh; overflow-y: auto; }
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 18, 31, 0.88); justify-content: center; align-items: center; z-index: 1000; padding: 15px; backdrop-filter: blur(5px); }
+    .modal-content { background: #13385c; padding: 22px; border-radius: 18px; max-width: 400px; width: 100%; border: 1px solid rgba(255, 255, 255, 0.15); max-height: 90vh; overflow-y: auto; }
     .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
     .modal-title { font-size: 18px; font-weight:bold; color: #ffffff; }
     .close-icon { color: #cce3f5; font-size: 24px; cursor: pointer; border: none; background: none; font-weight: bold; }
@@ -60,9 +60,20 @@
 
     /* Botones de Pago */
     .btn-pay-qr { width: 100%; background-color: #702b84; color: #fff; padding: 14px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; font-size: 15px; margin-top: 15px; text-transform: uppercase; }
-    .btn-pay-ws { background-color: #25d366; color: #0d2c4a; padding: 12px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; font-size: 14px; text-decoration: none; text-align: center; }
+    .btn-pay-ws { background-color: #25d366; color: #0d2c4a; padding: 14px; border-radius: 10px; border: none; font-weight: 800; cursor: pointer; font-size: 14px; text-decoration: none; text-align: center; display: block; margin-top: 12px; text-transform: uppercase; }
 
-    .qr-img { width: 100%; max-width: 220px; border-radius: 12px; margin: 15px auto; display: block; border: 1px solid rgba(255, 255, 255, 0.2); }
+    .qr-img { width: 100%; max-width: 200px; border-radius: 12px; margin: 12px auto; display: block; border: 1px solid rgba(255, 255, 255, 0.2); }
+
+    /* Diseño del Voucher en Pantalla */
+    .voucher-card { background: #ffffff; color: #1c2833; border-radius: 14px; padding: 20px; margin-top: 15px; text-align: left; box-shadow: 0 10px 25px rgba(0,0,0,0.3); font-size: 13px; line-height: 1.5; }
+    .voucher-header { border-bottom: 2px dashed #d5dbdb; padding-bottom: 12px; margin-bottom: 12px; text-align: center; }
+    .voucher-brand { font-size: 18px; font-weight: 900; color: #0d2c4a; letter-spacing: 1px; }
+    .voucher-title { font-size: 11px; font-weight: 800; color: #27ae60; text-transform: uppercase; margin-top: 2px; }
+    .voucher-row { display: flex; justify-content: space-between; margin-bottom: 6px; }
+    .voucher-label { color: #7f8c8d; font-weight: 600; }
+    .voucher-val { font-weight: 700; color: #2c3e50; text-align: right; }
+    .voucher-status { background: #e8f8f5; color: #117a65; padding: 3px 8px; border-radius: 6px; font-weight: bold; font-size: 11px; display: inline-block; }
+    .voucher-total { background: #f4f6f7; padding: 10px; border-radius: 8px; margin-top: 10px; display: flex; justify-content: space-between; align-items: center; font-size: 15px; font-weight: 800; }
   </style>
 </head>
 <body>
@@ -78,7 +89,7 @@
   <h1 class="title">Conciertos 🎵</h1>
   <p class="subtitle">Entradas disponibles para los próximos shows en Lima</p>
 
-  <!-- Tarjetas -->
+  <!-- EVENTO: BTS -->
   <div class="event-card">
     <img src="bts.png" alt="BTS" class="event-banner">
     <div class="event-content">
@@ -93,6 +104,7 @@
     </div>
   </div>
 
+  <!-- EVENTO: OMAR COURTZ -->
   <div class="event-card">
     <img src="omarcourtz.jpg" alt="Omar Courtz" class="event-banner">
     <div class="event-content">
@@ -106,6 +118,7 @@
     </div>
   </div>
 
+  <!-- EVENTO: GORILLAZ -->
   <div class="event-card">
     <img src="gorillaz.jpg" alt="Gorillaz" class="event-banner">
     <div class="event-content">
@@ -120,6 +133,7 @@
     </div>
   </div>
 
+  <!-- EVENTO: HOMBRES G -->
   <div class="event-card">
     <img src="hombresg.jpg" alt="Hombres G" class="event-banner">
     <div class="event-content">
@@ -175,7 +189,6 @@
         </div>
       </div>
 
-      <!-- CÓDIGO DE DESCUENTO -->
       <div class="promo-box">
         <input type="text" id="inputPromoBTS" class="promo-input" placeholder="Código de descuento">
         <button class="promo-btn" onclick="aplicarCodigo('inputPromoBTS', 'msgPromoBTS')">APLICAR</button>
@@ -187,7 +200,7 @@
         <span class="total-amount" id="totalTextBTS">S/ 1,099.90</span>
       </div>
 
-      <button onclick="mostrarQRModal()" class="btn-pay-qr">📲 PAGAR CON YAPE / PLIN</button>
+      <button onclick="mostrarPagoModal()" class="btn-pay-qr">📲 CONTINUAR AL PAGO</button>
     </div>
   </div>
 
@@ -235,7 +248,7 @@
         <span class="total-amount" id="totalTextOmar">S/ 400.00</span>
       </div>
 
-      <button onclick="mostrarQRModal()" class="btn-pay-qr">📲 PAGAR CON YAPE / PLIN</button>
+      <button onclick="mostrarPagoModal()" class="btn-pay-qr">📲 CONTINUAR AL PAGO</button>
     </div>
   </div>
 
@@ -291,7 +304,7 @@
         <span class="total-amount" id="totalTextGorillaz">S/ 480.00</span>
       </div>
 
-      <button onclick="mostrarQRModal()" class="btn-pay-qr">📲 PAGAR CON YAPE / PLIN</button>
+      <button onclick="mostrarPagoModal()" class="btn-pay-qr">📲 CONTINUAR AL PAGO</button>
     </div>
   </div>
 
@@ -368,27 +381,72 @@
         <span class="total-amount" id="totalTextHombresG">S/ 380.00</span>
       </div>
 
-      <button onclick="mostrarQRModal()" class="btn-pay-qr">📲 PAGAR CON YAPE / PLIN</button>
+      <button onclick="mostrarPagoModal()" class="btn-pay-qr">📲 CONTINUAR AL PAGO</button>
     </div>
   </div>
 
-  <!-- MODAL DEL QR -->
-  <div id="qrModal" class="modal">
+  <!-- MODAL DE PAGO Y VOUCHER -->
+  <div id="pagoModal" class="modal">
     <div class="modal-content" style="text-align: center;">
       <div class="modal-header">
         <div class="modal-title">Escanear para Pagar</div>
-        <button onclick="cerrarModal('qrModal')" class="close-icon">&times;</button>
+        <button onclick="cerrarModal('pagoModal')" class="close-icon">&times;</button>
       </div>
 
-      <p style="font-size: 14px; color: #cce3f5;">Escanea con Yape o Plin el monto exacto:</p>
-      <h2 style="color: #64dfdf; margin: 8px 0; font-size: 28px;" id="qrTotalDisplay">S/ 0.00</h2>
-      <p style="font-size: 14px; color: #ffffff; font-weight: bold;" id="qrZoneDisplay">-</p>
-
+      <p style="font-size: 13px; color: #cce3f5;">Realiza la transferencia mediante Yape o Plin:</p>
+      
       <img src="qr-pago.jpg" alt="Código QR de Pago" class="qr-img">
 
-      <p style="font-size: 13px; color: #64dfdf; margin-bottom: 15px; font-weight: bold;">Realiza el pago y envía tu comprobante al WhatsApp.</p>
-      
-      <a id="btnWsQR" href="#" target="_blank" class="btn-pay-ws" style="display:block;">Enviar comprobante por WhatsApp</a>
+      <!-- VOUCHER DIGITAL GENERADO -->
+      <div class="voucher-card">
+        <div class="voucher-header">
+          <div class="voucher-brand">🎟️ FILACERO TICKETS</div>
+          <div class="voucher-title">Reserva de Entrada Digital</div>
+        </div>
+
+        <div class="voucher-row">
+          <span class="voucher-label">N° de Orden:</span>
+          <span class="voucher-val" id="vOrder">#FC-000000</span>
+        </div>
+        <div class="voucher-row">
+          <span class="voucher-label">Fecha y Hora:</span>
+          <span class="voucher-val" id="vFechaHora">00/00/0000 00:00</span>
+        </div>
+        <div class="voucher-row">
+          <span class="voucher-label">Estado:</span>
+          <span class="voucher-status">PENDIENTE DE VALIDACIÓN</span>
+        </div>
+
+        <hr style="border: none; border-top: 1px solid #ebf5fb; margin: 8px 0;">
+
+        <div class="voucher-row">
+          <span class="voucher-label">Evento:</span>
+          <span class="voucher-val" id="vEvento">-</span>
+        </div>
+        <div class="voucher-row">
+          <span class="voucher-label">Zona / Entrada:</span>
+          <span class="voucher-val" id="vZona">-</span>
+        </div>
+        <div class="voucher-row">
+          <span class="voucher-label">Cantidad:</span>
+          <span class="voucher-val" id="vCantidad">1</span>
+        </div>
+        <div class="voucher-row" id="vRowDcto" style="display:none;">
+          <span class="voucher-label" style="color:#27ae60;">Promoción:</span>
+          <span class="voucher-val" style="color:#27ae60;">-20% en 2da entrada</span>
+        </div>
+        <div class="voucher-row">
+          <span class="voucher-label">Método de Pago:</span>
+          <span class="voucher-val">Yape / Plin</span>
+        </div>
+
+        <div class="voucher-total">
+          <span>TOTAL A PAGAR:</span>
+          <span style="color: #27ae60;" id="vTotal">S/ 0.00</span>
+        </div>
+      </div>
+
+      <a id="btnWsVoucher" href="#" target="_blank" class="btn-pay-ws">📲 ENVIAR COMPROBANTE AL WHATSAPP</a>
     </div>
   </div>
 
@@ -497,49 +555,84 @@
 
     function actualizarTotales() {
       let total = precioZona * cantidad;
-      
-      // Si aplica descuento y hay 2 entradas o más: 20% dcto en la segunda entrada
       if (descuentoAplicado && cantidad >= 2) {
-        const descuentoEfectivo = precioZona * 0.20;
-        total = total - descuentoEfectivo;
+        total -= (precioZona * 0.20);
       }
-
       const totalFormateado = total.toFixed(2);
       
-      let nombreShow = '';
       if (showActual === 'bts') {
-        nombreShow = 'BTS World Tour';
         document.getElementById('cantTextBTS').innerText = cantidad;
         document.getElementById('totalTextBTS').innerText = `S/ ${totalFormateado}`;
       } else if (showActual === 'omar') {
-        nombreShow = 'Omar Courtz';
         document.getElementById('cantTextOmar').innerText = cantidad;
         document.getElementById('totalTextOmar').innerText = `S/ ${totalFormateado}`;
       } else if (showActual === 'gorillaz') {
-        nombreShow = 'Gorillaz';
         document.getElementById('cantTextGorillaz').innerText = cantidad;
         document.getElementById('totalTextGorillaz').innerText = `S/ ${totalFormateado}`;
       } else if (showActual === 'hombresg') {
-        nombreShow = 'Hombres G';
         document.getElementById('cantTextHombresG').innerText = cantidad;
         document.getElementById('totalTextHombresG').innerText = `S/ ${totalFormateado}`;
       }
-
-      let textoDcto = descuentoAplicado && cantidad >= 2 ? ' (con promo 20% en 2da entrada)' : '';
-      const mensaje = `Hola, acabo de pagar ${cantidad} entrada(s) para ${nombreShow} en la zona ${nombreZona}${textoDcto}. Total: S/ ${totalFormateado}. Adjunto mi comprobante.`;
-      const urlWs = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
-      
-      document.getElementById('btnWsQR').href = urlWs;
-      document.getElementById('qrTotalDisplay').innerText = `S/ ${totalFormateado}`;
-      document.getElementById('qrZoneDisplay').innerText = `${cantidad}x ${nombreZona} (${nombreShow})`;
     }
 
-    function mostrarQRModal() {
+    function mostrarPagoModal() {
+      // Cerrar modales anteriores
       cerrarModal('modalBTS');
       cerrarModal('modalOmar');
       cerrarModal('modalGorillaz');
       cerrarModal('modalHombresG');
-      document.getElementById('qrModal').style.display = 'flex';
+
+      // Nombre del show
+      let nombreShow = '';
+      if (showActual === 'bts') nombreShow = 'BTS World Tour Arirang';
+      else if (showActual === 'omar') nombreShow = 'Omar Courtz';
+      else if (showActual === 'gorillaz') nombreShow = 'Gorillaz - The Mountain Tour';
+      else if (showActual === 'hombresg') nombreShow = 'Hombres G - Gira 2026';
+
+      // Cálculo de fecha y hora exacta
+      const ahora = new Date();
+      const fecha = ahora.toLocaleDateString('es-PE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+      const hora = ahora.toLocaleTimeString('es-PE', { hour: '2-digit', minute: '2-digit', hour12: true });
+      const numOrden = 'FC-' + Math.floor(100000 + Math.random() * 900000);
+
+      let total = precioZona * cantidad;
+      if (descuentoAplicado && cantidad >= 2) {
+        total -= (precioZona * 0.20);
+        document.getElementById('vRowDcto').style.display = 'flex';
+      } else {
+        document.getElementById('vRowDcto').style.display = 'none';
+      }
+      const totalFormateado = total.toFixed(2);
+
+      // Inyectar datos en la tarjeta Voucher de pantalla
+      document.getElementById('vOrder').innerText = `#${numOrden}`;
+      document.getElementById('vFechaHora').innerText = `${fecha} - ${hora}`;
+      document.getElementById('vEvento').innerText = nombreShow;
+      document.getElementById('vZona').innerText = nombreZona;
+      document.getElementById('vCantidad').innerText = cantidad;
+      document.getElementById('vTotal').innerText = `S/ ${totalFormateado}`;
+
+      // Crear el mensaje ordenado para WhatsApp
+      const mensajeWA = 
+`🎟️ *¡COMPROBANTE DE RESERVA - FILACERO!* 🎟️
+
+*N° de Orden:* #${numOrden}
+📅 *Fecha:* ${fecha}
+⏰ *Hora:* ${hora}
+📌 *Estado:* Pendiente de Validación 🟡
+
+━━━━━━━━━━━━━━━━━━━
+🎤 *Evento:* ${nombreShow}
+🎟️ *Zona:* ${nombreZona}
+🔢 *Cantidad:* ${cantidad} ticket(s)
+${descuentoAplicado && cantidad >= 2 ? '🏷️ *Descuento:* 20% en 2da entrada aplicado\n' : ''}💰 *Monto Total:* S/ ${totalFormateado}
+💳 *Método de Pago:* Yape / Plin
+━━━━━━━━━━━━━━━━━━━
+
+Adjunto el comprobante de mi transferencia para la confirmación de mis entradas.`;
+
+      document.getElementById('btnWsVoucher').href = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensajeWA)}`;
+      document.getElementById('pagoModal').style.display = 'flex';
     }
   </script>
 
