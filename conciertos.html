@@ -7,7 +7,6 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
     
-    /* Fondo azul oscuro coherente con index.html */
     body { background-color: #0d2c4a; color: #ffffff; padding: 20px; }
     
     .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
@@ -27,11 +26,9 @@
     .event-title { font-size: 22px; margin-bottom: 12px; color: #ffffff; font-weight: 800; }
     .event-info { color: #cce3f5; font-size: 14px; margin-bottom: 6px; }
     
-    /* Botones de las tarjetas */
     .card-actions { display: flex; gap: 10px; margin-top: 15px; }
     .btn-buy-card { flex: 2; background-color: #25d366; color: #0d2c4a; padding: 14px; border-radius: 10px; font-weight: 800; border: none; font-size: 15px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; }
     .btn-ws-card { flex: 1; background: rgba(255, 255, 255, 0.1); color: #fff; padding: 14px; border-radius: 10px; font-weight: 800; text-decoration: none; text-align: center; font-size: 14px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255, 255, 255, 0.2); }
-    .btn-buy-card:active, .btn-ws-card:active { transform: scale(0.98); }
 
     /* Modales */
     .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 18, 31, 0.85); justify-content: center; align-items: center; z-index: 1000; padding: 15px; backdrop-filter: blur(4px); }
@@ -47,15 +44,21 @@
     .zone-price { color: #64dfdf; font-weight: 800; font-size: 15px; }
 
     /* Contador de Entradas */
-    .counter-container { display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.06); padding: 10px 15px; border-radius: 12px; margin: 15px 0; border: 1px solid rgba(255, 255, 255, 0.15); color: #cce3f5; }
+    .counter-container { display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.06); padding: 10px 15px; border-radius: 12px; margin: 15px 0 10px 0; border: 1px solid rgba(255, 255, 255, 0.15); color: #cce3f5; }
     .counter-btn { background: rgba(255, 255, 255, 0.15); color: #ffffff; border: none; width: 32px; height: 32px; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; }
     .counter-value { font-size: 18px; font-weight: bold; color: #64dfdf; }
+
+    /* Caja Código Promo */
+    .promo-box { display: flex; gap: 8px; margin-bottom: 15px; }
+    .promo-input { flex: 1; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; padding: 10px; color: #fff; font-size: 13px; font-weight: bold; outline: none; text-transform: uppercase; }
+    .promo-btn { background: #00a8ff; color: #fff; border: none; padding: 0 12px; border-radius: 8px; font-weight: bold; font-size: 12px; cursor: pointer; }
+    .promo-message { font-size: 11px; margin-top: -8px; margin-bottom: 10px; display: block; font-weight: bold; }
 
     /* Resumen de Total */
     .total-box { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-top: 2px dashed rgba(255, 255, 255, 0.2); margin-top: 10px; font-size: 16px; font-weight: bold; color: #ffffff; }
     .total-amount { color: #64dfdf; font-size: 22px; font-weight: 900; }
 
-    /* Botón de Pago único en el Modal */
+    /* Botones de Pago */
     .btn-pay-qr { width: 100%; background-color: #702b84; color: #fff; padding: 14px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; font-size: 15px; margin-top: 15px; text-transform: uppercase; }
     .btn-pay-ws { background-color: #25d366; color: #0d2c4a; padding: 12px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; font-size: 14px; text-decoration: none; text-align: center; }
 
@@ -75,7 +78,7 @@
   <h1 class="title">Conciertos 🎵</h1>
   <p class="subtitle">Entradas disponibles para los próximos shows en Lima</p>
 
-  <!-- Tarjeta BTS -->
+  <!-- Tarjetas -->
   <div class="event-card">
     <img src="bts.png" alt="BTS" class="event-banner">
     <div class="event-content">
@@ -83,7 +86,6 @@
       <h2 class="event-title">BTS World Tour Arirang</h2>
       <p class="event-info">📅 <strong>Fechas:</strong> 07, 09 y 10 de Octubre 2026</p>
       <p class="event-info">📍 <strong>Lugar:</strong> Estadio San Marcos, Lima</p>
-      
       <div class="card-actions">
         <button onclick="abrirModal('bts')" class="btn-buy-card">🎟️ COMPRAR</button>
         <a href="https://wa.me/51912147432?text=Hola,%20tengo%20consultas%20sobre%20las%20entradas%20de%20BTS" target="_blank" class="btn-ws-card">💬 WHATSAPP</a>
@@ -91,14 +93,12 @@
     </div>
   </div>
 
-  <!-- Tarjeta Omar Courtz -->
   <div class="event-card">
     <img src="omarcourtz.jpg" alt="Omar Courtz" class="event-banner">
     <div class="event-content">
       <div class="event-tag">⚡ ÚLTIMAS ENTRADAS</div>
       <h2 class="event-title">Omar Courtz</h2>
       <p class="event-info">📍 <strong>Lugar:</strong> Lima</p>
-      
       <div class="card-actions">
         <button onclick="abrirModal('omar')" class="btn-buy-card">🎟️ COMPRAR</button>
         <a href="https://wa.me/51912147432?text=Hola,%20tengo%20consultas%20sobre%20las%20entradas%20de%20Omar%20Courtz" target="_blank" class="btn-ws-card">💬 WHATSAPP</a>
@@ -106,7 +106,6 @@
     </div>
   </div>
 
-  <!-- Tarjeta Gorillaz -->
   <div class="event-card">
     <img src="gorillaz.jpg" alt="Gorillaz" class="event-banner">
     <div class="event-content">
@@ -114,7 +113,6 @@
       <h2 class="event-title">Gorillaz - The Mountain Tour 2026</h2>
       <p class="event-info">📅 <strong>Fecha:</strong> Lunes 23 de Noviembre 2026</p>
       <p class="event-info">📍 <strong>Lugar:</strong> Arena 1 Park, Lima, Perú</p>
-      
       <div class="card-actions">
         <button onclick="abrirModal('gorillaz')" class="btn-buy-card">🎟️ COMPRAR</button>
         <a href="https://wa.me/51912147432?text=Hola,%20tengo%20consultas%20sobre%20las%20entradas%20de%20Gorillaz" target="_blank" class="btn-ws-card">💬 WHATSAPP</a>
@@ -122,7 +120,6 @@
     </div>
   </div>
 
-  <!-- Tarjeta Hombres G -->
   <div class="event-card">
     <img src="hombresg.jpg" alt="Hombres G" class="event-banner">
     <div class="event-content">
@@ -130,7 +127,6 @@
       <h2 class="event-title">Hombres G - Gira 2026</h2>
       <p class="event-info">📅 <strong>Última Fecha:</strong> 30 de Octubre 2026</p>
       <p class="event-info">📍 <strong>Lugar:</strong> Estadio Nacional - Lima, PE</p>
-      
       <div class="card-actions">
         <button onclick="abrirModal('hombresg')" class="btn-buy-card">🎟️ COMPRAR</button>
         <a href="https://wa.me/51912147432?text=Hola,%20tengo%20consultas%20sobre%20las%20entradas%20de%20Hombres%20G" target="_blank" class="btn-ws-card">💬 WHATSAPP</a>
@@ -138,10 +134,7 @@
     </div>
   </div>
 
-
-  <!-- MODALES DE SELECCIÓN DE PRECIOS -->
-
-  <!-- Modal BTS -->
+  <!-- MODAL BTS -->
   <div id="modalBTS" class="modal">
     <div class="modal-content">
       <div class="modal-header">
@@ -182,6 +175,13 @@
         </div>
       </div>
 
+      <!-- CÓDIGO DE DESCUENTO -->
+      <div class="promo-box">
+        <input type="text" id="inputPromoBTS" class="promo-input" placeholder="Código de descuento">
+        <button class="promo-btn" onclick="aplicarCodigo('inputPromoBTS', 'msgPromoBTS')">APLICAR</button>
+      </div>
+      <span id="msgPromoBTS" class="promo-message"></span>
+
       <div class="total-box">
         <span>TOTAL:</span>
         <span class="total-amount" id="totalTextBTS">S/ 1,099.90</span>
@@ -191,7 +191,7 @@
     </div>
   </div>
 
-  <!-- Modal Omar Courtz -->
+  <!-- MODAL OMAR COURTZ -->
   <div id="modalOmar" class="modal">
     <div class="modal-content">
       <div class="modal-header">
@@ -224,6 +224,12 @@
         </div>
       </div>
 
+      <div class="promo-box">
+        <input type="text" id="inputPromoOmar" class="promo-input" placeholder="Código de descuento">
+        <button class="promo-btn" onclick="aplicarCodigo('inputPromoOmar', 'msgPromoOmar')">APLICAR</button>
+      </div>
+      <span id="msgPromoOmar" class="promo-message"></span>
+
       <div class="total-box">
         <span>TOTAL:</span>
         <span class="total-amount" id="totalTextOmar">S/ 400.00</span>
@@ -233,7 +239,7 @@
     </div>
   </div>
 
-  <!-- Modal Gorillaz -->
+  <!-- MODAL GORILLAZ -->
   <div id="modalGorillaz" class="modal">
     <div class="modal-content">
       <div class="modal-header">
@@ -274,6 +280,12 @@
         </div>
       </div>
 
+      <div class="promo-box">
+        <input type="text" id="inputPromoGorillaz" class="promo-input" placeholder="Código de descuento">
+        <button class="promo-btn" onclick="aplicarCodigo('inputPromoGorillaz', 'msgPromoGorillaz')">APLICAR</button>
+      </div>
+      <span id="msgPromoGorillaz" class="promo-message"></span>
+
       <div class="total-box">
         <span>TOTAL:</span>
         <span class="total-amount" id="totalTextGorillaz">S/ 480.00</span>
@@ -283,7 +295,7 @@
     </div>
   </div>
 
-  <!-- Modal Hombres G -->
+  <!-- MODAL HOMBRES G -->
   <div id="modalHombresG" class="modal">
     <div class="modal-content">
       <div class="modal-header">
@@ -292,65 +304,47 @@
       </div>
 
       <div class="zone-option selected" id="hg-z1" onclick="seleccionarZona('Hombres G', 'Platinum Central', 380.00, 'hg-z1')">
-        <div>
-          <div class="zone-name">Platinum Central</div>
-        </div>
+        <div><div class="zone-name">Platinum Central</div></div>
         <div class="zone-price">S/ 380.00</div>
       </div>
 
       <div class="zone-option" id="hg-z2" onclick="seleccionarZona('Hombres G', 'Platinum Lateral', 290.00, 'hg-z2')">
-        <div>
-          <div class="zone-name">Platinum Lateral</div>
-        </div>
+        <div><div class="zone-name">Platinum Lateral</div></div>
         <div class="zone-price">S/ 290.00</div>
       </div>
 
       <div class="zone-option" id="hg-z3" onclick="seleccionarZona('Hombres G', 'Tribuna Oriente 1', 290.00, 'hg-z3')">
-        <div>
-          <div class="zone-name">Tribuna Oriente 1</div>
-        </div>
+        <div><div class="zone-name">Tribuna Oriente 1</div></div>
         <div class="zone-price">S/ 290.00</div>
       </div>
 
       <div class="zone-option" id="hg-z4" onclick="seleccionarZona('Hombres G', 'Tribuna Occidente 1', 290.00, 'hg-z4')">
-        <div>
-          <div class="zone-name">Tribuna Occidente 1</div>
-        </div>
+        <div><div class="zone-name">Tribuna Occidente 1</div></div>
         <div class="zone-price">S/ 290.00</div>
       </div>
 
       <div class="zone-option" id="hg-z5" onclick="seleccionarZona('Hombres G', 'VIP', 250.00, 'hg-z5')">
-        <div>
-          <div class="zone-name">VIP</div>
-        </div>
+        <div><div class="zone-name">VIP</div></div>
         <div class="zone-price">S/ 250.00</div>
       </div>
 
       <div class="zone-option" id="hg-z6" onclick="seleccionarZona('Hombres G', 'Tribuna Oriente 2', 250.00, 'hg-z6')">
-        <div>
-          <div class="zone-name">Tribuna Oriente 2</div>
-        </div>
+        <div><div class="zone-name">Tribuna Oriente 2</div></div>
         <div class="zone-price">S/ 250.00</div>
       </div>
 
       <div class="zone-option" id="hg-z7" onclick="seleccionarZona('Hombres G', 'Tribuna Occidente 2', 250.00, 'hg-z7')">
-        <div>
-          <div class="zone-name">Tribuna Occidente 2</div>
-        </div>
+        <div><div class="zone-name">Tribuna Occidente 2</div></div>
         <div class="zone-price">S/ 250.00</div>
       </div>
 
       <div class="zone-option" id="hg-z8" onclick="seleccionarZona('Hombres G', 'Preferencial', 170.00, 'hg-z8')">
-        <div>
-          <div class="zone-name">Preferencial</div>
-        </div>
+        <div><div class="zone-name">Preferencial</div></div>
         <div class="zone-price">S/ 170.00</div>
       </div>
 
       <div class="zone-option" id="hg-z9" onclick="seleccionarZona('Hombres G', 'Tribuna Norte', 120.00, 'hg-z9')">
-        <div>
-          <div class="zone-name">Tribuna Norte</div>
-        </div>
+        <div><div class="zone-name">Tribuna Norte</div></div>
         <div class="zone-price">S/ 120.00</div>
       </div>
 
@@ -363,6 +357,12 @@
         </div>
       </div>
 
+      <div class="promo-box">
+        <input type="text" id="inputPromoHG" class="promo-input" placeholder="Código de descuento">
+        <button class="promo-btn" onclick="aplicarCodigo('inputPromoHG', 'msgPromoHG')">APLICAR</button>
+      </div>
+      <span id="msgPromoHG" class="promo-message"></span>
+
       <div class="total-box">
         <span>TOTAL:</span>
         <span class="total-amount" id="totalTextHombresG">S/ 380.00</span>
@@ -372,8 +372,7 @@
     </div>
   </div>
 
-
-  <!-- Modal del QR -->
+  <!-- MODAL DEL QR -->
   <div id="qrModal" class="modal">
     <div class="modal-content" style="text-align: center;">
       <div class="modal-header">
@@ -398,11 +397,15 @@
     let precioZona = 1099.90;
     let nombreZona = "Campo A";
     let cantidad = 1;
+    let descuentoAplicado = false;
+    const CODIGO_SECRETO = "FILACERO20";
     const numeroWhatsApp = "51912147432";
 
     function abrirModal(show) {
       showActual = show;
       cantidad = 1;
+      descuentoAplicado = false;
+      limpiarMensajesPromo();
       
       if (show === 'bts') {
         nombreZona = "Campo A";
@@ -458,33 +461,76 @@
       }
     }
 
+    function aplicarCodigo(inputId, msgId) {
+      const input = document.getElementById(inputId);
+      const msg = document.getElementById(msgId);
+      const codigo = input.value.trim().toUpperCase();
+
+      if (codigo === CODIGO_SECRETO) {
+        if (cantidad >= 2) {
+          descuentoAplicado = true;
+          msg.style.color = "#25d366";
+          msg.innerText = "¡Código aplicado! 20% dcto. en tu 2da entrada.";
+        } else {
+          descuentoAplicado = false;
+          msg.style.color = "#ffdd59";
+          msg.innerText = "Añade al menos 2 entradas para aplicar la promo.";
+        }
+      } else {
+        descuentoAplicado = false;
+        msg.style.color = "#ff5e5e";
+        msg.innerText = "Código no válido.";
+      }
+      actualizarTotales();
+    }
+
+    function limpiarMensajesPromo() {
+      ['inputPromoBTS', 'inputPromoOmar', 'inputPromoGorillaz', 'inputPromoHG'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = '';
+      });
+      ['msgPromoBTS', 'msgPromoOmar', 'msgPromoGorillaz', 'msgPromoHG'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.innerText = '';
+      });
+    }
+
     function actualizarTotales() {
-      const total = (precioZona * cantidad).toFixed(2);
+      let total = precioZona * cantidad;
+      
+      // Si aplica descuento y hay 2 entradas o más: 20% dcto en la segunda entrada
+      if (descuentoAplicado && cantidad >= 2) {
+        const descuentoEfectivo = precioZona * 0.20;
+        total = total - descuentoEfectivo;
+      }
+
+      const totalFormateado = total.toFixed(2);
       
       let nombreShow = '';
       if (showActual === 'bts') {
         nombreShow = 'BTS World Tour';
         document.getElementById('cantTextBTS').innerText = cantidad;
-        document.getElementById('totalTextBTS').innerText = `S/ ${total}`;
+        document.getElementById('totalTextBTS').innerText = `S/ ${totalFormateado}`;
       } else if (showActual === 'omar') {
         nombreShow = 'Omar Courtz';
         document.getElementById('cantTextOmar').innerText = cantidad;
-        document.getElementById('totalTextOmar').innerText = `S/ ${total}`;
+        document.getElementById('totalTextOmar').innerText = `S/ ${totalFormateado}`;
       } else if (showActual === 'gorillaz') {
         nombreShow = 'Gorillaz';
         document.getElementById('cantTextGorillaz').innerText = cantidad;
-        document.getElementById('totalTextGorillaz').innerText = `S/ ${total}`;
+        document.getElementById('totalTextGorillaz').innerText = `S/ ${totalFormateado}`;
       } else if (showActual === 'hombresg') {
         nombreShow = 'Hombres G';
         document.getElementById('cantTextHombresG').innerText = cantidad;
-        document.getElementById('totalTextHombresG').innerText = `S/ ${total}`;
+        document.getElementById('totalTextHombresG').innerText = `S/ ${totalFormateado}`;
       }
 
-      const mensaje = `Hola, acabo de pagar ${cantidad} entrada(s) para ${nombreShow} en la zona ${nombreZona}. Total: S/ ${total}. Adjunto mi comprobante.`;
+      let textoDcto = descuentoAplicado && cantidad >= 2 ? ' (con promo 20% en 2da entrada)' : '';
+      const mensaje = `Hola, acabo de pagar ${cantidad} entrada(s) para ${nombreShow} en la zona ${nombreZona}${textoDcto}. Total: S/ ${totalFormateado}. Adjunto mi comprobante.`;
       const urlWs = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
       
       document.getElementById('btnWsQR').href = urlWs;
-      document.getElementById('qrTotalDisplay').innerText = `S/ ${total}`;
+      document.getElementById('qrTotalDisplay').innerText = `S/ ${totalFormateado}`;
       document.getElementById('qrZoneDisplay').innerText = `${cantidad}x ${nombreZona} (${nombreShow})`;
     }
 
