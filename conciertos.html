@@ -52,6 +52,21 @@
     .zone-price { color: #64dfdf; font-weight: 800; font-size: 15px; text-align: right; }
     .original-price-strike { text-decoration: line-through; color: #a0b2c6; font-size: 11px; display: block; font-weight: normal; }
 
+    /* Campo Código Secreto */
+    .promo-container { margin: 12px 0; }
+    .promo-box { display: flex; gap: 8px; margin-top: 5px; }
+    .promo-input { flex: 1; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; padding: 8px 12px; color: #ffffff; font-size: 13px; text-transform: uppercase; outline: none; }
+    .promo-input::placeholder { color: #a0b2c6; }
+    .btn-apply-promo { background: #64dfdf; color: #0d2c4a; border: none; padding: 8px 12px; border-radius: 8px; font-weight: bold; font-size: 12px; cursor: pointer; }
+    .promo-status { font-size: 11px; margin-top: 4px; display: block; }
+    .promo-status.success { color: #25d366; }
+    .promo-status.error { color: #ff6b6b; }
+
+    /* Formulario Nombre */
+    .user-input-group { margin: 12px 0; text-align: left; }
+    .user-input-group label { font-size: 12px; color: #cce3f5; display: block; margin-bottom: 4px; }
+    .user-input-group input { width: 100%; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; padding: 8px 12px; color: #ffffff; font-size: 13px; outline: none; }
+
     /* Contador de Entradas */
     .counter-container { display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.06); padding: 10px 15px; border-radius: 12px; margin: 15px 0; border: 1px solid rgba(255, 255, 255, 0.15); color: #cce3f5; }
     .counter-btn { background: rgba(255, 255, 255, 0.15); color: #ffffff; border: none; width: 32px; height: 32px; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; }
@@ -65,7 +80,12 @@
     .btn-pay-qr { width: 100%; background-color: #702b84; color: #fff; padding: 14px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; font-size: 15px; margin-top: 15px; text-transform: uppercase; }
     .btn-pay-ws { background-color: #25d366; color: #0d2c4a; padding: 12px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; font-size: 14px; text-decoration: none; text-align: center; }
 
-    .qr-img { width: 100%; max-width: 220px; border-radius: 12px; margin: 15px auto; display: block; border: 1px solid rgba(255, 255, 255, 0.2); }
+    .qr-img { width: 100%; max-width: 200px; border-radius: 12px; margin: 10px auto; display: block; border: 1px solid rgba(255, 255, 255, 0.2); }
+
+    /* Estilo para el Voucher / Comprobante en Pantalla */
+    .voucher-box { background: rgba(0, 0, 0, 0.25); border: 1px solid rgba(100, 223, 223, 0.4); border-radius: 12px; padding: 15px; margin-top: 15px; text-align: left; font-size: 13px; color: #e1f1fd; line-height: 1.5; }
+    .voucher-title { font-size: 14px; font-weight: bold; color: #64dfdf; text-align: center; margin-bottom: 8px; text-transform: uppercase; }
+    .voucher-line { border-bottom: 1px dashed rgba(255, 255, 255, 0.15); margin: 8px 0; }
   </style>
 </head>
 <body>
@@ -160,6 +180,11 @@
       </div>
       <div id="badgeBTS" class="mode-badge"></div>
 
+      <div class="user-input-group">
+        <label>👤 Tu Nombre Completo:</label>
+        <input type="text" id="nombreBTS" placeholder="Ej. Juan Pérez" oninput="actualizarTotales()">
+      </div>
+
       <div class="zone-option selected" id="bts-z1" onclick="seleccionarZona('BTS', 'Campo A', 1099.90, 'bts-z1')">
         <div>
           <div class="zone-name">Campo A</div>
@@ -182,6 +207,16 @@
           <small style="color:#cce3f5;">Tribuna general</small>
         </div>
         <div class="zone-price" id="bts-z3-p">S/ 749.90</div>
+      </div>
+
+      <!-- Barra de Código Promo -->
+      <div class="promo-container">
+        <label style="font-size: 12px; color: #cce3f5;">🔑 ¿Tienes un código de descuento?</label>
+        <div class="promo-box">
+          <input type="text" id="promoInputBTS" class="promo-input" placeholder="Ingresa código">
+          <button class="btn-apply-promo" onclick="aplicarCodigo('BTS')">Aplicar</button>
+        </div>
+        <span id="promoStatusBTS" class="promo-status"></span>
       </div>
 
       <div class="counter-container">
@@ -211,6 +246,11 @@
       </div>
       <div id="badgeOmar" class="mode-badge"></div>
 
+      <div class="user-input-group">
+        <label>👤 Tu Nombre Completo:</label>
+        <input type="text" id="nombreOmar" placeholder="Ej. Juan Pérez" oninput="actualizarTotales()">
+      </div>
+
       <div class="zone-option selected" id="omar-z1" onclick="seleccionarZona('Omar Courtz', 'Campo A', 400.00, 'omar-z1')">
         <div>
           <div class="zone-name">Campo A</div>
@@ -225,6 +265,16 @@
           <small style="color:#cce3f5;">Zona General</small>
         </div>
         <div class="zone-price" id="omar-z2-p">S/ 260.00</div>
+      </div>
+
+      <!-- Barra de Código Promo -->
+      <div class="promo-container">
+        <label style="font-size: 12px; color: #cce3f5;">🔑 ¿Tienes un código de descuento?</label>
+        <div class="promo-box">
+          <input type="text" id="promoInputOmar" class="promo-input" placeholder="Ingresa código">
+          <button class="btn-apply-promo" onclick="aplicarCodigo('Omar')">Aplicar</button>
+        </div>
+        <span id="promoStatusOmar" class="promo-status"></span>
       </div>
 
       <div class="counter-container">
@@ -254,6 +304,11 @@
       </div>
       <div id="badgeGorillaz" class="mode-badge"></div>
 
+      <div class="user-input-group">
+        <label>👤 Tu Nombre Completo:</label>
+        <input type="text" id="nombreGorillaz" placeholder="Ej. Juan Pérez" oninput="actualizarTotales()">
+      </div>
+
       <div class="zone-option selected" id="gor-z1" onclick="seleccionarZona('Gorillaz', 'Platinum', 480.00, 'gor-z1')">
         <div>
           <div class="zone-name">Platinum</div>
@@ -276,6 +331,16 @@
           <small style="color:#cce3f5;">Zona posterior</small>
         </div>
         <div class="zone-price" id="gor-z3-p">S/ 260.00</div>
+      </div>
+
+      <!-- Barra de Código Promo -->
+      <div class="promo-container">
+        <label style="font-size: 12px; color: #cce3f5;">🔑 ¿Tienes un código de descuento?</label>
+        <div class="promo-box">
+          <input type="text" id="promoInputGorillaz" class="promo-input" placeholder="Ingresa código">
+          <button class="btn-apply-promo" onclick="aplicarCodigo('Gorillaz')">Aplicar</button>
+        </div>
+        <span id="promoStatusGorillaz" class="promo-status"></span>
       </div>
 
       <div class="counter-container">
@@ -304,6 +369,11 @@
         <button onclick="cerrarModal('modalHombresG')" class="close-icon">&times;</button>
       </div>
       <div id="badgeHombresG" class="mode-badge"></div>
+
+      <div class="user-input-group">
+        <label>👤 Tu Nombre Completo:</label>
+        <input type="text" id="nombreHombresG" placeholder="Ej. Juan Pérez" oninput="actualizarTotales()">
+      </div>
 
       <div class="zone-option selected" id="hg-z1" onclick="seleccionarZona('Hombres G', 'Platinum Central', 380.00, 'hg-z1')">
         <div><div class="zone-name">Platinum Central</div></div>
@@ -350,6 +420,16 @@
         <div class="zone-price" id="hg-z9-p">S/ 120.00</div>
       </div>
 
+      <!-- Barra de Código Promo -->
+      <div class="promo-container">
+        <label style="font-size: 12px; color: #cce3f5;">🔑 ¿Tienes un código de descuento?</label>
+        <div class="promo-box">
+          <input type="text" id="promoInputHombresG" class="promo-input" placeholder="Ingresa código">
+          <button class="btn-apply-promo" onclick="aplicarCodigo('HombresG')">Aplicar</button>
+        </div>
+        <span id="promoStatusHombresG" class="promo-status"></span>
+      </div>
+
       <div class="counter-container">
         <span>Cantidad:</span>
         <div style="display:flex; align-items:center; gap: 12px;">
@@ -369,7 +449,7 @@
   </div>
 
 
-  <!-- Modal del QR -->
+  <!-- Modal del QR y Voucher -->
   <div id="qrModal" class="modal">
     <div class="modal-content" style="text-align: center;">
       <div class="modal-header">
@@ -379,11 +459,28 @@
 
       <p style="font-size: 14px; color: #cce3f5;">Escanea con Yape o Plin el monto exacto:</p>
       <h2 style="color: #64dfdf; margin: 8px 0; font-size: 28px;" id="qrTotalDisplay">S/ 0.00</h2>
-      <p style="font-size: 14px; color: #ffffff; font-weight: bold;" id="qrZoneDisplay">-</p>
 
       <img src="qr-pago.jpg" alt="Código QR de Pago" class="qr-img">
 
-      <p style="font-size: 13px; color: #64dfdf; margin-bottom: 15px; font-weight: bold;">Realiza el pago y envía tu comprobante al WhatsApp.</p>
+      <!-- Cuadro Comprobante / Voucher Visual -->
+      <div class="voucher-box">
+        <div class="voucher-title">🎟️ PAGO CONFIRMADO - FILACERO 🎟️</div>
+        <p id="vCliente">¡Hola! 👋✨</p>
+        <p>Tu pago ha sido verificado con éxito. Ya tienes asegurado tu lugar para vivir la experiencia 🥳🎤</p>
+        <div class="voucher-line"></div>
+        <p style="font-weight: bold; color: #64dfdf;">🧾 COMPROBANTE DE COMPRA / BOLETA</p>
+        <p id="vFecha">📅 Fecha de emisión: -</p>
+        <p id="vEstado">ESTADO: ¡Pagado! 🟢</p>
+        <div class="voucher-line"></div>
+        <p id="vEvento">🎤 Evento: -</p>
+        <p id="vZona">🎟️ Entrada / Zona: -</p>
+        <p id="vCantidad">🔢 Cantidad: -</p>
+        <p id="vTotal">💰 Monto Total: S/ 0.00</p>
+        <p id="vMetodo">💳 Método de Pago: Yape / Plin</p>
+        <p id="vPromo" style="color: #25d366; font-size: 11px; margin-top: 4px;"></p>
+      </div>
+
+      <p style="font-size: 12px; color: #64dfdf; margin: 12px 0 10px 0; font-weight: bold;">Realiza el pago y envía tu voucher directamente a WhatsApp.</p>
       
       <a id="btnWsQR" href="#" target="_blank" class="btn-pay-ws" style="display:block;">Enviar comprobante por WhatsApp</a>
     </div>
@@ -391,14 +488,16 @@
 
   <script>
     let showActual = "bts";
-    let modoCompra = "comprar"; // "comprar" o "reservar"
+    let modoCompra = "comprar"; 
     let precioOriginal = 1099.90;
     let precioZona = 1099.90;
     let nombreZona = "Campo A";
     let cantidad = 1;
+    let descuentoAplicado = false;
+    let codigoSecretoIngresado = "";
+    const CODIGO_VALIDO = "FILACERO20"; 
     const numeroWhatsApp = "51912147432";
 
-    // Configuración de datos por evento
     const datosEventos = {
       bts: {
         nombre: 'BTS World Tour',
@@ -455,11 +554,17 @@
       showActual = show;
       modoCompra = modo;
       cantidad = 1;
+      descuentoAplicado = false;
+      codigoSecretoIngresado = "";
 
       const evento = datosEventos[show];
       const pct = evento.porcentajeReserva * 100;
+
+      const promoInput = document.getElementById(`promoInput${obtenerSufijoModal(show)}`);
+      const promoStatus = document.getElementById(`promoStatus${obtenerSufijoModal(show)}`);
+      if (promoInput) promoInput.value = "";
+      if (promoStatus) { promoStatus.innerText = ""; promoStatus.className = "promo-status"; }
       
-      // Actualizar Badge del Modal
       const badge = document.getElementById(evento.badgeId);
       if (modo === 'comprar') {
         badge.innerText = 'Modo: Pago Completo (100%)';
@@ -469,7 +574,6 @@
         badge.className = 'mode-badge reserva';
       }
 
-      // Renderizar precios en las opciones de zonas
       evento.zonas.forEach(z => {
         const elPrice = document.getElementById(`${z.id}-p`);
         if (modo === 'comprar') {
@@ -480,7 +584,6 @@
         }
       });
 
-      // Seleccionar por defecto la primera zona
       const primeraZona = evento.zonas[0];
       nombreZona = primeraZona.name;
       precioOriginal = primeraZona.price;
@@ -491,6 +594,14 @@
       document.getElementById(evento.modalId).style.display = 'flex';
 
       actualizarTotales();
+    }
+
+    function obtenerSufijoModal(show) {
+      if (show === 'bts') return 'BTS';
+      if (show === 'omar') return 'Omar';
+      if (show === 'gorillaz') return 'Gorillaz';
+      if (show === 'hombresg') return 'HombresG';
+      return '';
     }
 
     function cerrarModal(id) {
@@ -515,6 +626,25 @@
       actualizarTotales();
     }
 
+    function aplicarCodigo(modalType) {
+      const input = document.getElementById(`promoInput${modalType}`);
+      const status = document.getElementById(`promoStatus${modalType}`);
+      const val = input.value.trim().toUpperCase();
+
+      if (val === CODIGO_VALIDO) {
+        descuentoAplicado = true;
+        codigoSecretoIngresado = val;
+        status.innerText = "¡Código válido! 20% de desc. en la 2da entrada aplicado.";
+        status.className = "promo-status success";
+      } else {
+        descuentoAplicado = false;
+        codigoSecretoIngresado = "";
+        status.innerText = "Código incorrecto o no válido.";
+        status.className = "promo-status error";
+      }
+      actualizarTotales();
+    }
+
     function cambiarCantidad(delta) {
       if (cantidad + delta >= 1 && cantidad + delta <= 10) {
         cantidad += delta;
@@ -522,8 +652,24 @@
       }
     }
 
+    function calcularTotalConDescuento() {
+      let subtotal = precioZona * cantidad;
+      if (descuentoAplicado && cantidad >= 2) {
+        const descuentoSegundaEntrada = precioZona * 0.20;
+        subtotal -= descuentoSegundaEntrada;
+      }
+      return subtotal;
+    }
+
+    function obtenerNombreCliente() {
+      const suf = obtenerSufijoModal(showActual);
+      const input = document.getElementById(`nombre${suf}`);
+      return (input && input.value.trim() !== "") ? input.value.trim() : "";
+    }
+
     function actualizarTotales() {
-      const total = (precioZona * cantidad).toFixed(2);
+      const totalNum = calcularTotalConDescuento();
+      const total = totalNum.toFixed(2);
       const evento = datosEventos[showActual];
       
       if (showActual === 'bts') {
@@ -540,13 +686,50 @@
         document.getElementById('totalTextHombresG').innerText = `S/ ${total}`;
       }
 
-      const tipoOperacion = modoCompra === 'comprar' ? '[PAGO COMPLETO]' : `[RESERVA - ${(evento.porcentajeReserva * 100)}%]`;
-      const mensaje = `Hola, acabo de realizar el pago para ${cantidad} entrada(s) (${tipoOperacion}) para ${evento.nombre} en la zona ${nombreZona}. Total cancelado: S/ ${total}. Adjunto mi comprobante.`;
-      const urlWs = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
-      
-      document.getElementById('btnWsQR').href = urlWs;
+      // Generar Fecha y Hora Actual
+      const ahora = new Date();
+      const fechaEmision = ahora.toLocaleDateString('es-PE', { day: '2-digit', month: '2-digit', year: 'numeric' }) + ' ' + ahora.toLocaleTimeString('es-PE', { hour: '2-digit', minute: '2-digit' });
+
+      const cliente = obtenerNombreCliente();
+      const estadoTexto = modoCompra === 'comprar' ? '¡Pagado ! 🟢' : '¡Reservado ! 🟡';
+      const tipoComprobante = modoCompra === 'comprar' ? 'COMPROBANTE DE COMPRA / BOLETA' : 'COMPROBANTE DE RESERVA / BOLETA';
+
+      let promoDetalle = "";
+      if (descuentoAplicado && cantidad >= 2) {
+        promoDetalle = `\n🎁 Código Promo: ${codigoSecretoIngresado} (20% Desc. en 2da entrada aplicado)`;
+      }
+
+      // Actualizar Voucher en Pantalla (Modal QR)
       document.getElementById('qrTotalDisplay').innerText = `S/ ${total}`;
-      document.getElementById('qrZoneDisplay').innerText = `${cantidad}x ${nombreZona} - ${tipoOperacion} (${evento.nombre})`;
+      document.getElementById('vCliente').innerText = `¡Hola, ${cliente || 'Cliente'}! 👋✨`;
+      document.getElementById('vFecha').innerText = `📅 Fecha de emisión: ${fechaEmision}`;
+      document.getElementById('vEstado').innerText = `ESTADO: ${estadoTexto}`;
+      document.getElementById('vEvento').innerText = `🎤 Evento: ${evento.nombre}`;
+      document.getElementById('vZona').innerText = `🎟️ Entrada / Zona: ${nombreZona}`;
+      document.getElementById('vCantidad').innerText = `🔢 Cantidad: ${cantidad}`;
+      document.getElementById('vTotal').innerText = `💰 Monto Total: S/ ${total}`;
+      document.getElementById('vPromo').innerText = promoDetalle ? promoDetalle.trim() : "";
+
+      // Armar el voucher exacto formateado para WhatsApp
+      const mensajeWS = `🎟️ ¡PAGO CONFIRMADO - FILACERO! 🎟️
+
+¡Hola, ${cliente}! 👋✨
+Tu pago ha sido verificado con éxito. Ya tienes asegurado tu lugar para vivir la experiencia con ${evento.nombre} 🥳🎤
+
+🧾 ${tipoComprobante}
+
+📅 Fecha de emisión: ${fechaEmision}
+ESTADO: ${estadoTexto}
+
+🎤 Evento: ${evento.nombre}
+🎟️ Entrada / Zona: ${nombreZona}
+🔢 Cantidad: ${cantidad}
+💰 Monto Total: S/ ${total}
+💳 Método de Pago: Yape / Plin${promoDetalle}
+
+Adjunto mi comprobante de transferencia.`;
+
+      document.getElementById('btnWsQR').href = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensajeWS)}`;
     }
 
     function mostrarQRModal() {
@@ -554,6 +737,7 @@
       cerrarModal('modalOmar');
       cerrarModal('modalGorillaz');
       cerrarModal('modalHombresG');
+      actualizarTotales();
       document.getElementById('qrModal').style.display = 'flex';
     }
   </script>
