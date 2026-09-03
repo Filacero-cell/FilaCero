@@ -116,6 +116,28 @@
     .dot-ref { width: 8px; height: 8px; background: rgba(255, 255, 255, 0.3); border-radius: 50%; cursor: pointer; transition: 0.3s; }
     .dot-ref.active { background: #64dfdf; width: 22px; border-radius: 10px; }
 
+    /* SECCIÓN REDES SOCIALES */
+    .social-section { margin-top: 45px; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.15); }
+    .social-section-title { font-size: 26px; font-weight: 900; color: #ffffff; text-align: center; margin-bottom: 6px; }
+    .social-section-subtitle { font-size: 13px; color: #cce3f5; text-align: center; margin-bottom: 25px; }
+
+    .social-grid { display: flex; flex-direction: column; gap: 16px; }
+
+    .social-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 20px; padding: 20px; text-align: center; position: relative; box-shadow: 0 6px 16px rgba(0,0,0,0.2); }
+    .social-icon-box { width: 50px; height: 50px; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px auto; font-size: 24px; color: #ffffff; font-weight: bold; }
+    
+    .social-fb .social-icon-box { background: #1877f2; }
+    .social-ig .social-icon-box { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+    .social-tk .social-icon-box { background: #000000; border: 1px solid rgba(255,255,255,0.2); }
+
+    .social-card-title { font-size: 18px; font-weight: 900; color: #ffffff; margin-bottom: 4px; }
+    .social-card-desc { font-size: 12px; color: #cce3f5; margin-bottom: 16px; font-weight: 500; }
+    
+    .btn-social { display: block; width: 100%; padding: 12px; border-radius: 12px; font-weight: 800; font-size: 14px; text-decoration: none; text-align: center; border: none; cursor: pointer; }
+    .social-fb .btn-social { background: #1877f2; color: #ffffff; }
+    .social-ig .btn-social { background: linear-gradient(135deg, #e6683c, #bc1888); color: #ffffff; }
+    .social-tk .btn-social { background: #ffffff; color: #000000; }
+
     /* WhatsApp Widget */
     .ws-widget { position: fixed; bottom: 20px; left: 20px; display: flex; align-items: center; gap: 10px; z-index: 100; }
     .ws-circle { width: 48px; height: 48px; background-color: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); text-decoration: none; font-size: 24px; color: #fff; }
@@ -278,7 +300,7 @@
         </div>
         <div class="card-body">
           <h2 class="card-title">COMBO 2 MIX OL CC</h2>
-          <div class="card-info">🎟 2 Entradas (Cualquier sede)</div>
+          <div class="card-info">🎟🎟 2 Entradas (Para Cualquier Sede)</div>
           <div class="card-info">🍿 1 Canchita Gigante (Mix)</div>
           <div class="card-info">🥤 2 Bebidas (32oz)</div>
           <div class="card-info">⚠️ Canchita sin refill</div>
@@ -297,7 +319,7 @@
         </div>
         <div class="card-body">
           <h2 class="card-title">COMBO BLACK GIG. MIX (CON HOT DOG)</h2>
-          <div class="card-info">🎟 2 Entradas (Cualquier sede)</div>
+          <div class="card-info">🎟🎟 2 Entradas (Para Cualquier sede)</div>
           <div class="card-info">🍿 1 Canchita Gigante (Mix)</div>
           <div class="card-info">🥤 2 Bebidas Medianas</div>
           <div class="card-info">🌭 2 Hot Dogs Clásicos</div>
@@ -316,7 +338,7 @@
         </div>
         <div class="card-body">
           <h2 class="card-title">COMBO 2 MIX DOB. GIG. OL</h2>
-          <div class="card-info">🎟🎟 2 Entradas (Cualquier sede)</div>
+          <div class="card-info">🎟🎟 2 Entradas (Para cualquier sede)</div>
           <div class="card-info">🍿🍿 2 Canchitas Gigantes</div>
           <div class="card-info">🥤🥤 2 Bebidas Grandes (32oz)</div>
           <div class="card-info">⚠️ Canchita sin refill</div>
@@ -419,6 +441,34 @@
     </div>
 
     <div class="carousel-ref-dots" id="dotsReferencias"></div>
+  </div>
+
+  <div class="social-section">
+    <h2 class="social-section-title">Nuestras Redes 📲</h2>
+    <p class="social-section-subtitle">Sigue nuestras cuentas oficiales para más promociones y novedades</p>
+
+    <div class="social-grid">
+      <div class="social-card social-fb">
+        <div class="social-icon-box">f</div>
+        <h3 class="social-card-title">Facebook</h3>
+        <p class="social-card-desc">Página Oficial</p>
+        <a href="https://facebook.com/https://www.facebook.com/share/1HjqEJjyi7/" target="_blank" class="btn-social">Ir a Facebook</a>
+      </div>
+
+      <div class="social-card social-ig">
+        <div class="social-icon-box">📷</div>
+        <h3 class="social-card-title">Instagram</h3>
+        <p class="social-card-desc">Página Oficial</p>
+        <a href="https://instagram.com/https://www.instagram.com/fila_cero_oficial?igsi=aXRzd2x4NXE0Z2tl" target="_blank" class="btn-social">Ir a Instagram</a>
+      </div>
+
+      <div class="social-card social-tk">
+        <div class="social-icon-box">🎵</div>
+        <h3 class="social-card-title">TikTok</h3>
+        <p class="social-card-desc">Página Oficial</p>
+        <a href="https://tiktok.com/https://www.tiktok.com/@fila_cero?_r=1&_t=ZS-99QpLrIZfgS" target="_blank" class="btn-social">Ir a TikTok</a>
+      </div>
+    </div>
   </div>
 
   <div class="ws-widget">
