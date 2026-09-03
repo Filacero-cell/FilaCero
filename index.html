@@ -116,27 +116,78 @@
     .dot-ref { width: 8px; height: 8px; background: rgba(255, 255, 255, 0.3); border-radius: 50%; cursor: pointer; transition: 0.3s; }
     .dot-ref.active { background: #64dfdf; width: 22px; border-radius: 10px; }
 
-    /* SECCIÓN REDES SOCIALES */
-    .social-section { margin-top: 45px; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.15); }
-    .social-section-title { font-size: 26px; font-weight: 900; color: #ffffff; text-align: center; margin-bottom: 6px; }
-    .social-section-subtitle { font-size: 13px; color: #cce3f5; text-align: center; margin-bottom: 25px; }
+    /* SECCIÓN REDES SOCIALES (MOCKUP CELULAR VERTICAL) */
+    .social-section { margin-top: 45px; padding-top: 30px; border-top: 1px solid rgba(255, 255, 255, 0.15); text-align: center; }
+    .social-section-title { font-size: 26px; font-weight: 900; color: #ffffff; margin-bottom: 6px; }
+    .social-section-subtitle { font-size: 13px; color: #cce3f5; margin-bottom: 35px; }
 
-    .social-grid { display: flex; flex-direction: column; gap: 16px; }
+    .social-grid { display: flex; flex-direction: column; align-items: center; gap: 40px; }
 
-    .social-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 20px; padding: 20px; text-align: center; position: relative; box-shadow: 0 6px 16px rgba(0,0,0,0.2); }
-    .social-icon-box { width: 50px; height: 50px; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px auto; font-size: 24px; color: #ffffff; font-weight: bold; }
+    /* Contenedor de cada red */
+    .social-block { display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 320px; }
     
-    .social-fb .social-icon-box { background: #1877f2; }
-    .social-ig .social-icon-box { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
-    .social-tk .social-icon-box { background: #000000; border: 1px solid rgba(255,255,255,0.2); }
+    .social-header-info { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .social-header-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: bold; color: #fff; }
+    .social-header-title { font-size: 16px; font-weight: 800; color: #ffffff; text-align: left; }
+    .social-header-sub { font-size: 11px; color: #a0c4e2; font-weight: normal; }
 
-    .social-card-title { font-size: 18px; font-weight: 900; color: #ffffff; margin-bottom: 4px; }
-    .social-card-desc { font-size: 12px; color: #cce3f5; margin-bottom: 16px; font-weight: 500; }
-    
-    .btn-social { display: block; width: 100%; padding: 12px; border-radius: 12px; font-weight: 800; font-size: 14px; text-decoration: none; text-align: center; border: none; cursor: pointer; }
-    .social-fb .btn-social { background: #1877f2; color: #ffffff; }
-    .social-ig .btn-social { background: linear-gradient(135deg, #e6683c, #bc1888); color: #ffffff; }
-    .social-tk .btn-social { background: #ffffff; color: #000000; }
+    /* Estructura del Celular Vertical */
+    .phone-mockup {
+      width: 100%;
+      max-width: 300px;
+      height: 560px;
+      background: #000000;
+      border-radius: 36px;
+      border: 10px solid #1c1c1e;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6), inset 0 0 0 2px rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Notch superior del celular */
+    .phone-notch {
+      width: 90px;
+      height: 18px;
+      background: #1c1c1e;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      position: absolute;
+      top: 0;
+      z-index: 10;
+    }
+
+    /* Pantalla interna con el reproductor */
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 26px;
+      overflow: hidden;
+    }
+
+    /* Botón redondeado de acción */
+    .btn-social-mockup {
+      display: inline-block;
+      width: 100%;
+      max-width: 280px;
+      padding: 12px;
+      margin-top: 15px;
+      border-radius: 20px;
+      font-weight: 800;
+      font-size: 13px;
+      text-decoration: none;
+      text-align: center;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    .btn-social-mockup:active { transform: scale(0.98); }
+
+    .btn-fb-style { background: #1877f2; color: #ffffff; }
+    .btn-ig-style { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #ffffff; }
+    .btn-tk-style { background: #ffffff; color: #000000; }
 
     /* WhatsApp Widget */
     .ws-widget { position: fixed; bottom: 20px; left: 20px; display: flex; align-items: center; gap: 10px; z-index: 100; }
@@ -296,11 +347,10 @@
         <div class="card-image-box">
           <div class="badge-top-left"><span class="tag-red">CINEPLANET</span><span class="tag-blue">MIX</span></div>
           <span class="badge-top-right">PROMO</span>
-          <img src="combo2mix.png" alt="Combo 2 Mix OL CC">
+          <img src="combo2mix.jpg" alt="Combo 2 Mix OL CC">
         </div>
         <div class="card-body">
           <h2 class="card-title">COMBO 2 MIX OL CC</h2>
-          <div class="card-info">🎟🎟 2 Entradas (Para Cualquier Sede)</div>
           <div class="card-info">🍿 1 Canchita Gigante (Mix)</div>
           <div class="card-info">🥤 2 Bebidas (32oz)</div>
           <div class="card-info">⚠️ Canchita sin refill</div>
@@ -315,11 +365,10 @@
         <div class="card-image-box">
           <div class="badge-top-left"><span class="tag-red">CINEPLANET</span><span class="tag-purple">EXCLUSIVO ONLINE</span></div>
           <span class="badge-top-right">POPULAR</span>
-          <img src="comboblack.png" alt="Combo Black Gigante Mix OL">
+          <img src="comboblack.jpg" alt="Combo Black Gigante Mix OL">
         </div>
         <div class="card-body">
           <h2 class="card-title">COMBO BLACK GIG. MIX (CON HOT DOG)</h2>
-          <div class="card-info">🎟🎟 2 Entradas (Para Cualquier sede)</div>
           <div class="card-info">🍿 1 Canchita Gigante (Mix)</div>
           <div class="card-info">🥤 2 Bebidas Medianas</div>
           <div class="card-info">🌭 2 Hot Dogs Clásicos</div>
@@ -334,11 +383,10 @@
         <div class="card-image-box">
           <div class="badge-top-left"><span class="tag-red">CINEPLANET</span><span class="tag-blue">DOBLE GIGANTE</span></div>
           <span class="badge-top-right">EXCLUSIVO</span>
-          <img src="combo2mixdoble.png" alt="Combo 2 Mix Dob. Gig. OL">
+          <img src="combo2mixdoble.jpg" alt="Combo 2 Mix Dob. Gig. OL">
         </div>
         <div class="card-body">
           <h2 class="card-title">COMBO 2 MIX DOB. GIG. OL</h2>
-          <div class="card-info">🎟🎟 2 Entradas (Para cualquier sede)</div>
           <div class="card-info">🍿🍿 2 Canchitas Gigantes</div>
           <div class="card-info">🥤🥤 2 Bebidas Grandes (32oz)</div>
           <div class="card-info">⚠️ Canchita sin refill</div>
@@ -436,38 +484,93 @@
     <div class="carousel-ref-wrapper">
       <button class="carousel-ref-btn prev" onclick="moverCarruselRef(-1)">&#10094;</button>
       <div class="carousel-ref-track" id="trackReferencias">
-        </div>
+      </div>
       <button class="carousel-ref-btn next" onclick="moverCarruselRef(1)">&#10095;</button>
     </div>
 
     <div class="carousel-ref-dots" id="dotsReferencias"></div>
   </div>
 
+  <!-- SECCIÓN REDES SOCIALES (MOCKUP CELULAR VERTICAL) -->
   <div class="social-section">
-    <h2 class="social-section-title">Nuestras Redes 📲</h2>
-    <p class="social-section-subtitle">Sigue nuestras cuentas oficiales para más promociones y novedades</p>
+    <h2 class="social-section-title">Síguenos y no te pierdas nada 📲</h2>
+    <p class="social-section-subtitle">Lo último de FilaCero en todas nuestras redes 👇</p>
 
     <div class="social-grid">
-      <div class="social-card social-fb">
-        <div class="social-icon-box">f</div>
-        <h3 class="social-card-title">Facebook</h3>
-        <p class="social-card-desc">Página Oficial</p>
-        <a href="https://facebook.com/https://www.facebook.com/share/1HjqEJjyi7/" target="_blank" class="btn-social">Ir a Facebook</a>
+      
+      <!-- FACEBOOK -->
+      <div class="social-block">
+        <div class="social-header-info">
+          <div class="social-header-icon" style="background: #1877f2;">f</div>
+          <div>
+            <div class="social-header-title">Facebook</div>
+            <div class="social-header-sub">Página Oficial</div>
+          </div>
+        </div>
+
+        <div class="phone-mockup">
+          <div class="phone-notch"></div>
+          <iframe 
+            class="phone-screen"
+            src="https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2Ffilaceroperu&show_text=true&width=300" 
+            scrolling="no" 
+            frameborder="0" 
+            allowfullscreen="true" 
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share">
+          </iframe>
+        </div>
+
+        <a href="https://www.facebook.com/filaceroperu" target="_blank" class="btn-social-mockup btn-fb-style">Ver más en Facebook →</a>
       </div>
 
-      <div class="social-card social-ig">
-        <div class="social-icon-box">📷</div>
-        <h3 class="social-card-title">Instagram</h3>
-        <p class="social-card-desc">Página Oficial</p>
-        <a href="https://instagram.com/https://www.instagram.com/fila_cero_oficial?igsi=aXRzd2x4NXE0Z2tl" target="_blank" class="btn-social">Ir a Instagram</a>
+      <!-- INSTAGRAM -->
+      <div class="social-block">
+        <div class="social-header-info">
+          <div class="social-header-icon" style="background: linear-gradient(135deg, #f09433, #bc1888);">📷</div>
+          <div>
+            <div class="social-header-title">Instagram</div>
+            <div class="social-header-sub">Página Oficial</div>
+          </div>
+        </div>
+
+        <div class="phone-mockup">
+          <div class="phone-notch"></div>
+          <iframe 
+            class="phone-screen"
+            src="https://www.instagram.com/reel/Db-e7EIx7nl/embed" 
+            frameborder="0" 
+            scrolling="no" 
+            allowtransparency="true">
+          </iframe>
+        </div>
+
+        <a href="https://www.instagram.com/reel/Db-e7EIx7nl/" target="_blank" class="btn-social-mockup btn-ig-style">Ver más en Instagram →</a>
       </div>
 
-      <div class="social-card social-tk">
-        <div class="social-icon-box">🎵</div>
-        <h3 class="social-card-title">TikTok</h3>
-        <p class="social-card-desc">Página Oficial</p>
-        <a href="https://tiktok.com/https://www.tiktok.com/@fila_cero?_r=1&_t=ZS-99QpLrIZfgS" target="_blank" class="btn-social">Ir a TikTok</a>
+      <!-- TIKTOK -->
+      <div class="social-block">
+        <div class="social-header-info">
+          <div class="social-header-icon" style="background: #000; border: 1px solid rgba(255,255,255,0.2);">🎵</div>
+          <div>
+            <div class="social-header-title">TikTok</div>
+            <div class="social-header-sub">Página Oficial</div>
+          </div>
+        </div>
+
+        <div class="phone-mockup">
+          <div class="phone-notch"></div>
+          <iframe 
+            class="phone-screen"
+            src="https://www.tiktok.com/embed/v2/7300000000000000000" 
+            frameborder="0" 
+            scrolling="no" 
+            allow="fullscreen">
+          </iframe>
+        </div>
+
+        <a href="https://www.tiktok.com/@filacero" target="_blank" class="btn-social-mockup btn-tk-style">Ver más en TikTok →</a>
       </div>
+
     </div>
   </div>
 
@@ -565,6 +668,8 @@
     function inicializarCarruselReferencias() {
       const track = document.getElementById('trackReferencias');
       const dotsContainer = document.getElementById('dotsReferencias');
+      if (!track || !dotsContainer) return;
+
       track.innerHTML = '';
       dotsContainer.innerHTML = '';
 
@@ -595,7 +700,9 @@
 
     function actualizarVistaRef() {
       const track = document.getElementById('trackReferencias');
-      track.style.transform = `translateX(-${idxRef * 100}%)`;
+      if (track) {
+        track.style.transform = `translateX(-${idxRef * 100}%)`;
+      }
 
       const dots = document.querySelectorAll('.dot-ref');
       dots.forEach((dot, index) => {
@@ -645,7 +752,7 @@
       document.getElementById('qrModalCine').style.display = 'flex';
     }
 
-    // Inicializar carrusel de referencias
+    // Inicializar carrusel de referencias al cargar el documento
     document.addEventListener('DOMContentLoaded', inicializarCarruselReferencias);
   </script>
 
