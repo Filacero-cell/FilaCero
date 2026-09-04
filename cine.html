@@ -30,7 +30,7 @@
     .btn-ws-card { flex: 1; background: rgba(255, 255, 255, 0.1); color: #fff; padding: 14px; border-radius: 10px; font-weight: 800; text-decoration: none; text-align: center; font-size: 14px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255, 255, 255, 0.2); }
 
     .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 18, 31, 0.85); justify-content: center; align-items: center; z-index: 1000; padding: 15px; backdrop-filter: blur(4px); }
-    .modal-content { background: #13385c; padding: 22px; border-radius: 18px; max-width: 380px; width: 100%; border: 1px solid rgba(255, 255, 255, 0.15); }
+    .modal-content { background: #13385c; padding: 22px; border-radius: 18px; max-width: 380px; width: 100%; border: 1px solid rgba(255, 255, 255, 0.15); max-height: 90vh; overflow-y: auto; }
     .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
     .modal-title { font-size: 18px; font-weight:bold; color: #ffffff; }
     .close-icon { color: #cce3f5; font-size: 24px; cursor: pointer; border: none; background: none; font-weight: bold; }
@@ -45,6 +45,11 @@
     .btn-pay-qr { width: 100%; background-color: #702b84; color: #fff; padding: 14px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; font-size: 15px; margin-top: 15px; text-transform: uppercase; }
     .btn-pay-ws { background-color: #25d366; color: #0d2c4a; padding: 12px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; font-size: 14px; text-decoration: none; text-align: center; }
     .qr-img { width: 100%; max-width: 220px; border-radius: 12px; margin: 15px auto; display: block; border: 1px solid rgba(255, 255, 255, 0.2); }
+
+    /* Voucher de Pago */
+    .voucher-box { background: rgba(0, 0, 0, 0.25); border: 1px dashed rgba(100, 223, 223, 0.4); border-radius: 12px; padding: 15px; margin-top: 15px; text-align: left; font-size: 13px; color: #e1f1fd; line-height: 1.5; }
+    .voucher-title { font-size: 14px; font-weight: bold; color: #64dfdf; text-align: center; margin-bottom: 8px; text-transform: uppercase; }
+    .voucher-line { border-bottom: 1px dashed rgba(255, 255, 255, 0.15); margin: 8px 0; }
   </style>
 </head>
 <body>
@@ -138,7 +143,7 @@
     </div>
   </div>
 
-  <!-- Modal QR Pago -->
+  <!-- Modal QR Pago con Voucher incorporado -->
   <div id="qrModal" class="modal">
     <div class="modal-content" style="text-align: center;">
       <div class="modal-header">
@@ -152,9 +157,19 @@
 
       <img src="qr-pago.jpg" alt="Código QR de Pago" class="qr-img">
 
-      <p style="font-size: 13px; color: #64dfdf; margin-bottom: 15px; font-weight: bold;">Realiza el pago y envía tu comprobante al WhatsApp.</p>
+      <!-- Voucher de Compra -->
+      <div class="voucher-box">
+        <div class="voucher-title">🍿 VOUCHER DE COMPRA - FILACERO 🍿</div>
+        <div class="voucher-line"></div>
+        <p id="vCombo">🍿 Producto: -</p>
+        <p id="vCantidad">🔢 Cantidad: -</p>
+        <p id="vTotal">💰 Total a Pagar: S/ 0.00</p>
+        <p>💳 Método: Yape / Plin</p>
+      </div>
+
+      <p style="font-size: 12px; color: #64dfdf; margin: 12px 0 10px 0; font-weight: bold;">Realiza el pago y presiona el botón para enviar tu voucher al WhatsApp.</p>
       
-      <a id="btnWsQR" href="#" target="_blank" class="btn-pay-ws" style="display:block;">Enviar comprobante por WhatsApp</a>
+      <a id="btnWsQR" href="#" target="_blank" class="btn-pay-ws" style="display:block;">Enviar voucher por WhatsApp</a>
     </div>
   </div>
 
@@ -186,17 +201,34 @@
 
     function actualizarTotales() {
       const total = (comboPrecio * cantidad).toFixed(2);
+
       document.getElementById('cantText').innerText = cantidad;
       document.getElementById('totalText').innerText = `S/ ${total}`;
-
-      const mensaje = `Hola, acabo de pagar por ${cantidad} unidad(es) de ${comboNombre} (Cineplanet). Total: S/ ${total}. Adjunto mi comprobante.`;
-      document.getElementById('btnWsQR').href = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
       document.getElementById('qrTotalDisplay').innerText = `S/ ${total}`;
       document.getElementById('qrComboDisplay').innerText = `${cantidad}x ${comboNombre}`;
+
+      // Actualizar información visual del voucher
+      document.getElementById('vCombo').innerText = `🍿 Producto: ${comboNombre}`;
+      document.getElementById('vCantidad').innerText = `🔢 Cantidad: ${cantidad}`;
+      document.getElementById('vTotal').innerText = `💰 Total a Pagar: S/ ${total}`;
+
+      // Texto simplificado del Voucher para enviar por WhatsApp
+      const mensaje = `🍿 *VOUCHER DE COMPRA - FILACERO* 🍿
+
+Hola, acabo de realizar la compra de:
+• *Producto:* ${comboNombre} (Cineplanet)
+• *Cantidad:* ${cantidad}
+• *Total Pagado:* S/ ${total}
+• *Método:* Yape / Plin
+
+Adjunto mi comprobante de pago para confirmación.`;
+
+      document.getElementById('btnWsQR').href = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
     }
 
     function mostrarQRModal() {
       cerrarModal('modalCine');
+      actualizarTotales();
       document.getElementById('qrModal').style.display = 'flex';
     }
   </script>
