@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FilaCero | Entradas Oficiales y Cine</title>
+  
+  <!-- Librería para generación de Código QR dinámico -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
 
@@ -213,6 +217,36 @@
     .btn-pay-qr { width: 100%; background-color: #702b84; color: #fff; padding: 14px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; font-size: 15px; margin-top: 15px; text-transform: uppercase; }
     .btn-pay-ws { background-color: #25d366; color: #0d2c4a; padding: 12px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; font-size: 14px; text-decoration: none; text-align: center; }
     .qr-img { width: 100%; max-width: 220px; border-radius: 12px; margin: 15px auto; display: block; border: 1px solid rgba(255, 255, 255, 0.2); }
+
+    /* Estilos para el Recibo / Boleta */
+    .receipt-box {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px dashed rgba(100, 223, 223, 0.4);
+      border-radius: 12px;
+      padding: 15px;
+      margin-top: 15px;
+      text-align: left;
+      font-size: 13px;
+      color: #e0f2fe;
+      line-height: 1.5;
+    }
+    .receipt-title {
+      font-weight: 800;
+      color: #64dfdf;
+      text-align: center;
+      margin-bottom: 8px;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+    .receipt-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+    .receipt-divider {
+      border-top: 1px dashed rgba(255, 255, 255, 0.2);
+      margin: 8px 0;
+    }
   </style>
 </head>
 <body>
@@ -351,13 +385,13 @@
         </div>
         <div class="card-body">
           <h2 class="card-title">COMBO 2 MIX OL CC</h2>
-          <div class="card-info">🎟🎟 2 Entradas (Para cualquier pelicula de Estreno)</div>
+          <div class="card-info">🎟🎟 2 Entradas (Para cualquier película de Estreno)</div>
           <div class="card-info">🍿 1 Canchita Gigante (Mix)</div>
           <div class="card-info">🥤 2 Bebidas (32oz)</div>
           <div class="card-info">⚠️ Canchita sin refill</div>
           <div class="card-footer">
             <div><span class="price-sub">PRECIO PROMO</span><span class="price-amount">S/ 42.00</span></div>
-            <button onclick="abrirModalCine('Combo 2 Mix OL CC', 38.00)" class="btn-separar">Sepárala →</button>
+            <button onclick="abrirModalCine('Combo 2 Mix OL CC', 42.00)" class="btn-separar">Sepárala →</button>
           </div>
         </div>
       </div>
@@ -370,13 +404,13 @@
         </div>
         <div class="card-body">
           <h2 class="card-title">COMBO BLACK GIG. MIX (CON HOT DOG)</h2>
-          <div class="card-info">🎟🎟 2 Entradas (Para cualquier pelicula de Estreno)</div>
+          <div class="card-info">🎟🎟 2 Entradas (Para cualquier película de Estreno)</div>
           <div class="card-info">🍿 1 Canchita Gigante (Mix)</div>
           <div class="card-info">🥤 2 Bebidas Medianas</div>
           <div class="card-info">🌭 1 Hot Dogs Clásicos o Nachos </div>
           <div class="card-footer">
             <div><span class="price-sub">PRECIO PROMO</span><span class="price-amount">S/ 50.00</span></div>
-            <button onclick="abrirModalCine('Combo Black Gigante (Con Hot Dog)', 48.00)" class="btn-separar">Sepárala →</button>
+            <button onclick="abrirModalCine('Combo Black Gigante (Con Hot Dog)', 50.00)" class="btn-separar">Sepárala →</button>
           </div>
         </div>
       </div>
@@ -389,13 +423,13 @@
         </div>
         <div class="card-body">
           <h2 class="card-title">COMBO 2 MIX DOB. GIG. OL</h2>
-          <div class="card-info">🎟🎟 2 Entradas (Para cualquier pelicula de Estreno)</div>
+          <div class="card-info">🎟🎟 2 Entradas (Para cualquier película de Estreno)</div>
           <div class="card-info">🍿🍿 2 Canchitas Gigantes</div>
           <div class="card-info">🥤🥤 2 Bebidas Grandes (32oz)</div>
           <div class="card-info">⚠️ Canchita sin refill</div>
           <div class="card-footer">
             <div><span class="price-sub">PRECIO PROMO</span><span class="price-amount">S/ 48.00</span></div>
-            <button onclick="abrirModalCine('Combo 2 Mix Doble Gigante', 54.00)" class="btn-separar">Sepárala →</button>
+            <button onclick="abrirModalCine('Combo 2 Mix Doble Gigante', 48.00)" class="btn-separar">Sepárala →</button>
           </div>
         </div>
       </div>
@@ -585,7 +619,7 @@
     </div>
   </div>
 
-
+  <!-- Modal Selección de Cantidad -->
   <div id="modalCine" class="modal">
     <div class="modal-content">
       <div class="modal-header">
@@ -604,13 +638,14 @@
 
       <div class="total-box">
         <span>TOTAL:</span>
-        <span class="total-amount" id="totalTextCine">S/ 38.00</span>
+        <span class="total-amount" id="totalTextCine">S/ 0.00</span>
       </div>
 
       <button onclick="mostrarQRModalCine()" class="btn-pay-qr">📲 PAGAR CON YAPE / PLIN</button>
     </div>
   </div>
 
+  <!-- Modal de Pago: QR + Boleta Completa -->
   <div id="qrModalCine" class="modal">
     <div class="modal-content" style="text-align: center;">
       <div class="modal-header">
@@ -618,13 +653,54 @@
         <button onclick="cerrarModal('qrModalCine')" class="close-icon">&times;</button>
       </div>
 
-      <p style="font-size: 14px; color: #cce3f5;">Escanea con Yape o Plin el monto exacto:</p>
-      <h2 style="color: #64dfdf; margin: 8px 0; font-size: 28px;" id="qrTotalDisplayCine">S/ 0.00</h2>
-      <p style="font-size: 14px; color: #ffffff; font-weight: bold;" id="qrComboDisplayCine">-</p>
-
+      <p style="font-size: 13px; color: #cce3f5;">Escanea con Yape o Plin el monto exacto:</p>
+      <h2 style="color: #64dfdf; margin: 4px 0; font-size: 26px;" id="qrTotalDisplayCine">S/ 0.00</h2>
+      
+      <!-- QR Imagen Oficial -->
       <img src="qr-pago.jpg" alt="Código QR de Pago" class="qr-img">
 
-      <p style="font-size: 13px; color: #64dfdf; margin-bottom: 15px; font-weight: bold;">Realiza el pago y envía tu comprobante al WhatsApp.</p>
+      <!-- Sección Boleta Dinámica -->
+      <div class="receipt-box">
+        <div class="receipt-title">🎟️ ¡PAGO CONFIRMADO - FILACERO! 🎟️</div>
+        <p style="margin-bottom: 8px;">¡Hola! 👋✨<br>Tu pago ha sido registrado. A continuación tienes el resumen de tu reserva:</p>
+        
+        <div class="receipt-divider"></div>
+        <div style="font-weight: bold; margin-bottom: 5px;">🧾 COMPROBANTE DE RESERVA / BOLETA</div>
+        
+        <div class="receipt-row">
+          <span>📅 Fecha de emisión:</span>
+          <strong id="boletaFecha">--/--/----</strong>
+        </div>
+        <div class="receipt-row">
+          <span>⏰ Hora de emisión:</span>
+          <strong id="boletaHora">--:-- --</strong>
+        </div>
+        <div class="receipt-row">
+          <span>📌 ESTADO:</span>
+          <strong style="color: #f1c40f;">¡Reservado! 🟡</strong>
+        </div>
+        
+        <div class="receipt-divider"></div>
+        
+        <div class="receipt-row">
+          <span>🍿 Producto:</span>
+          <strong id="boletaProducto">-</strong>
+        </div>
+        <div class="receipt-row">
+          <span>🔢 Cantidad:</span>
+          <strong id="boletaCantidad">1</strong>
+        </div>
+        <div class="receipt-row">
+          <span>💰 Monto Total:</span>
+          <strong id="boletaMonto">S/ 0.00</strong>
+        </div>
+        <div class="receipt-row">
+          <span>💳 Método de Pago:</span>
+          <strong>Yape / Plin</strong>
+        </div>
+      </div>
+
+      <p style="font-size: 12px; color: #64dfdf; margin: 12px 0 8px 0; font-weight: bold;">Realiza el pago y envía tu comprobante e información por WhatsApp.</p>
       
       <a id="btnWsQRCine" href="#" target="_blank" class="btn-pay-ws" style="display:block;">Enviar comprobante por WhatsApp</a>
     </div>
@@ -713,7 +789,7 @@
       });
     }
 
-    /* LÓGICA DE COMPRA CINE EN INDEX */
+    /* LÓGICA DE COMPRA CINE Y GENERACIÓN DE BOLETA */
     let comboNombre = "";
     let comboPrecioUnitario = 0;
     let cantCine = 1;
@@ -743,15 +819,41 @@
       const total = (comboPrecioUnitario * cantCine).toFixed(2);
       document.getElementById('cantTextCine').innerText = cantCine;
       document.getElementById('totalTextCine').innerText = `S/ ${total}`;
-
-      const mensaje = `Hola, acabo de pagar por ${cantCine} unidad(es) de ${comboNombre} (Cineplanet). Total: S/ ${total}. Adjunto mi comprobante.`;
-      document.getElementById('btnWsQRCine').href = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
-      document.getElementById('qrTotalDisplayCine').innerText = `S/ ${total}`;
-      document.getElementById('qrComboDisplayCine').innerText = `${cantCine}x ${comboNombre}`;
     }
 
     function mostrarQRModalCine() {
       cerrarModal('modalCine');
+
+      // Generar Fecha y Hora Exactas al momento del pago
+      const ahora = new Date();
+      const fecha = ahora.toLocaleDateString('es-PE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+      const hora = ahora.toLocaleTimeString('es-PE', { hour: '2-digit', minute: '2-digit', hour12: true });
+      const total = (comboPrecioUnitario * cantCine).toFixed(2);
+
+      // Inyectar datos en la Boleta Modal
+      document.getElementById('qrTotalDisplayCine').innerText = `S/ ${total}`;
+      document.getElementById('boletaFecha').innerText = fecha;
+      document.getElementById('boletaHora').innerText = hora;
+      document.getElementById('boletaProducto').innerText = comboNombre;
+      document.getElementById('boletaCantidad').innerText = cantCine;
+      document.getElementById('boletaMonto').innerText = `S/ ${total}`;
+
+      // Construcción del texto formateado para el mensaje de WhatsApp
+      const mensajeWhatsApp = `🎟️ *¡PAGO CONFIRMADO - FILACERO!* 🎟️\n\n` +
+        `¡Hola! 👋✨\n` +
+        `Tu pago ha sido verificado con éxito. Ya tienes asegurado tu lugar para vivir la experiencia.\n\n` +
+        `🧾 *COMPROBANTE DE RESERVA / BOLETA*\n\n` +
+        `📅 *Fecha de emisión:* ${fecha}\n` +
+        `⏰ *Hora de emisión:* ${hora}\n` +
+        `📌 *ESTADO:* ¡Reservado! 🟡\n\n` +
+        `🍿 *Producto:* ${comboNombre}\n` +
+        `🔢 *Cantidad:* ${cantCine}\n` +
+        `💰 *Monto Total:* S/ ${total}\n` +
+        `💳 *Método de Pago:* Yape / Plin\n\n` +
+        `Adjunto mi comprobante de pago.`;
+
+      document.getElementById('btnWsQRCine').href = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensajeWhatsApp)}`;
+
       document.getElementById('qrModalCine').style.display = 'flex';
     }
 
