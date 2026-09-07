@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FilaCero | Partidos de Fútbol</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+
+    body { background-color: #0d2c4a; color: #ffffff; min-height: 100vh; padding: 20px 20px 80px 20px; }
+
+    /* Header */
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
+    .logo-container { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+    .logo-icon { width: 32px; height: 32px; background: #00a8ff; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px; color: #fff; }
+    .logo-text { color: #ffffff; font-size: 22px; font-weight: 900; letter-spacing: -0.5px; }
+
+    .nav-back { color: #64dfdf; font-size: 14px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; margin-bottom: 20px; }
+
+    /* Hero Section */
+    .hero-title { font-size: 32px; font-weight: 900; line-height: 1.15; margin-bottom: 10px; }
+    .highlight { color: #64dfdf; }
+    .hero-desc { color: #cce3f5; font-size: 14px; line-height: 1.5; margin-bottom: 25px; }
+
+    /* Grid de Partidos */
+    .partidos-grid { display: flex; flex-direction: column; gap: 25px; margin-bottom: 40px; }
+
+    .partido-card { background: #ffffff; color: #112a46; border-radius: 20px; overflow: hidden; position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+    .card-image-box { position: relative; width: 100%; height: 210px; overflow: hidden; background: #000; }
+    .card-image-box img { width: 100%; height: 100%; object-fit: cover; }
+
+    .badge-top-left { position: absolute; top: 12px; left: 12px; display: flex; gap: 6px; }
+    .tag-purple { background: #702b84; color: #fff; font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 12px; }
+    .tag-blue { background: #00a8ff; color: #fff; font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 12px; }
+    .badge-top-right { position: absolute; top: 12px; right: 12px; background: #ff4757; color: #fff; font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 12px; }
+
+    .card-body { padding: 20px; }
+    .card-title { font-size: 20px; font-weight: 900; color: #0d2c4a; margin-bottom: 12px; line-height: 1.2; text-transform: uppercase; }
+    .card-info { font-size: 14px; color: #5a7184; font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+
+    .card-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 18px; padding-top: 14px; border-top: 1px solid #e1e5eb; }
+    .price-sub { font-size: 10px; color: #702b84; font-weight: 800; text-transform: uppercase; display: block; }
+    .price-amount { font-size: 22px; font-weight: 900; color: #0d2c4a; }
+
+    .btn-separar { background: linear-gradient(135deg, #00a8ff, #0056b3); color: #ffffff; padding: 12px 22px; border-radius: 12px; text-decoration: none; font-weight: 800; font-size: 14px; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 4px 12px rgba(0, 168, 255, 0.3); border: none; cursor: pointer; }
+
+    /* Modales */
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 18, 31, 0.85); justify-content: center; align-items: center; z-index: 1000; padding: 15px; backdrop-filter: blur(4px); }
+    .modal-content { background: #13385c; padding: 22px; border-radius: 18px; max-width: 400px; width: 100%; border: 1px solid rgba(255, 255, 255, 0.15); max-height: 90vh; overflow-y: auto; }
+    
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .modal-title { font-size: 18px; font-weight: bold; color: #ffffff; }
+    .close-icon { color: #cce3f5; font-size: 24px; cursor: pointer; border: none; background: none; font-weight: bold; }
+
+    .pago-badge { background: rgba(37, 211, 102, 0.15); border: 1px solid #25d366; color: #25d366; padding: 6px 12px; border-radius: 8px; font-size: 11px; font-weight: bold; text-align: center; margin-bottom: 15px; width: fit-content; }
+
+    /* Formulario e Inputs Modal Conciertos Style */
+    .form-group { margin-bottom: 12px; text-align: left; }
+    .form-label { display: block; font-size: 12px; color: #cce3f5; margin-bottom: 6px; font-weight: bold; }
+    .form-input { width: 100%; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 10px; padding: 12px; color: #fff; font-size: 14px; outline: none; }
+    .form-input::placeholder { color: #7f9ebc; }
+
+    /* Selección de Zonas */
+    .zona-card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 12px; padding: 12px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: all 0.2s; }
+    .zona-card.selected { border-color: #64dfdf; background: rgba(100, 223, 223, 0.12); }
+    .zona-name { font-weight: bold; font-size: 14px; color: #fff; }
+    .zona-sub { font-size: 11px; color: #a0aec0; }
+    .zona-price { font-weight: bold; color: #64dfdf; font-size: 15px; }
+
+    /* Cupón de Descuento */
+    .coupon-box { display: flex; gap: 8px; margin: 12px 0; }
+    .btn-apply { background: #64dfdf; color: #0d2c4a; border: none; padding: 0 15px; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 12px; }
+
+    /* Contador */
+    .counter-container { display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.06); padding: 10px 15px; border-radius: 10px; margin: 12px 0; border: 1px solid rgba(255, 255, 255, 0.15); color: #cce3f5; font-size: 13px; }
+    .counter-btn { background: rgba(255, 255, 255, 0.15); color: #ffffff; border: none; width: 30px; height: 30px; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; }
+    .counter-value { font-size: 16px; font-weight: bold; color: #64dfdf; }
+
+    /* Total Box */
+    .total-box { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-top: 2px dashed rgba(255, 255, 255, 0.2); margin-top: 10px; font-size: 15px; font-weight: bold; color: #ffffff; }
+    .total-amount { color: #64dfdf; font-size: 22px; font-weight: 900; }
+
+    .btn-pay-qr { width: 100%; background: linear-gradient(135deg, #702b84, #a020f0); color: #fff; padding: 14px; border-radius: 12px; border: none; font-weight: bold; cursor: pointer; font-size: 14px; margin-top: 10px; text-transform: uppercase; }
+    .btn-pay-ws { background-color: #25d366; color: #0d2c4a; padding: 12px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; font-size: 14px; text-decoration: none; text-align: center; display: block; margin-top: 10px; }
+    .qr-img { width: 100%; max-width: 200px; border-radius: 12px; margin: 12px auto; display: block; border: 1px solid rgba(255, 255, 255, 0.2); }
+
+    .receipt-box { background: rgba(255, 255, 255, 0.08); border: 1px dashed rgba(100, 223, 223, 0.4); border-radius: 12px; padding: 12px; margin-top: 12px; text-align: left; font-size: 12px; color: #e0f2fe; line-height: 1.5; }
+    .receipt-title { font-weight: 800; color: #64dfdf; text-align: center; margin-bottom: 6px; font-size: 13px; text-transform: uppercase; }
+    .receipt-row { display: flex; justify-content: space-between; margin-bottom: 3px; }
+    .receipt-divider { border-top: 1px dashed rgba(255, 255, 255, 0.2); margin: 6px 0; }
+
+    /* Widget WhatsApp */
+    .ws-widget { position: fixed; bottom: 20px; left: 20px; display: flex; align-items: center; gap: 10px; z-index: 100; }
+    .ws-circle { width: 48px; height: 48px; background-color: #25d366; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); text-decoration: none; font-size: 24px; color: #fff; }
+    .ws-tooltip { background: #ffffff; color: #112a46; padding: 8px 12px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); font-size: 12px; font-weight: bold; }
+    .ws-subtext { color: #25d366; font-size: 11px; font-weight: bold; display: block; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <a href="índice.html" class="logo-container">
+      <div class="logo-icon">0</div>
+      <div class="logo-text">FilaCero</div>
+    </a>
+  </div>
+
+  <a href="índice.html" class="nav-back">← Volver al Inicio</a>
+
+  <h1 class="hero-title">Partidos <span class="highlight">Liga 1</span> ⚽</h1>
+  <p class="hero-desc">Reserva tu lugar para los clásicos y eventos deportivos oficiales con garantía total.</p>
+
+  <div class="partidos-grid">
+    <!-- Tarjeta del Partido Alianza Lima vs Universitario -->
+    <div class="partido-card">
+      <div class="card-image-box">
+        <div class="badge-top-left">
+          <span class="tag-purple">FilaCero</span>
+          <span class="tag-blue">LIGA 1 · JORNADA 9</span>
+        </div>
+        <span class="badge-top-right">¡EN VENTA!</span>
+        <img src="ref1.jpg" alt="Alianza Lima vs Universitario">
+      </div>
+      <div class="card-body">
+        <h2 class="card-title">ALIANZA LIMA VS UNIVERSITARIO</h2>
+        <div class="card-info">📅 Sáb, 12/9 · 8:00 P.M.</div>
+        <div class="card-info">📍 Estadio Alejandro Villanueva, La Victoria</div>
+        <div class="card-info">🎟️ ORIENTE / NORTE / SUR</div>
+        <div class="card-footer">
+          <div>
+            <span class="price-sub">ENTRADAS DESDE</span>
+            <span class="price-amount">S/ 90.00</span>
+          </div>
+          <button onclick="abrirModalPartido('Alianza Lima vs Universitario')" class="btn-separar">Separar →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Widget de Asistencia por WhatsApp -->
+  <div class="ws-widget">
+    <a href="https://wa.me/51912147432?text=Hola,%20tengo%20una%20consulta%20sobre%20las%20entradas%20de%20los%20partidos" target="_blank" class="ws-circle">💬</a>
+    <div class="ws-tooltip">
+      ¿Consultas sobre entradas?
+      <span class="ws-subtext">Asesor en línea por WhatsApp</span>
+    </div>
+  </div>
+
+  <!-- Modal Selección de Entradas (Estilo Conciertos) -->
+  <div id="modalPartido" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title" id="partidoModalTitle">Entradas - Partido</div>
+        <button onclick="cerrarModal('modalPartido')" class="close-icon">&times;</button>
+      </div>
+
+      <div class="pago-badge">MODO: PAGO COMPLETO (100%)</div>
+
+      <div class="form-group">
+        <label class="form-label">👤 Tu Nombre Completo:</label>
+        <input type="text" id="nombreCliente" class="form-input" placeholder="Ej. Juan Pérez">
+      </div>
+
+      <!-- Zonas Disponibles -->
+      <div class="form-group">
+        <label class="form-label">Selecciona tu zona:</label>
+        
+        <div class="zona-card selected" id="zona-oriente" onclick="seleccionarZona('Oriente', 180, 'zona-oriente')">
+          <div>
+            <div class="zona-name">Oriente</div>
+            <div class="zona-sub">Asiento numerado</div>
+          </div>
+          <div class="zona-price">S/ 180.00</div>
+        </div>
+
+        <div class="zona-card" id="zona-norte" onclick="seleccionarZona('Norte', 90, 'zona-norte')">
+          <div>
+            <div class="zona-name">Norte</div>
+            <div class="zona-sub">Tribuna general</div>
+          </div>
+          <div class="zona-price">S/ 90.00</div>
+        </div>
+
+        <div class="zona-card" id="zona-sur" onclick="seleccionarZona('Sur', 90, 'zona-sur')">
+          <div>
+            <div class="zona-name">Sur</div>
+            <div class="zona-sub">Tribuna general</div>
+          </div>
+          <div class="zona-price">S/ 90.00</div>
+        </div>
+      </div>
+
+      <!-- Campo para Código de Descuento -->
+      <div class="form-group">
+        <label class="form-label">🔑 ¿Tienes un código de descuento?</label>
+        <div class="coupon-box">
+          <input type="text" id="inputCodigo" class="form-input" style="text-transform: uppercase;" placeholder="INGRESA CÓDIGO">
+          <button class="btn-apply" onclick="aplicarDescuento()">Aplicar</button>
+        </div>
+        <small id="msgDescuento" style="display:none; font-size: 11px; color: #64dfdf; font-weight: bold;"></small>
+      </div>
+
+      <!-- Contador de Cantidad -->
+      <div class="counter-container">
+        <span>Cantidad:</span>
+        <div style="display:flex; align-items:center; gap: 10px;">
+          <button class="counter-btn" onclick="cambiarCantidad(-1)">-</button>
+          <span class="counter-value" id="cantText">1</span>
+          <button class="counter-btn" onclick="cambiarCantidad(1)">+</button>
+        </div>
+      </div>
+
+      <div class="total-box">
+        <span>TOTAL:</span>
+        <span class="total-amount" id="totalText">S/ 180.00</span>
+      </div>
+
+      <button onclick="mostrarQRModal()" class="btn-pay-qr">📱 PAGAR CON YAPE / PLIN</button>
+    </div>
+  </div>
+
+  <!-- Modal de Pago QR -->
+  <div id="qrModal" class="modal">
+    <div class="modal-content" style="text-align: center;">
+      <div class="modal-header">
+        <div class="modal-title">Escanear para Pagar</div>
+        <button onclick="cerrarModal('qrModal')" class="close-icon">&times;</button>
+      </div>
+
+      <p style="font-size: 12px; color: #cce3f5;">Escanea con Yape o Plin el monto exacto:</p>
+      <h2 style="color: #64dfdf; margin: 4px 0; font-size: 24px;" id="qrTotalDisplay">S/ 0.00</h2>
+      
+      <img src="qr-pago.jpg" alt="Código QR de Pago" class="qr-img">
+
+      <div class="receipt-box">
+        <div class="receipt-title">🎟️ ¡PAGO CONFIRMADO - FILACERO! 🎟️</div>
+        <p style="margin-bottom: 6px;">¡Hola! 👋✨<br>Tu reserva ha sido registrada exitosamente:</p>
+        
+        <div class="receipt-divider"></div>
+        <div style="font-weight: bold; margin-bottom: 4px;">🧾 COMPROBANTE DE RESERVA / BOLETA</div>
+        
+        <div class="receipt-row">
+          <span>👤 Cliente:</span>
+          <strong id="boletaCliente">-</strong>
+        </div>
+        <div class="receipt-row">
+          <span>📅 Fecha:</span>
+          <strong id="boletaFecha">--/--/----</strong>
+        </div>
+        <div class="receipt-row">
+          <span>⏰ Hora:</span>
+          <strong id="boletaHora">--:-- --</strong>
+        </div>
+        <div class="receipt-row">
+          <span>📌 ESTADO:</span>
+          <strong style="color: #f1c40f;">¡Reservado! 🟡</strong>
+        </div>
+        
+        <div class="receipt-divider"></div>
+        
+        <div class="receipt-row">
+          <span>⚽ Partido:</span>
+          <strong id="boletaPartido">-</strong>
+        </div>
+        <div class="receipt-row">
+          <span>📍 Zona:</span>
+          <strong id="boletaZona">Oriente</strong>
+        </div>
+        <div class="receipt-row">
+          <span>🔢 Entradas:</span>
+          <strong id="boletaCantidad">1</strong>
+        </div>
+        <div class="receipt-row">
+          <span>💰 Monto Total:</span>
+          <strong id="boletaMonto">S/ 0.00</strong>
+        </div>
+        <div class="receipt-row">
+          <span>💳 Método:</span>
+          <strong>Yape / Plin</strong>
+        </div>
+      </div>
+
+      <p style="font-size: 11px; color: #64dfdf; margin: 10px 0 6px 0; font-weight: bold;">Realiza el pago y envía tu comprobante por WhatsApp.</p>
+      
+      <a id="btnWsQR" href="#" target="_blank" class="btn-pay-ws">Enviar comprobante por WhatsApp</a>
+    </div>
+  </div>
+
+  <script>
+    let partidoNombre = "";
+    let zonaSeleccionada = "Oriente";
+    let precioUnitario = 180;
+    let cantidadEntradas = 1;
+    let tieneDescuento = false;
+    const numeroWhatsApp = "51912147432";
+
+    function abrirModalPartido(nombre) {
+      partidoNombre = nombre;
+      document.getElementById('partidoModalTitle').innerText = "Entradas - " + nombre;
+      // Resetear selecciones
+      seleccionarZona('Oriente', 180, 'zona-oriente');
+      cantidadEntradas = 1;
+      tieneDescuento = false;
+      document.getElementById('inputCodigo').value = "";
+      document.getElementById('msgDescuento').style.display = "none";
+      document.getElementById('nombreCliente').value = "";
+      actualizarTotales();
+      document.getElementById('modalPartido').style.display = 'flex';
+    }
+
+    function cerrarModal(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+
+    function seleccionarZona(zona, precio, idElemento) {
+      zonaSeleccionada = zona;
+      precioUnitario = precio;
+      
+      document.querySelectorAll('.zona-card').forEach(el => el.classList.remove('selected'));
+      document.getElementById(idElemento).classList.add('selected');
+
+      actualizarTotales();
+    }
+
+    function cambiarCantidad(delta) {
+      if (cantidadEntradas + delta >= 1 && cantidadEntradas + delta <= 10) {
+        cantidadEntradas += delta;
+        actualizarTotales();
+      }
+    }
+
+    function aplicarDescuento() {
+      const codigo = document.getElementById('inputCodigo').value.trim().toUpperCase();
+      const msg = document.getElementById('msgDescuento');
+      
+      if (codigo !== "") {
+        if (cantidadEntradas < 2) {
+          msg.style.color = "#ff4757";
+          msg.innerText = "❌ El descuento aplica a partir de la 2da entrada.";
+          msg.style.display = "block";
+          tieneDescuento = false;
+        } else {
+          msg.style.color = "#64dfdf";
+          msg.innerText = "¡Código aplicado! 20% Dcto. en la 2da entrada.";
+          msg.style.display = "block";
+          tieneDescuento = true;
+        }
+      } else {
+        msg.style.display = "none";
+        tieneDescuento = false;
+      }
+      actualizarTotales();
+    }
+
+    function calcularTotal() {
+      let total = 0;
+      if (tieneDescuento && cantidadEntradas >= 2) {
+        // La primera entrada paga el precio completo
+        // La segunda entrada recibe un 20% de descuento (paga el 80%)
+        // Las demás entradas (si hay más de 2) se pagan a precio normal
+        const segundaEntradaPrecio = precioUnitario * 0.80;
+        total = precioUnitario + segundaEntradaPrecio + (precioUnitario * (cantidadEntradas - 2));
+      } else {
+        total = precioUnitario * cantidadEntradas;
+      }
+      return total.toFixed(2);
+    }
+
+    function actualizarTotales() {
+      const total = calcularTotal();
+      document.getElementById('cantText').innerText = cantidadEntradas;
+      document.getElementById('totalText').innerText = `S/ ${total}`;
+    }
+
+    function mostrarQRModal() {
+      const nombre = document.getElementById('nombreCliente').value.trim();
+      if (!nombre) {
+        alert("Por favor, ingresa tu nombre completo antes de continuar.");
+        return;
+      }
+
+      cerrarModal('modalPartido');
+
+      const ahora = new Date();
+      const fecha = ahora.toLocaleDateString('es-PE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+      const hora = ahora.toLocaleTimeString('es-PE', { hour: '2-digit', minute: '2-digit', hour12: true });
+      const total = calcularTotal();
+
+      document.getElementById('qrTotalDisplay').innerText = `S/ ${total}`;
+      document.getElementById('boletaCliente').innerText = nombre;
+      document.getElementById('boletaFecha').innerText = fecha;
+      document.getElementById('boletaHora').innerText = hora;
+      document.getElementById('boletaPartido').innerText = partidoNombre;
+      document.getElementById('boletaZona').innerText = zonaSeleccionada;
+      document.getElementById('boletaCantidad').innerText = cantidadEntradas;
+      document.getElementById('boletaMonto').innerText = `S/ ${total}`;
+
+      let textoDescuento = tieneDescuento && cantidadEntradas >= 2 ? "\n🎟️ *Descuento Aplicado:* 20% en la 2da entrada" : "";
+
+      const mensajeWhatsApp = `⚽ *¡RESERVA DE ENTRADAS - FILACERO!* ⚽\n\n` +
+        `¡Hola! 👋✨\n` +
+        `Quiero reservar mis entradas para el partido.\n\n` +
+        `🧾 *DETALLES DE RESERVA*\n` +
+        `👤 *Cliente:* ${nombre}\n` +
+        `📅 *Fecha:* ${fecha}\n` +
+        `⏰ *Hora:* ${hora}\n\n` +
+        `⚽ *Partido:* ${partidoNombre}\n` +
+        `📍 *Zona:* ${zonaSeleccionada}\n` +
+        `🎟️ *Entradas:* ${cantidadEntradas}${textoDescuento}\n` +
+        `💰 *Monto Total:* S/ ${total}\n` +
+        `💳 *Método de Pago:* Yape / Plin\n\n` +
+        `Adjunto el comprobante de pago.`;
+
+      document.getElementById('btnWsQR').href = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensajeWhatsApp)}`;
+
+      document.getElementById('qrModal').style.display = 'flex';
+    }
+  </script>
+
+</body>
+</html>
