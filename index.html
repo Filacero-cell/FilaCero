@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FilaCero | Entradas Oficiales y Cine</title>
+  <title>FilaCero | Entradas Oficiales, Cine y Partidos</title>
   
   <!-- Librería para generación de Código QR dinámico -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -51,6 +51,10 @@
 
     .slide-conciertos { width: 25%; background: #ffffff; color: #112a46; border-radius: 20px; overflow: hidden; position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
     .slide-cine { width: 33.333%; background: #ffffff; color: #112a46; border-radius: 20px; overflow: hidden; position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+
+    /* Estilo del Bloque Único de Partido */
+    .partido-card-link { display: block; text-decoration: none; color: inherit; border-radius: 20px; overflow: hidden; background: #ffffff; box-shadow: 0 10px 25px rgba(0,0,0,0.3); transition: transform 0.2s ease; margin-bottom: 30px; }
+    .partido-card-link:active { transform: scale(0.98); }
 
     .card-image-box { position: relative; width: 100%; height: 210px; overflow: hidden; background: #000; }
     .card-image-box img { width: 100%; height: 100%; object-fit: cover; }
@@ -443,6 +447,34 @@
     <div class="dot" id="dotK2"></div>
   </div>
 
+  <!-- SECCIÓN PARTIDOS (Redirecciona a partidos.html en una pestaña nueva) -->
+  <div class="slider-header">
+    <div class="status-indicator">
+      <span class="dot-green"></span> Entradas para Partidos ⚽
+    </div>
+    <a href="partidos.html" target="_blank" class="see-all">Ver todos →</a>
+  </div>
+
+  <!-- Tarjeta única de Partido con enlace a nueva pestaña y tu imagen propia (partido-principal.jpg) -->
+  <a href="partidos.html" target="_blank" class="partido-card-link">
+    <div class="card-image-box">
+      <div class="badge-top-left"><span class="tag-purple">FilaCero</span><span class="tag-blue">LIGA 1 / CLÁSICO</span></div>
+      <span class="badge-top-right">¡DISPONIBLE!</span>
+      <!-- Puedes subir tu imagen y renombrarla a "partido-principal.jpg" -->
+      <img src="partido-principal.jpg" alt="Entradas para Partidos de Fútbol">
+    </div>
+    <div class="card-body">
+      <h2 class="card-title">UNIVERSITARIO VS ALIANZA LIMA</h2>
+      <div class="card-info">📅 Próximo Clásico 2026</div>
+      <div class="card-info">📍 Estadio Monumental · Lima</div>
+      <div class="card-info">🎟️ OCCIDENTE / ORIENTE / TRIBUNAS</div>
+      <div class="card-footer">
+        <div><span class="price-sub">ENTRADAS DESDE</span><span class="price-amount">S/ 45.00</span></div>
+        <span class="btn-separar">Sepárala →</span>
+      </div>
+    </div>
+  </a>
+
 
   <div class="section-title">GARANTÍAS QUE RECIBES CON CADA COMPRA</div>
   
@@ -641,6 +673,23 @@
         <span class="total-amount" id="totalTextCine">S/ 0.00</span>
       </div>
 
+      <!-- Sección Boleta Dinámica en la Selección -->
+      <div class="receipt-box">
+        <div class="receipt-title">🎟️ RESUMEN DE TU COMPRA 🎟️</div>
+        <div class="receipt-row">
+          <span>🍿 Producto:</span>
+          <strong id="modalPrevProducto">-</strong>
+        </div>
+        <div class="receipt-row">
+          <span>🔢 Cantidad:</span>
+          <strong id="modalPrevCantidad">1</strong>
+        </div>
+        <div class="receipt-row">
+          <span>💰 Monto Total:</span>
+          <strong id="modalPrevMonto">S/ 0.00</strong>
+        </div>
+      </div>
+
       <button onclick="mostrarQRModalCine()" class="btn-pay-qr">📲 PAGAR CON YAPE / PLIN</button>
     </div>
   </div>
@@ -819,6 +868,11 @@
       const total = (comboPrecioUnitario * cantCine).toFixed(2);
       document.getElementById('cantTextCine').innerText = cantCine;
       document.getElementById('totalTextCine').innerText = `S/ ${total}`;
+
+      // Inyectar pre-vista de la boleta dentro de la modal de selección
+      document.getElementById('modalPrevProducto').innerText = comboNombre;
+      document.getElementById('modalPrevCantidad').innerText = cantCine;
+      document.getElementById('modalPrevMonto').innerText = `S/ ${total}`;
     }
 
     function mostrarQRModalCine() {
