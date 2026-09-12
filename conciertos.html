@@ -3,88 +3,97 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Conciertos | FilaCero</title>
+  <title>Conciertos | TicketLovers</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
     
-    body { background-color: #0d2c4a; color: #ffffff; padding: 20px; }
+    body { background-color: #1a1528; color: #ffffff; padding: 20px 15px; }
     
+    /* Encabezado Principal */
     .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
-    .back-btn { color: #64dfdf; text-decoration: none; font-weight: bold; font-size: 14px; }
+    .back-btn { color: #00e676; text-decoration: none; font-weight: bold; font-size: 14px; background: rgba(0, 230, 118, 0.1); padding: 8px 14px; border-radius: 20px; border: 1px solid rgba(0, 230, 118, 0.3); }
     .logo-container { display: flex; align-items: center; gap: 8px; }
-    .logo-icon { width: 28px; height: 28px; background: #00a8ff; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 15px; color: #fff; }
-    .logo-text { color: #ffffff; font-size: 20px; font-weight: 900; }
+    .logo-icon { width: 32px; height: 32px; background: linear-gradient(135deg, #702b84, #00e676); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 16px; color: #fff; }
+    .logo-text { color: #ffffff; font-size: 20px; font-weight: 900; letter-spacing: -0.5px; }
     
-    .title { font-size: 28px; font-weight: 900; margin-bottom: 5px; color: #ffffff; }
-    .subtitle { color: #cce3f5; font-size: 14px; margin-bottom: 25px; }
+    .hero-tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(0, 230, 118, 0.1); border: 1px solid rgba(0, 230, 118, 0.3); color: #00e676; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; margin-bottom: 12px; }
+    .title { font-size: 26px; font-weight: 900; margin-bottom: 6px; color: #ffffff; line-height: 1.2; }
+    .subtitle { color: #a098b5; font-size: 14px; margin-bottom: 25px; }
     
     /* Tarjetas de Eventos */
-    .event-card { background-color: rgba(255, 255, 255, 0.05); border-radius: 16px; overflow: hidden; margin-bottom: 25px; border: 1px solid rgba(255, 255, 255, 0.15); }
-    .event-banner { width: 100%; display: block; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+    .event-card { background: #231c35; border-radius: 20px; overflow: hidden; margin-bottom: 25px; border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+    .event-banner { width: 100%; display: block; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
     .event-content { padding: 20px; }
-    .event-tag { color: #64dfdf; background-color: rgba(100, 223, 223, 0.12); border: 1px solid rgba(100, 223, 223, 0.3); font-size: 12px; font-weight: bold; margin-bottom: 10px; display: inline-block; padding: 4px 10px; border-radius: 6px; }
+    
+    .badges-wrapper { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+    .badge-tag { font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 12px; text-transform: uppercase; }
+    .badge-purple { background: #702b84; color: #fff; }
+    .badge-blue { background: #2563eb; color: #fff; }
+    .badge-red { background: #ff4757; color: #fff; }
+    
     .event-title { font-size: 22px; margin-bottom: 12px; color: #ffffff; font-weight: 800; }
-    .event-info { color: #cce3f5; font-size: 14px; margin-bottom: 6px; }
+    .event-info { color: #a098b5; font-size: 13px; margin-bottom: 6px; }
+    .event-info strong { color: #ffffff; }
     
     /* Botones de las tarjetas */
-    .card-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 15px; }
-    .btn-buy-card { background-color: #25d366; color: #0d2c4a; padding: 12px 5px; border-radius: 10px; font-weight: 800; border: none; font-size: 13px; cursor: pointer; text-transform: uppercase; }
-    .btn-reserve-card { background-color: #f39c12; color: #0d2c4a; padding: 12px 5px; border-radius: 10px; font-weight: 800; border: none; font-size: 13px; cursor: pointer; text-transform: uppercase; }
-    .btn-ws-card { grid-column: span 2; background: rgba(255, 255, 255, 0.1); color: #fff; padding: 10px; border-radius: 10px; font-weight: 800; text-decoration: none; text-align: center; font-size: 13px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255, 255, 255, 0.2); }
+    .card-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+    .btn-buy-card { background: #00e676; color: #000; padding: 12px 5px; border-radius: 12px; font-weight: 800; border: none; font-size: 13px; cursor: pointer; text-transform: uppercase; }
+    .btn-reserve-card { background: rgba(255, 255, 255, 0.1); color: #fff; padding: 12px 5px; border-radius: 12px; font-weight: 800; border: 1px solid rgba(255, 255, 255, 0.2); font-size: 13px; cursor: pointer; text-transform: uppercase; }
+    .btn-ws-card { grid-column: span 2; background: rgba(0, 230, 118, 0.08); color: #00e676; padding: 11px; border-radius: 12px; font-weight: 800; text-decoration: none; text-align: center; font-size: 13px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(0, 230, 118, 0.3); }
     .btn-buy-card:active, .btn-reserve-card:active, .btn-ws-card:active { transform: scale(0.98); }
 
     /* Modales */
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 18, 31, 0.85); justify-content: center; align-items: center; z-index: 1000; padding: 15px; backdrop-filter: blur(4px); }
-    .modal-content { background: #13385c; padding: 22px; border-radius: 18px; max-width: 380px; width: 100%; border: 1px solid rgba(255, 255, 255, 0.15); max-height: 90vh; overflow-y: auto; }
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 8, 18, 0.88); justify-content: center; align-items: center; z-index: 1000; padding: 15px; backdrop-filter: blur(8px); }
+    .modal-content { background: #231c35; padding: 22px; border-radius: 20px; max-width: 400px; width: 100%; border: 1px solid rgba(255, 255, 255, 0.15); max-height: 90vh; overflow-y: auto; }
     .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
     .modal-title { font-size: 18px; font-weight:bold; color: #ffffff; }
-    .close-icon { color: #cce3f5; font-size: 24px; cursor: pointer; border: none; background: none; font-weight: bold; }
+    .close-icon { color: #a098b5; font-size: 24px; cursor: pointer; border: none; background: none; font-weight: bold; }
 
     /* Modal Badge Modo */
-    .mode-badge { font-size: 12px; font-weight: 800; padding: 4px 10px; border-radius: 6px; margin-bottom: 15px; display: inline-block; text-transform: uppercase; }
-    .mode-badge.compra { background-color: rgba(37, 211, 102, 0.2); color: #25d366; border: 1px solid #25d366; }
-    .mode-badge.reserva { background-color: rgba(243, 156, 18, 0.2); color: #f39c12; border: 1px solid #f39c12; }
+    .mode-badge { font-size: 12px; font-weight: 800; padding: 6px 12px; border-radius: 8px; margin-bottom: 15px; display: inline-block; text-transform: uppercase; }
+    .mode-badge.compra { background: rgba(0, 230, 118, 0.15); color: #00e676; border: 1px solid #00e676; }
+    .mode-badge.reserva { background: rgba(243, 156, 18, 0.15); color: #f39c12; border: 1px solid #f39c12; }
 
     /* Opciones de Zonas */
-    .zone-option { background: rgba(255, 255, 255, 0.06); border: 2px solid rgba(255, 255, 255, 0.15); border-radius: 12px; padding: 12px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: 0.2s; }
-    .zone-option.selected { border-color: #64dfdf; background: rgba(100, 223, 223, 0.15); }
+    .zone-option { background: rgba(255, 255, 255, 0.04); border: 2px solid rgba(255, 255, 255, 0.1); border-radius: 14px; padding: 12px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: 0.2s; }
+    .zone-option.selected { border-color: #00e676; background: rgba(0, 230, 118, 0.1); }
     .zone-name { font-size: 14px; font-weight: 700; color: #ffffff; }
-    .zone-price { color: #64dfdf; font-weight: 800; font-size: 15px; text-align: right; }
-    .original-price-strike { text-decoration: line-through; color: #a0b2c6; font-size: 11px; display: block; font-weight: normal; }
+    .zone-price { color: #00e676; font-weight: 800; font-size: 15px; text-align: right; }
+    .original-price-strike { text-decoration: line-through; color: #a098b5; font-size: 11px; display: block; font-weight: normal; }
 
     /* Campo Código Secreto */
     .promo-container { margin: 12px 0; }
     .promo-box { display: flex; gap: 8px; margin-top: 5px; }
-    .promo-input { flex: 1; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; padding: 8px 12px; color: #ffffff; font-size: 13px; text-transform: uppercase; outline: none; }
-    .promo-input::placeholder { color: #a0b2c6; }
-    .btn-apply-promo { background: #64dfdf; color: #0d2c4a; border: none; padding: 8px 12px; border-radius: 8px; font-weight: bold; font-size: 12px; cursor: pointer; }
+    .promo-input { flex: 1; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; padding: 8px 12px; color: #ffffff; font-size: 13px; text-transform: uppercase; outline: none; }
+    .promo-input::placeholder { color: #6e6485; }
+    .btn-apply-promo { background: #00e676; color: #000; border: none; padding: 8px 14px; border-radius: 10px; font-weight: bold; font-size: 12px; cursor: pointer; }
     .promo-status { font-size: 11px; margin-top: 4px; display: block; }
-    .promo-status.success { color: #25d366; }
-    .promo-status.error { color: #ff6b6b; }
+    .promo-status.success { color: #00e676; }
+    .promo-status.error { color: #ff4757; }
 
     /* Formulario Nombre */
     .user-input-group { margin: 12px 0; text-align: left; }
-    .user-input-group label { font-size: 12px; color: #cce3f5; display: block; margin-bottom: 4px; }
-    .user-input-group input { width: 100%; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; padding: 8px 12px; color: #ffffff; font-size: 13px; outline: none; }
+    .user-input-group label { font-size: 12px; color: #a098b5; display: block; margin-bottom: 4px; }
+    .user-input-group input { width: 100%; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; padding: 8px 12px; color: #ffffff; font-size: 13px; outline: none; }
 
     /* Contador de Entradas */
-    .counter-container { display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.06); padding: 10px 15px; border-radius: 12px; margin: 15px 0; border: 1px solid rgba(255, 255, 255, 0.15); color: #cce3f5; }
-    .counter-btn { background: rgba(255, 255, 255, 0.15); color: #ffffff; border: none; width: 32px; height: 32px; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; }
-    .counter-value { font-size: 18px; font-weight: bold; color: #64dfdf; }
+    .counter-container { display: flex; justify-content: space-between; align-items: center; background: rgba(255, 255, 255, 0.04); padding: 10px 15px; border-radius: 14px; margin: 15px 0; border: 1px solid rgba(255, 255, 255, 0.1); color: #a098b5; }
+    .counter-btn { background: rgba(255, 255, 255, 0.1); color: #ffffff; border: none; width: 32px; height: 32px; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; }
+    .counter-value { font-size: 18px; font-weight: bold; color: #00e676; }
 
     /* Resumen de Total */
-    .total-box { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-top: 2px dashed rgba(255, 255, 255, 0.2); margin-top: 10px; font-size: 16px; font-weight: bold; color: #ffffff; }
-    .total-amount { color: #64dfdf; font-size: 22px; font-weight: 900; }
+    .total-box { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-top: 2px dashed rgba(255, 255, 255, 0.1); margin-top: 10px; font-size: 16px; font-weight: bold; color: #ffffff; }
+    .total-amount { color: #00e676; font-size: 22px; font-weight: 900; }
 
     /* Botón de Pago único en el Modal */
-    .btn-pay-qr { width: 100%; background-color: #702b84; color: #fff; padding: 14px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; font-size: 15px; margin-top: 15px; text-transform: uppercase; }
-    .btn-pay-ws { background-color: #25d366; color: #0d2c4a; padding: 12px; border-radius: 8px; border: none; font-weight: bold; cursor: pointer; font-size: 14px; text-decoration: none; text-align: center; }
+    .btn-pay-qr { width: 100%; background: #00e676; color: #000; padding: 14px; border-radius: 12px; border: none; font-weight: 900; cursor: pointer; font-size: 15px; margin-top: 15px; text-transform: uppercase; }
+    .btn-pay-ws { background-color: #00e676; color: #000; padding: 12px; border-radius: 12px; border: none; font-weight: bold; cursor: pointer; font-size: 14px; text-decoration: none; text-align: center; }
 
     .qr-img { width: 100%; max-width: 200px; border-radius: 12px; margin: 10px auto; display: block; border: 1px solid rgba(255, 255, 255, 0.2); }
 
-    /* Estilo para el Voucher / Comprobante en Pantalla */
-    .voucher-box { background: rgba(0, 0, 0, 0.25); border: 1px solid rgba(100, 223, 223, 0.4); border-radius: 12px; padding: 15px; margin-top: 15px; text-align: left; font-size: 13px; color: #e1f1fd; line-height: 1.5; }
-    .voucher-title { font-size: 14px; font-weight: bold; color: #64dfdf; text-align: center; margin-bottom: 8px; text-transform: uppercase; }
+    /* Estilo para el Voucher */
+    .voucher-box { background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(0, 230, 118, 0.3); border-radius: 14px; padding: 15px; margin-top: 15px; text-align: left; font-size: 13px; color: #e1f1fd; line-height: 1.5; }
+    .voucher-title { font-size: 14px; font-weight: bold; color: #00e676; text-align: center; margin-bottom: 8px; text-transform: uppercase; }
     .voucher-line { border-bottom: 1px dashed rgba(255, 255, 255, 0.15); margin: 8px 0; }
   </style>
 </head>
@@ -93,19 +102,24 @@
   <div class="header">
     <a href="index.html" class="back-btn">← Volver</a>
     <div class="logo-container">
-      <div class="logo-icon">0</div>
-      <div class="logo-text">FilaCero</div>
+      <div class="logo-icon">T</div>
+      <div class="logo-text">TicketLovers</div>
     </div>
   </div>
 
-  <h1 class="title">Conciertos 🎵</h1>
-  <p class="subtitle">Entradas disponibles para los próximos shows en Lima</p>
+  <div class="hero-tag">⚡ Entradas Oficiales y Descuentos en Perú</div>
+  <h1 class="title">Conciertos Activos 🎵</h1>
+  <p class="subtitle">Selecciona tu show favorito y compra o reserva en cuotas sin filas.</p>
 
   <!-- Tarjeta BTS -->
   <div class="event-card">
     <img src="bts.png" alt="BTS" class="event-banner">
     <div class="event-content">
-      <div class="event-tag">⚡ ÚLTIMAS ENTRADAS</div>
+      <div class="badges-wrapper">
+        <span class="badge-tag badge-purple">TicketLovers</span>
+        <span class="badge-tag badge-blue">EN CUOTAS</span>
+        <span class="badge-tag badge-red">¡ÚLTIMAS!</span>
+      </div>
       <h2 class="event-title">BTS World Tour Arirang</h2>
       <p class="event-info">📅 <strong>Fechas:</strong> 07, 09 y 10 de Octubre 2026</p>
       <p class="event-info">📍 <strong>Lugar:</strong> Estadio San Marcos, Lima</p>
@@ -113,7 +127,7 @@
       <div class="card-actions">
         <button onclick="abrirModal('bts', 'comprar')" class="btn-buy-card">🎟️ COMPRAR</button>
         <button onclick="abrirModal('bts', 'reservar')" class="btn-reserve-card">📌 RESERVAR (35%)</button>
-        <a href="https://wa.me/51912147432?text=Hola,%20tengo%20consultas%20sobre%20las%20entradas%20de%20BTS" target="_blank" class="btn-ws-card">💬 WHATSAPP</a>
+        <a href="https://wa.me/51912147432?text=Hola,%20tengo%20consultas%20sobre%20las%20entradas%20de%20BTS" target="_blank" class="btn-ws-card">💬 CONSULTAR POR WHATSAPP</a>
       </div>
     </div>
   </div>
@@ -122,14 +136,17 @@
   <div class="event-card">
     <img src="omarcourtz.jpg" alt="Omar Courtz" class="event-banner">
     <div class="event-content">
-      <div class="event-tag">⚡ ÚLTIMAS ENTRADAS</div>
+      <div class="badges-wrapper">
+        <span class="badge-tag badge-purple">TicketLovers</span>
+        <span class="badge-tag badge-red">¡ÚLTIMAS!</span>
+      </div>
       <h2 class="event-title">Omar Courtz</h2>
       <p class="event-info">📍 <strong>Lugar:</strong> Lima</p>
       
       <div class="card-actions">
         <button onclick="abrirModal('omar', 'comprar')" class="btn-buy-card">🎟️ COMPRAR</button>
         <button onclick="abrirModal('omar', 'reservar')" class="btn-reserve-card">📌 RESERVAR (50%)</button>
-        <a href="https://wa.me/51912147432?text=Hola,%20tengo%20consultas%20sobre%20las%20entradas%20de%20Omar%20Courtz" target="_blank" class="btn-ws-card">💬 WHATSAPP</a>
+        <a href="https://wa.me/51912147432?text=Hola,%20tengo%20consultas%20sobre%20las%20entradas%20de%20Omar%20Courtz" target="_blank" class="btn-ws-card">💬 CONSULTAR POR WHATSAPP</a>
       </div>
     </div>
   </div>
@@ -138,7 +155,10 @@
   <div class="event-card">
     <img src="gorillaz.jpg" alt="Gorillaz" class="event-banner">
     <div class="event-content">
-      <div class="event-tag">⚡ ÚLTIMAS ENTRADAS</div>
+      <div class="badges-wrapper">
+        <span class="badge-tag badge-purple">TicketLovers</span>
+        <span class="badge-tag badge-blue">EN CUOTAS</span>
+      </div>
       <h2 class="event-title">Gorillaz - The Mountain Tour 2026</h2>
       <p class="event-info">📅 <strong>Fecha:</strong> Lunes 23 de Noviembre 2026</p>
       <p class="event-info">📍 <strong>Lugar:</strong> Arena 1 Park, Lima, Perú</p>
@@ -146,7 +166,7 @@
       <div class="card-actions">
         <button onclick="abrirModal('gorillaz', 'comprar')" class="btn-buy-card">🎟️ COMPRAR</button>
         <button onclick="abrirModal('gorillaz', 'reservar')" class="btn-reserve-card">📌 RESERVAR (50%)</button>
-        <a href="https://wa.me/51912147432?text=Hola,%20tengo%20consultas%20sobre%20las%20entradas%20de%20Gorillaz" target="_blank" class="btn-ws-card">💬 WHATSAPP</a>
+        <a href="https://wa.me/51912147432?text=Hola,%20tengo%20consultas%20sobre%20las%20entradas%20de%20Gorillaz" target="_blank" class="btn-ws-card">💬 CONSULTAR POR WHATSAPP</a>
       </div>
     </div>
   </div>
@@ -155,7 +175,10 @@
   <div class="event-card">
     <img src="hombresg.jpg" alt="Hombres G" class="event-banner">
     <div class="event-content">
-      <div class="event-tag">⚡ ÚLTIMAS ENTRADAS</div>
+      <div class="badges-wrapper">
+        <span class="badge-tag badge-purple">TicketLovers</span>
+        <span class="badge-tag badge-red">¡ÚLTIMAS!</span>
+      </div>
       <h2 class="event-title">Hombres G - Gira 2026</h2>
       <p class="event-info">📅 <strong>Última Fecha:</strong> 30 de Octubre 2026</p>
       <p class="event-info">📍 <strong>Lugar:</strong> Estadio Nacional - Lima, PE</p>
@@ -163,7 +186,7 @@
       <div class="card-actions">
         <button onclick="abrirModal('hombresg', 'comprar')" class="btn-buy-card">🎟️ COMPRAR</button>
         <button onclick="abrirModal('hombresg', 'reservar')" class="btn-reserve-card">📌 RESERVAR (50%)</button>
-        <a href="https://wa.me/51912147432?text=Hola,%20tengo%20consultas%20sobre%20las%20entradas%20de%20Hombres%20G" target="_blank" class="btn-ws-card">💬 WHATSAPP</a>
+        <a href="https://wa.me/51912147432?text=Hola,%20tengo%20consultas%20sobre%20las%20entradas%20de%20Hombres%20G" target="_blank" class="btn-ws-card">💬 CONSULTAR POR WHATSAPP</a>
       </div>
     </div>
   </div>
@@ -188,7 +211,7 @@
       <div class="zone-option selected" id="bts-z1" onclick="seleccionarZona('BTS', 'Campo A', 1099.90, 'bts-z1')">
         <div>
           <div class="zone-name">Campo A</div>
-          <small style="color:#cce3f5;">De pie - Frente al escenario</small>
+          <small style="color:#a098b5;">De pie - Frente al escenario</small>
         </div>
         <div class="zone-price" id="bts-z1-p">S/ 1,099.90</div>
       </div>
@@ -196,7 +219,7 @@
       <div class="zone-option" id="bts-z2" onclick="seleccionarZona('BTS', 'Tribuna Oriente / Occidente', 899.90, 'bts-z2')">
         <div>
           <div class="zone-name">Oriente / Occidente</div>
-          <small style="color:#cce3f5;">Asiento numerado</small>
+          <small style="color:#a098b5;">Asiento numerado</small>
         </div>
         <div class="zone-price" id="bts-z2-p">S/ 899.90</div>
       </div>
@@ -204,14 +227,14 @@
       <div class="zone-option" id="bts-z3" onclick="seleccionarZona('BTS', 'Tribuna Norte / Sur', 749.90, 'bts-z3')">
         <div>
           <div class="zone-name">Norte / Sur</div>
-          <small style="color:#cce3f5;">Tribuna general</small>
+          <small style="color:#a098b5;">Tribuna general</small>
         </div>
         <div class="zone-price" id="bts-z3-p">S/ 749.90</div>
       </div>
 
       <!-- Barra de Código Promo -->
       <div class="promo-container">
-        <label style="font-size: 12px; color: #cce3f5;">🔑 ¿Tienes un código de descuento?</label>
+        <label style="font-size: 12px; color: #a098b5;">🔑 ¿Tienes un código de descuento?</label>
         <div class="promo-box">
           <input type="text" id="promoInputBTS" class="promo-input" placeholder="Ingresa código">
           <button class="btn-apply-promo" onclick="aplicarCodigo('BTS')">Aplicar</button>
@@ -254,7 +277,7 @@
       <div class="zone-option selected" id="omar-z1" onclick="seleccionarZona('Omar Courtz', 'Campo A', 400.00, 'omar-z1')">
         <div>
           <div class="zone-name">Campo A</div>
-          <small style="color:#cce3f5;">Zona Preferencial</small>
+          <small style="color:#a098b5;">Zona Preferencial</small>
         </div>
         <div class="zone-price" id="omar-z1-p">S/ 400.00</div>
       </div>
@@ -262,14 +285,14 @@
       <div class="zone-option" id="omar-z2" onclick="seleccionarZona('Omar Courtz', 'Campo B', 260.00, 'omar-z2')">
         <div>
           <div class="zone-name">Campo B</div>
-          <small style="color:#cce3f5;">Zona General</small>
+          <small style="color:#a098b5;">Zona General</small>
         </div>
         <div class="zone-price" id="omar-z2-p">S/ 260.00</div>
       </div>
 
       <!-- Barra de Código Promo -->
       <div class="promo-container">
-        <label style="font-size: 12px; color: #cce3f5;">🔑 ¿Tienes un código de descuento?</label>
+        <label style="font-size: 12px; color: #a098b5;">🔑 ¿Tienes un código de descuento?</label>
         <div class="promo-box">
           <input type="text" id="promoInputOmar" class="promo-input" placeholder="Ingresa código">
           <button class="btn-apply-promo" onclick="aplicarCodigo('Omar')">Aplicar</button>
@@ -312,7 +335,7 @@
       <div class="zone-option selected" id="gor-z1" onclick="seleccionarZona('Gorillaz', 'Platinum', 480.00, 'gor-z1')">
         <div>
           <div class="zone-name">Platinum</div>
-          <small style="color:#cce3f5;">Frente al escenario</small>
+          <small style="color:#a098b5;">Frente al escenario</small>
         </div>
         <div class="zone-price" id="gor-z1-p">S/ 480.00</div>
       </div>
@@ -320,7 +343,7 @@
       <div class="zone-option" id="gor-z2" onclick="seleccionarZona('Gorillaz', 'VIP', 380.00, 'gor-z2')">
         <div>
           <div class="zone-name">VIP</div>
-          <small style="color:#cce3f5;">Zona intermedia</small>
+          <small style="color:#a098b5;">Zona intermedia</small>
         </div>
         <div class="zone-price" id="gor-z2-p">S/ 380.00</div>
       </div>
@@ -328,14 +351,14 @@
       <div class="zone-option" id="gor-z3" onclick="seleccionarZona('Gorillaz', 'General', 260.00, 'gor-z3')">
         <div>
           <div class="zone-name">General</div>
-          <small style="color:#cce3f5;">Zona posterior</small>
+          <small style="color:#a098b5;">Zona posterior</small>
         </div>
         <div class="zone-price" id="gor-z3-p">S/ 260.00</div>
       </div>
 
       <!-- Barra de Código Promo -->
       <div class="promo-container">
-        <label style="font-size: 12px; color: #cce3f5;">🔑 ¿Tienes un código de descuento?</label>
+        <label style="font-size: 12px; color: #a098b5;">🔑 ¿Tienes un código de descuento?</label>
         <div class="promo-box">
           <input type="text" id="promoInputGorillaz" class="promo-input" placeholder="Ingresa código">
           <button class="btn-apply-promo" onclick="aplicarCodigo('Gorillaz')">Aplicar</button>
@@ -422,7 +445,7 @@
 
       <!-- Barra de Código Promo -->
       <div class="promo-container">
-        <label style="font-size: 12px; color: #cce3f5;">🔑 ¿Tienes un código de descuento?</label>
+        <label style="font-size: 12px; color: #a098b5;">🔑 ¿Tienes un código de descuento?</label>
         <div class="promo-box">
           <input type="text" id="promoInputHombresG" class="promo-input" placeholder="Ingresa código">
           <button class="btn-apply-promo" onclick="aplicarCodigo('HombresG')">Aplicar</button>
@@ -457,18 +480,18 @@
         <button onclick="cerrarModal('qrModal')" class="close-icon">&times;</button>
       </div>
 
-      <p style="font-size: 14px; color: #cce3f5;">Escanea con Yape o Plin el monto exacto:</p>
-      <h2 style="color: #64dfdf; margin: 8px 0; font-size: 28px;" id="qrTotalDisplay">S/ 0.00</h2>
+      <p style="font-size: 14px; color: #a098b5;">Escanea con Yape o Plin el monto exacto:</p>
+      <h2 style="color: #00e676; margin: 8px 0; font-size: 28px;" id="qrTotalDisplay">S/ 0.00</h2>
 
       <img src="qr-pago.jpg" alt="Código QR de Pago" class="qr-img">
 
       <!-- Cuadro Comprobante / Voucher Visual -->
       <div class="voucher-box">
-        <div class="voucher-title">🎟️ PAGO CONFIRMADO - FILACERO 🎟️</div>
+        <div class="voucher-title">🎟️ PAGO CONFIRMADO - TICKETLOVERS 🎟️</div>
         <p id="vCliente">¡Hola! 👋✨</p>
         <p>Tu pago ha sido verificado con éxito. Ya tienes asegurado tu lugar para vivir la experiencia 🥳🎤</p>
         <div class="voucher-line"></div>
-        <p style="font-weight: bold; color: #64dfdf;">🧾 COMPROBANTE DE COMPRA / BOLETA</p>
+        <p style="font-weight: bold; color: #00e676;">🧾 COMPROBANTE DE COMPRA / BOLETA</p>
         <p id="vFecha">📅 Fecha de emisión: -</p>
         <p id="vEstado">ESTADO: ¡Pagado! 🟢</p>
         <div class="voucher-line"></div>
@@ -477,10 +500,10 @@
         <p id="vCantidad">🔢 Cantidad: -</p>
         <p id="vTotal">💰 Monto Total: S/ 0.00</p>
         <p id="vMetodo">💳 Método de Pago: Yape / Plin</p>
-        <p id="vPromo" style="color: #25d366; font-size: 11px; margin-top: 4px;"></p>
+        <p id="vPromo" style="color: #00e676; font-size: 11px; margin-top: 4px;"></p>
       </div>
 
-      <p style="font-size: 12px; color: #64dfdf; margin: 12px 0 10px 0; font-weight: bold;">Realiza el pago y envía tu voucher directamente a WhatsApp.</p>
+      <p style="font-size: 12px; color: #00e676; margin: 12px 0 10px 0; font-weight: bold;">Realiza el pago y envía tu voucher directamente a WhatsApp.</p>
       
       <a id="btnWsQR" href="#" target="_blank" class="btn-pay-ws" style="display:block;">Enviar comprobante por WhatsApp</a>
     </div>
@@ -686,7 +709,6 @@
         document.getElementById('totalTextHombresG').innerText = `S/ ${total}`;
       }
 
-      // Generar Fecha y Hora Actual
       const ahora = new Date();
       const fechaEmision = ahora.toLocaleDateString('es-PE', { day: '2-digit', month: '2-digit', year: 'numeric' }) + ' ' + ahora.toLocaleTimeString('es-PE', { hour: '2-digit', minute: '2-digit' });
 
@@ -699,7 +721,6 @@
         promoDetalle = `\n🎁 Código Promo: ${codigoSecretoIngresado} (20% Desc. en 2da entrada aplicado)`;
       }
 
-      // Actualizar Voucher en Pantalla (Modal QR)
       document.getElementById('qrTotalDisplay').innerText = `S/ ${total}`;
       document.getElementById('vCliente').innerText = `¡Hola, ${cliente || 'Cliente'}! 👋✨`;
       document.getElementById('vFecha').innerText = `📅 Fecha de emisión: ${fechaEmision}`;
@@ -710,8 +731,7 @@
       document.getElementById('vTotal').innerText = `💰 Monto Total: S/ ${total}`;
       document.getElementById('vPromo').innerText = promoDetalle ? promoDetalle.trim() : "";
 
-      // Armar el voucher exacto formateado para WhatsApp
-      const mensajeWS = `🎟️ ¡PAGO CONFIRMADO - FILACERO! 🎟️
+      const mensajeWS = `🎟️ ¡PAGO CONFIRMADO - TICKETLOVERS! 🎟️
 
 ¡Hola, ${cliente}! 👋✨
 Tu pago ha sido verificado con éxito. Ya tienes asegurado tu lugar para vivir la experiencia con ${evento.nombre} 🥳🎤
